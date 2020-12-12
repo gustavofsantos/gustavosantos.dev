@@ -13,6 +13,10 @@
     "postcss": "^8.2.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-gist": "^1.2.2",
     "tailwindcss": "^2.0.2"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
   }
 }
