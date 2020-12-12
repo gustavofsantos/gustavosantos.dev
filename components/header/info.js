@@ -1,10 +1,21 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export const HeaderInfo = () => (
   <Link href="/">
     <div className="flex space-x-4 cursor-pointer">
-      <span>img</span>
-      <h3 className="md:hidden">Gustavo Santos</h3>
+      <div className="flex justify-center align-center">
+        <Image
+          src="/images/profile.jpg"
+          alt="Profile picture"
+          className="rounded-full object-cover"
+          width="24rem"
+          height="24rem"
+        />
+      </div>
+      <h3 className="hidden justify-start items-center md:flex">
+        Gustavo Santos
+      </h3>
     </div>
   </Link>
 );
