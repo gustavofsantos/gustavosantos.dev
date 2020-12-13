@@ -10,6 +10,7 @@ export const metadata = {
   resume: `the resume of the article the resume of the article the resume of the
         article the resume of the article the resume of the article the resume
         of the article the resume of the article the resume of the article`,
+  href: "/blog/en/setting-up-test-nextjs",
 };
 
 export default function Post() {
@@ -27,10 +28,10 @@ export default function Post() {
       <BlogParagraph>
         This is an blog paragraph. bla bla bla bla bla bla This is an blog
         paragraph. bla bla bla bla bla bla This is an blog paragraph. bla bla
-        bla bla bla bla This is an blog paragraph. <code>const x = () => 0</code> bla bla bla bla bla bla This
-        is an blog paragraph. bla bla bla bla bla bla This is an blog paragraph.
-        bla bla bla bla bla bla This is an blog paragraph. bla bla bla bla bla
-        bla
+        bla bla bla bla This is an blog paragraph.{" "}
+        <code>const x = () => 0</code> bla bla bla bla bla bla This is an blog
+        paragraph. bla bla bla bla bla bla This is an blog paragraph. bla bla
+        bla bla bla bla This is an blog paragraph. bla bla bla bla bla bla
       </BlogParagraph>
 
       <Gist id="cb2080538ec7d58c9d33ae33d76c7466" />

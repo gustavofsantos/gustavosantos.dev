@@ -9,8 +9,8 @@ export const HeaderInfo = () => (
           src="/images/profile.jpg"
           alt="Profile picture"
           className="rounded-full object-cover"
-          width="24rem"
-          height="24rem"
+          width={32}
+          height={32}
         />
       </div>
       <h3 className="hidden justify-start items-center md:flex">

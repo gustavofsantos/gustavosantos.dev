@@ -1,7 +1,18 @@
 import Head from "next/head";
+import Image from "next/image";
+import { BlogHeadImage } from './blog-head-image'
 import { Footer } from "../footer";
 
-export const BlogPage = ({ children, title, resume, lang }) => (
+export const BlogPage = ({
+  children,
+  title,
+  resume,
+  imgPath,
+  imgAlt,
+  imgAuthorName,
+  imgAuthorHref,
+  lang,
+}) => (
   <>
     <Head>
       <title>{title}</title>
@@ -30,11 +41,12 @@ export const BlogPage = ({ children, title, resume, lang }) => (
         rel="stylesheet"
       />
     </Head>
+    {!!imgPath && <BlogHeadImage path={imgPath} alt={imgAlt} authorName={imgAuthorName} authorHref={imgAuthorHref} />}
     <article
-      className="flex flex-col items-center pt-20 pb-28 w-full"
+      className="flex flex-col items-center pt-20 pb-40 w-full bg-white dark:bg-black"
       data-testid="blog-page"
     >
-      <section className="flex flex-col w-full pl-4 pr-4 md:max-w-lg md:p-0">
+      <section className="flex flex-col w-full pl-4 pr-4 md:max-w-lg md:p-0 bg-white dark:bg-black">
         {children}
       </section>
     </article>

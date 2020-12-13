@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { BlogPostCard } from "../../components/blog/blog-post-card";
 import { Footer } from "../../components/footer";
+import { metadata as postJsClassTipBind } from './en/js-class-tip-bind';
 import { metadata as post001Metadata } from "./en/setting-up-test-nextjs";
 
 export default function BlogPage() {
@@ -26,7 +27,13 @@ export default function BlogPage() {
             <BlogPostCard
               title={post001Metadata.title}
               resume={post001Metadata.resume}
-              href="/blog/en/setting-up-test-nextjs"
+              href={post001Metadata.href}
+            />
+
+            <BlogPostCard
+              title={postJsClassTipBind.title}
+              resume={postJsClassTipBind.resume}
+              href={postJsClassTipBind.href}
             />
           </section>
         </div>

@@ -16,7 +16,6 @@ html, body, #__next {
   font-family: 'Libre Baskerville', serif;
 }
 
-.header-background {
-  background: rgba(255,255,255, 0.5);
+.backdrop-filter {
   backdrop-filter: saturate(180%) blur(20px);
 }
