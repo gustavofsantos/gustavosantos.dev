@@ -30,11 +30,11 @@ export default function AboutPage() {
             </BlogSubtitle>
 
             <BlogParagraph>
-              Eu sou bacharel em Engenharia de Computação pela UFPel e desenvolvedor web na <a href="https://after.sale">aftersale</a>. Minha paixão é desenvolver produtos sólidos que evoluem com facilidade e ajudar outras pessoas com programação e tecnologia em geral.
+              Eu sou bacharel em Engenharia de Computação pela UFPel e desenvolvedor web na <a href="https://after.sale">aftersale</a>. Minha paixão é construir produtos sólidos que evoluem com facilidade e ajudar outras pessoas com programação e tecnologia em geral.
             </BlogParagraph>
 
             <BlogParagraph>
-              Atualmente lido quase que o tempo toda com coisas relacionadas ao mundo JavaScript (entenda como Node, React, Jest, Testing Library, etc). Eu acredito fielmente que linguagens, frameworks e técnicas devem ser encaradas como ferramentas no meu cinto de ferramentas imaginário e, eventualmente, finito. Aliás, sou do time das linguagens dinâmicas e julgo a felicidade na programação com maior prioridade do que a performance do programa.
+              Atualmente lido quase que o tempo todo com coisas relacionadas ao mundo JavaScript (entenda como TypeScript, Node, React, Jest, Testing Library, etc).
             </BlogParagraph>
 
             <BlogSubtitle>
