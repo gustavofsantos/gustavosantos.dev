@@ -35,4 +35,4 @@ export const Footer = () => (
       </a>
     </section>
   </footer>
-);
+)

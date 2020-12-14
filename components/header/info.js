@@ -1,5 +1,5 @@
-import Link from "next/link";
-import Image from "next/image";
+import Link from 'next/link'
+import Image from 'next/image'
 
 export const HeaderInfo = () => (
   <Link href="/">
@@ -18,4 +18,4 @@ export const HeaderInfo = () => (
       </h3>
     </div>
   </Link>
-);
+)

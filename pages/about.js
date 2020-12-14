@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { Footer } from "../components/footer";
+import { Footer } from '../components/footer'
 import { BlogSubtitle } from '../components/blog/blog-subtitle'
 import { BlogParagraph } from '../components/blog/blog-paragraph'
 import { OuterLink } from '../components/outer-link'
@@ -25,28 +25,35 @@ export default function AboutPage() {
 
         <div className="flex flex-col items-center pb-36 w-full">
           <section className="flex flex-col w-full pl-4 pr-4 md:max-w-lg md:p-0">
-            <BlogSubtitle>
-              Prazer em conhecer você
-            </BlogSubtitle>
+            <BlogSubtitle>Prazer em conhecer você</BlogSubtitle>
 
             <BlogParagraph>
-              Eu sou bacharel em Engenharia de Computação pela UFPel e desenvolvedor web na <a href="https://after.sale">aftersale</a>. Minha paixão é construir produtos sólidos que evoluem com facilidade e ajudar outras pessoas com programação e tecnologia em geral.
+              Eu sou bacharel em Engenharia de Computação pela UFPel e
+              desenvolvedor web na <a href="https://after.sale">aftersale</a>.
+              Minha paixão é construir produtos sólidos que evoluem com
+              facilidade e ajudar outras pessoas com programação e tecnologia em
+              geral.
             </BlogParagraph>
 
             <BlogParagraph>
-              Atualmente lido quase que o tempo todo com coisas relacionadas ao mundo JavaScript (entenda como TypeScript, Node, React, Jest, Testing Library, etc).
+              Atualmente lido quase que o tempo todo com coisas relacionadas ao
+              mundo JavaScript (entenda como TypeScript, Node, React, Jest,
+              Testing Library, etc).
             </BlogParagraph>
 
-            <BlogSubtitle>
-              Links
-            </BlogSubtitle>
+            <BlogSubtitle>Links</BlogSubtitle>
 
             <BlogParagraph>
-              Eu gosto bastante de escrever e consumir conteúdo escrito. Você pode encontrar mais posts meus no <OuterLink href="https://dev.to/gustavofsantos">dev.to</OuterLink> e <OuterLink href="https://medium.com/@gvfs">Medium</OuterLink>.
+              Eu gosto bastante de escrever e consumir conteúdo escrito. Você
+              pode encontrar mais posts meus no{' '}
+              <OuterLink href="https://dev.to/gustavofsantos">dev.to</OuterLink>{' '}
+              e <OuterLink href="https://medium.com/@gvfs">Medium</OuterLink>.
             </BlogParagraph>
 
             <BlogParagraph>
-              No rodapé de quase todas as páginas você também vai encontrar links para as minhas páginas no Twitter, Npm, Github e LinkedIn, sinta-se a vontade para bater um papo 😉.
+              No rodapé de quase todas as páginas você também vai encontrar
+              links para as minhas páginas no Twitter, Npm, Github e LinkedIn,
+              sinta-se a vontade para bater um papo 😉.
             </BlogParagraph>
           </section>
         </div>
@@ -54,5 +61,5 @@ export default function AboutPage() {
         <Footer />
       </article>
     </>
-  );
+  )
 }

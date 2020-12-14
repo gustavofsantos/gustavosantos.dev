@@ -1,6 +1,6 @@
-import Head from "next/head";
-import { Header } from "../components/header";
-import "../styles/global.css";
+import Head from 'next/head'
+import { Header } from '../components/header'
+import '../styles/global.css'
 
 export default function App({ Component, pageProps }) {
   return (
@@ -17,5 +17,5 @@ export default function App({ Component, pageProps }) {
         <Component {...pageProps} />
       </main>
     </>
-  );
+  )
 }

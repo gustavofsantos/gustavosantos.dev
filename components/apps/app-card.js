@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image'
 import { OuterLink } from '../outer-link'
 
 export const AppCard = ({
@@ -6,7 +6,7 @@ export const AppCard = ({
   description,
   url,
   previewImagePath,
-  repositoryUrl,
+  repositoryUrl
 }) => (
   <div className="flex flex-col justify-start items-center pt-4 pb-4 lg:items-start lg:flex-row">
     <div className="flex justify-center items-center pb-4 w-full lg:w-5/12 lg:pr-3 lg:pb-0">
@@ -26,9 +26,7 @@ export const AppCard = ({
         : {description}
       </p>
 
-      <OuterLink href={repositoryUrl}>
-        source code
-      </OuterLink>
+      <OuterLink href={repositoryUrl}>source code</OuterLink>
     </div>
   </div>
-);
+)

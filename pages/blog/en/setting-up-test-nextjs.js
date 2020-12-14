@@ -1,17 +1,17 @@
-import Link from "next/link";
-import Gist from "react-gist";
-import { BlogPage } from "../../../components/blog/blog-page";
-import { BlogParagraph } from "../../../components/blog/blog-paragraph";
-import { BlogResume } from "../../../components/blog/blog-resume";
-import { BlogTitle } from "../../../components/blog/blog-title";
+import Link from 'next/link'
+import Gist from 'react-gist'
+import { BlogPage } from '../../../components/blog/blog-page'
+import { BlogParagraph } from '../../../components/blog/blog-paragraph'
+import { BlogResume } from '../../../components/blog/blog-resume'
+import { BlogTitle } from '../../../components/blog/blog-title'
 
 export const metadata = {
-  title: "Setting up Jest, Testing Library and Mirage in Next.js project",
+  title: 'Setting up Jest, Testing Library and Mirage in Next.js project',
   resume: `the resume of the article the resume of the article the resume of the
         article the resume of the article the resume of the article the resume
         of the article the resume of the article the resume of the article`,
-  href: "/blog/en/setting-up-test-nextjs",
-};
+  href: '/blog/en/setting-up-test-nextjs'
+}
 
 export default function Post() {
   return (
@@ -21,14 +21,14 @@ export default function Post() {
       <BlogResume>{metadata.resume}</BlogResume>
 
       <section>
-        Also read in{" "}
+        Also read in{' '}
         <Link href="/blog/pt-br/setting-up-test-nextjs">português</Link>.
       </section>
 
       <BlogParagraph>
         This is an blog paragraph. bla bla bla bla bla bla This is an blog
         paragraph. bla bla bla bla bla bla This is an blog paragraph. bla bla
-        bla bla bla bla This is an blog paragraph.{" "}
+        bla bla bla bla This is an blog paragraph.{' '}
         <code>const x = () => 0</code> bla bla bla bla bla bla This is an blog
         paragraph. bla bla bla bla bla bla This is an blog paragraph. bla bla
         bla bla bla bla This is an blog paragraph. bla bla bla bla bla bla
@@ -47,5 +47,5 @@ export default function Post() {
 
       <BlogParagraph>this is another blog paragraph.</BlogParagraph>
     </BlogPage>
-  );
+  )
 }

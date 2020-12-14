@@ -4,4 +4,4 @@ export const HomeHero = () => (
       Hi! I'm Gustavo Santos. I turn ideas into code.
     </h1>
   </section>
-);
+)

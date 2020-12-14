@@ -1,4 +1,4 @@
-import { AppCard } from "./app-card";
+import { AppCard } from './app-card'
 
 export const AppCardTimerMachine = () => (
   <AppCard
@@ -8,4 +8,4 @@ export const AppCardTimerMachine = () => (
     repositoryUrl="https://github.com/gustavofsantos/timer-xstate-demo"
     previewImagePath="/images/apps/previews/timer.gustavosantos.dev_.png"
   />
-);
+)

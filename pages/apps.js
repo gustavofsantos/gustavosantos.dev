@@ -1,7 +1,7 @@
-import Head from "next/head";
-import { Footer } from "../components/footer";
-import { AppCardShhh } from "../components/apps/app-card-shhh";
-import { AppCardTimerMachine } from "../components/apps/app-card-timer-machine";
+import Head from 'next/head'
+import { Footer } from '../components/footer'
+import { AppCardShhh } from '../components/apps/app-card-shhh'
+import { AppCardTimerMachine } from '../components/apps/app-card-timer-machine'
 
 export default function AppsPage() {
   return (
@@ -31,5 +31,5 @@ export default function AppsPage() {
         <Footer />
       </article>
     </>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-import Head from "next/head";
-import Image from "next/image";
+import Head from 'next/head'
+import Image from 'next/image'
 import { BlogHeadImage } from './blog-head-image'
-import { Footer } from "../footer";
+import { Footer } from '../footer'
 
 export const BlogPage = ({
   children,
@@ -11,7 +11,7 @@ export const BlogPage = ({
   imgAlt,
   imgAuthorName,
   imgAuthorHref,
-  lang,
+  lang
 }) => (
   <>
     <Head>
@@ -32,7 +32,7 @@ export const BlogPage = ({
       <meta property="og:url" content="" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={resume ?? ""} />
+      <meta name="twitter:description" content={resume ?? ''} />
       <meta name="twitter:site" content="" />
       <meta name="twitter:creator" content="@gvfs0z" />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -41,7 +41,14 @@ export const BlogPage = ({
         rel="stylesheet"
       />
     </Head>
-    {!!imgPath && <BlogHeadImage path={imgPath} alt={imgAlt} authorName={imgAuthorName} authorHref={imgAuthorHref} />}
+    {!!imgPath && (
+      <BlogHeadImage
+        path={imgPath}
+        alt={imgAlt}
+        authorName={imgAuthorName}
+        authorHref={imgAuthorHref}
+      />
+    )}
     <article
       className="flex flex-col items-center pt-20 pb-40 w-full bg-white dark:bg-black"
       data-testid="blog-page"
@@ -52,4 +59,4 @@ export const BlogPage = ({
     </article>
     <Footer />
   </>
-);
+)

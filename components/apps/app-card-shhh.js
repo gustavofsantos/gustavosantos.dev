@@ -1,4 +1,4 @@
-import { AppCard } from "./app-card";
+import { AppCard } from './app-card'
 
 export const AppCardShhh = () => (
   <AppCard
@@ -8,4 +8,4 @@ export const AppCardShhh = () => (
     repositoryUrl="https://github.com/gustavofsantos/shhh"
     previewImagePath="/images/apps/previews/shhh.gustavosantos.dev_.png"
   />
-);
+)

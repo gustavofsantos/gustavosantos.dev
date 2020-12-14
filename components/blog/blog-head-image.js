@@ -7,7 +7,10 @@ export const BlogHeadImage = ({ path, alt, authorName, authorHref }) => (
     </div>
 
     <div>
-      Photo by <a href={authorHref} target="_blank" rel="noopener noreferer">{authorName}</a>
+      Photo by{' '}
+      <a href={authorHref} target="_blank" rel="noopener noreferer">
+        {authorName}
+      </a>
     </div>
   </section>
-  )
+)
