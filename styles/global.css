@@ -17,5 +17,5 @@ html, body, #__next {
 }
 
 .backdrop-filter {
-  backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(100%) blur(10px);
 }
