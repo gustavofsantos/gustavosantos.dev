@@ -14,6 +14,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-gist": "^1.2.2",
+    "react-syntax-highlighter": "^15.4.3",
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
