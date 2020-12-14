@@ -1,9 +1,10 @@
-import Head from "next/head";
-import "../styles/global.css";
+import Head from 'next/head'
+import { Header } from '../components/header'
+import '../styles/global.css'
 
 export default function App({ Component, pageProps }) {
   return (
-    <main className="h-full w-full">
+    <>
       <Head>
         <title>Gustavo Santos</title>
         <link
@@ -11,7 +12,10 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      <Component {...pageProps} />
-    </main>
-  );
+      <Header />
+      <main className="h-full w-full pt-10 bg-white dark:bg-black">
+        <Component {...pageProps} />
+      </main>
+    </>
+  )
 }

@@ -11,3 +11,11 @@ html, body, #__next {
 * {
   box-sizing: border-box;
 }
+
+.serif {
+  font-family: 'Libre Baskerville', serif;
+}
+
+.backdrop-filter {
+  backdrop-filter: saturate(100%) blur(10px);
+}
