@@ -44,6 +44,10 @@ export default function AboutPage() {
             <BlogParagraph>
               Eu gosto bastante de escrever e consumir conteúdo escrito. Você pode encontrar mais posts meus no <OuterLink href="https://dev.to/gustavofsantos">dev.to</OuterLink> e <OuterLink href="https://medium.com/@gvfs">Medium</OuterLink>.
             </BlogParagraph>
+
+            <BlogParagraph>
+              No rodapé de quase todas as páginas você também vai encontrar links para as minhas páginas no Twitter, Npm, Github e LinkedIn, sinta-se a vontade para bater um papo 😉.
+            </BlogParagraph>
           </section>
         </div>
 
