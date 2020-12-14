@@ -4,7 +4,7 @@ import { BlogResume } from "../../../components/blog/blog-resume";
 import { BlogTitle } from "../../../components/blog/blog-title";
 
 export const metadata = {
-  title: "Configurando Jest, Testing Library e Mirage em um projeto Next.js",
+  title: "Configurando Jest, Testing Library e Mirage em um projeto Next.js 🇧🇷",
   resume: `Resumo maroto em portugues`
 };
 
