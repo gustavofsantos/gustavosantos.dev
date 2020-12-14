@@ -14,7 +14,7 @@ export const HeaderNav = () => (
     </Link>
     <Link href="/about">
       <span className="cursor-pointer hover:underline text-gray-900 dark:text-gray-50">
-        about
+        sobre
       </span>
     </Link>
   </nav>

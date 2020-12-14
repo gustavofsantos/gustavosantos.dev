@@ -1,6 +1,8 @@
 import Head from "next/head";
 import { BlogPostCard } from "../../components/blog/blog-post-card";
 import { Footer } from "../../components/footer";
+
+// posts
 import { metadata as postJsClassTipBind } from './pt-br/tip-js-class-bind';
 
 export default function BlogPage() {

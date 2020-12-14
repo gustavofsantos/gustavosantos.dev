@@ -5,6 +5,7 @@ export const Footer = () => (
         href="https://github.com/gustavofsantos"
         target="_blank"
         rel="noopener noreferer"
+        className="underline"
       >
         github
       </a>
@@ -12,6 +13,7 @@ export const Footer = () => (
         href="https://www.npmjs.com/~gsantos"
         target="_blank"
         rel="noopener noreferer"
+        className="underline"
       >
         npm
       </a>
@@ -19,6 +21,7 @@ export const Footer = () => (
         href="https://twitter.com/gufs0z"
         target="_blank"
         rel="noopener noreferer"
+        className="underline"
       >
         twitter
       </a>
@@ -26,6 +29,7 @@ export const Footer = () => (
         href="https://www.linkedin.com/in/gfdsantos"
         target="_blank"
         rel="noopener noreferer"
+        className="underline"
       >
         linkedin
       </a>

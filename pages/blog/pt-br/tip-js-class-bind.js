@@ -239,14 +239,15 @@ new A().run()`}
       </BlogParagraph>
 
       <CodeSnippet showLineNumbers={false} language="markup">
-{`$ deno run public/code/blog/tip-js-class-bind/example_class_a.js
+{`$ deno run gustavosantos.dev/code/blog/tip-js-class-bind/example_class_a.js
+
 error: Uncaught TypeError: Cannot read property 'name' of undefined
     console.log(index, ":", this.name)
                                  ^
-    at handle (file:///home/gsantos/Workspace/gustavosantos.dev/public/code/blog/tip-js-class-bind/example_class_a.js:9:34)
+    at handle (gustavosantos.dev/code/blog/tip-js-class-bind/example_class_a.js:9:34)
     at Array.map (<anonymous>)
-    at A.run (file:///home/gsantos/Workspace/gustavosantos.dev/public/code/blog/tip-js-class-bind/example_class_a.js:5:13)
-    at file:///home/gsantos/Workspace/gustavosantos.dev/public/code/blog/tip-js-class-bind/example_class_a.js:13:9`}
+    at A.run (gustavosantos.dev/code/blog/tip-js-class-bind/example_class_a.js:5:13)
+    at gustavosantos.dev/code/blog/tip-js-class-bind/example_class_a.js:13:9`}
       </CodeSnippet>
 
       <BlogParagraph>
@@ -316,7 +317,7 @@ new A().run()`}
       </BlogParagraph>
 
       <CodeSnippet showLineNumbers={false} language="markup">
-{`$ deno run public/code/blog/tip-js-class-bind/example_class_a_fixed.js
+{`$ deno run gustavosantos.dev/code/blog/tip-js-class-bind/example_class_a_fixed.js
 
 1 : class A
 2 : class A
