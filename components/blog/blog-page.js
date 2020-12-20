@@ -53,7 +53,7 @@ export const BlogPage = ({
       className="flex flex-col items-center pt-20 pb-40 w-full bg-white dark:bg-black"
       data-testid="blog-page"
     >
-      <section className="flex flex-col w-full pl-4 pr-4 md:max-w-lg md:p-0 bg-white dark:bg-black">
+      <section className="flex flex-col w-full pl-4 pr-4 md:max-w-lg lg:max-w-xl md:p-0 bg-white dark:bg-black">
         {children}
       </section>
     </article>
