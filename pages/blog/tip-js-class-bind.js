@@ -1,16 +1,16 @@
-import { BlogPage } from '../../../components/blog/blog-page'
-import { BlogParagraph } from '../../../components/blog/blog-paragraph'
-import { BlogSubtitle } from '../../../components/blog/blog-subtitle'
-import { BlogResume } from '../../../components/blog/blog-resume'
-import { BlogTitle } from '../../../components/blog/blog-title'
-import { CodeSnippet } from '../../../components/code-snippet'
+import { BlogPage } from '../../components/blog/blog-page'
+import { BlogParagraph } from '../../components/blog/blog-paragraph'
+import { BlogSubtitle } from '../../components/blog/blog-subtitle'
+import { BlogResume } from '../../components/blog/blog-resume'
+import { BlogTitle } from '../../components/blog/blog-title'
+import { CodeSnippet } from '../../components/code-snippet'
 
 export const metadata = {
   title: 'Dica: Faça o bind em métodos de classes ao usar inversão de controle',
   lang: '🇧🇷',
   resume: `
     Nunca esqueça de anexar o escopo da classe ao passar o controle para um executor externo. Para isso use o método bind ou arrow functions.`,
-  href: '/blog/pt-br/tip-js-class-bind'
+  href: '/blog/tip-js-class-bind'
 }
 
 const snippetWrong = `// example1.js
