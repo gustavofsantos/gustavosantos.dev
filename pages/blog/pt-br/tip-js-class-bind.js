@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { BlogPage } from '../../../components/blog/blog-page'
 import { BlogParagraph } from '../../../components/blog/blog-paragraph'
 import { BlogSubtitle } from '../../../components/blog/blog-subtitle'

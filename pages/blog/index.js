@@ -4,12 +4,13 @@ import { Footer } from '../../components/footer'
 
 // posts
 import { metadata as postJsClassTipBind } from './pt-br/tip-js-class-bind'
+import { metadata as postNodeMongoSetupTests } from './node-mongo-setup-tests'
 
 export default function BlogPage() {
   return (
     <>
       <Head>
-        <title>Gustavo Santos | The Blog</title>
+        <title>Gustavo Santos | O Blog</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
@@ -19,7 +20,7 @@ export default function BlogPage() {
       <article className="flex flex-col items-center">
         <section className="pt-20 pb-10">
           <h1 className="text-xl text-center border-b-4 border-yellow-300">
-            The Blog
+            O Blog
           </h1>
         </section>
 
@@ -29,6 +30,12 @@ export default function BlogPage() {
               title={postJsClassTipBind.title}
               resume={postJsClassTipBind.resume}
               href={postJsClassTipBind.href}
+            />
+
+            <BlogPostCard
+              title={postNodeMongoSetupTests.title}
+              resume={postNodeMongoSetupTests.resume}
+              href={postNodeMongoSetupTests.href}
             />
           </section>
         </div>

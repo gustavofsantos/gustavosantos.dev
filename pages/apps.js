@@ -7,7 +7,7 @@ export default function AppsPage() {
   return (
     <>
       <Head>
-        <title>Gustavo Santos | The Apps</title>
+        <title>Gustavo Santos | Os Apps</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
@@ -17,7 +17,7 @@ export default function AppsPage() {
       <article className="flex flex-col items-center">
         <section className="pt-20 pb-10">
           <h1 className="text-xl text-center border-b-4 border-yellow-300">
-            The Apps
+            Os Apps
           </h1>
         </section>
 
