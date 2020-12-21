@@ -45,7 +45,7 @@ export const Footer = () => (
     </section>
     <section className="pt-4 pb-12">
       <span className="italic text-sm">
-        2020-present © Gustavo F dos Santos
+        © 2020-present Gustavo F dos Santos. All Rights Reserved.
       </span>
     </section>
   </footer>
