@@ -1,10 +1,9 @@
 import Head from 'next/head'
 import { BlogPostCard } from '../../components/blog/blog-post-card'
-import { Footer } from '../../components/footer'
 
 // posts
 import { metadata as postJsClassTipBind } from './tip-js-class-bind'
-import { metadata as postNodeMongoSetupTests } from './node-mongo-setup-tests'
+import { meta as testMdx } from './node-mongo-setup-tests.mdx'
 
 export default function BlogPage() {
   return (
@@ -25,11 +24,11 @@ export default function BlogPage() {
         </section>
 
         <div className="flex flex-col items-center pb-36 w-full">
-          <section className="flex flex-col w-full pl-4 pr-4 md:max-w-lg md:p-0 divide-y divide-gray-100 dark:divide-gray-800">
+          <section className="flex flex-col w-full pl-4 pr-4 md:max-w-lg lg:max-w-xl md:p-0 divide-y divide-gray-100 dark:divide-gray-800">
             <BlogPostCard
-              title={postNodeMongoSetupTests.title}
-              resume={postNodeMongoSetupTests.resume}
-              href={postNodeMongoSetupTests.href}
+              title={testMdx.title}
+              resume={testMdx.excerpt}
+              href={testMdx.href}
             />
 
             <BlogPostCard
@@ -39,8 +38,6 @@ export default function BlogPage() {
             />
           </section>
         </div>
-
-        <Footer />
       </article>
     </>
   )

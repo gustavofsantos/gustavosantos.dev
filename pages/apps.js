@@ -22,7 +22,7 @@ export default function AppsPage() {
         </section>
 
         <div className="flex flex-col items-center pb-36 w-full">
-          <section className="flex flex-col w-full pl-4 pr-4 md:max-w-lg md:p-0 divide-y divide-gray-100 dark:divide-gray-800">
+          <section className="flex flex-col w-full pl-4 pr-4 md:max-w-lg md:p-0 lg:max-w-xl divide-y divide-gray-100 dark:divide-gray-800">
             <AppCardShhh />
             <AppCardTimerMachine />
           </section>
