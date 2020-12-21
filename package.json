@@ -9,9 +9,12 @@
     "format": "prettier --write pages && prettier --write components"
   },
   "dependencies": {
+    "@mdx-js/loader": "^1.6.22",
+    "@next/mdx": "^10.0.3",
     "autoprefixer": "^10.1.0",
     "next": "^10.0.3",
     "postcss": "^8.2.1",
+    "prism-react-renderer": "^1.1.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-gist": "^1.2.2",
