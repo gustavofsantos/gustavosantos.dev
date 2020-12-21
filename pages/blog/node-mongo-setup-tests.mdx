@@ -1,7 +1,7 @@
 import BlogLayout from '../../components/blog/blog-layout'
 
 export const meta = {
-  title: 'Testando servidores REST em Node com confiança',
+  title: 'Configurando Jest, Mongo e Node para testar com confiança',
   excerpt: `Antes de colocar qualquer tipo de software em produção você precisa
  estar confiante com seus testes. Você está confiante? Você faz mock de banco de dados?
  Se sim, provavelemnte esse texto vai te ajudar muito!`,
@@ -10,7 +10,7 @@ export const meta = {
   released: true
 }
 
-# Testando servidores REST em Node com confiança
+# Configurando Jest, Mongo e Node para testar com confiança
 
 Vamos aprender como configurar o Jest, Mongo e Fastify em um projeto pequeno o suficiente para que seja possível discutirmos sobre assuntos mais direcionados, como automações e testes com garantias de que você está reproduzindo o ambiente de produção durante os seus testes!
 
@@ -57,7 +57,7 @@ $ git commit -m "added mongodb as dependency"
 
 Agora estamos prontos para começar a sujar as mãos!
 
-## Estruturando o projeto
+## A estrutura base do projeto
 
 Vamos criar uma API REST simples que vai listar os usuários no banco de dados. Para isso vou adicionar o Fastify como dependência só para esse não ser qualquer outro tutorial de Node com Express:
 

@@ -1,5 +1,5 @@
 export const Footer = () => (
-  <footer className="flex flex-col  items-center w-full pt-8 pb-28 border-t border-gray-300 bg-gray-200">
+  <footer className="flex flex-col  items-center w-full pt-8 pb-28 border-t border-gray-100 bg-gray-50">
     <section className="flex flex-wrap justify-center items-center space-x-4">
       <a
         href="https://github.com/gustavofsantos"
