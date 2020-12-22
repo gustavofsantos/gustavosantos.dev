@@ -7,6 +7,11 @@ export const HeaderNav = () => (
         blog
       </span>
     </Link>
+    <Link href="/news">
+      <span className="cursor-pointer hover:underline text-gray-900 dark:text-gray-50">
+        news
+      </span>
+    </Link>
     <Link href="/apps">
       <span className="cursor-pointer hover:underline text-gray-900 dark:text-gray-50">
         apps
