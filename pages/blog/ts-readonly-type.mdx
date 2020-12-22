@@ -1,0 +1,53 @@
+import BlogLayout from '../../components/blog/blog-layout'
+
+export const meta = {
+  title: 'TypeScript e a palavra chave readonly',
+  excerpt: `Você pode anotar, inclusive, type-alias como somente leitura e assim garantir, em tempos de compilação, que sua estrutura de dados não vai ser alterada.`,
+  author: 'Gustavo Santos',
+  href: '/blog/ts-readonly-type',
+  released: true,
+  createdAt: "2020-12-22T14:20:53.976Z",
+  updatedAt: "2020-12-22T14:20:53.976Z"
+}
+
+# TypeScript e a palavra chave readonly
+
+Imutabilidade é muito usado no mundo funcional de JavaScript e TypeScript, você sabia que pode usar a palavra-chave `readonly` na definição de tipos?
+
+Veja o exemplo abaixo:
+
+```ts lines=true label=/code/tuple.ts
+export type Tuple<A, B> = readonly [A, B]
+```
+
+Indicando que o array é imutável (ou oferece apenas acesso de leitura) pode previnir alguns bugs bem chatos envolvendo a mutabilidade de objetos. Veja só quando tento alterar a posição zero da tupla:
+
+```ts lines=true label=/code/tuple.ts
+export type Tuple<A, B> = readonly [A, B]
+
+const t: Tuple<string, number> = ['ok', 2]
+t[0] = 'not ok'
+// Error: Cannot assign to '0' because it is a read-only property.
+```
+
+Lembre-se de que também é possível usar essa palavra chave dentro de objetos e interfaces:
+
+```ts lines=true
+type Product = {
+  readonly productId: number;
+  readonly price: number;
+}
+```
+
+Se você quiser anotar como somente leitura, todas as propriedades de um objeto que é representado por um tipo ou interface, você pode usar o tipo `Readonly`, veja o exemplo:
+
+```ts lines=true
+type Order = Readonly<{
+  orderId: number;
+  price: number;
+}>
+```
+
+---
+
+export default ({ children }) => <BlogLayout meta={meta}>{children}</BlogLayout>
