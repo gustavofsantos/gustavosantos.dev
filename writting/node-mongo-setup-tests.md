@@ -1,4 +1,4 @@
-# !
+# Testando servidores REST em Node com confiança
 
 Vamos aprender como configurar o Jest, Mongo e Fastify em um projeto pequeno o suficiente para que seja possível discutirmos sobre assuntos mais direcionados, como automações e testes com garantias de que você está reproduzindo o ambiente de produção durante os seus testes!
 
