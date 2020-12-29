@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { When } from '../components/when'
 import { getAllSnippets } from '../lib/snippets'

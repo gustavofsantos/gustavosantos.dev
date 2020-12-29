@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import { Footer } from '../components/footer'
 import { BlogSubtitle } from '../components/blog/blog-subtitle'
 import { BlogParagraph } from '../components/blog/blog-paragraph'
 import { OuterLink } from '../components/outer-link'
+import { InnerLink } from '../components/inner-link'
 
 export default function AboutPage() {
   return (
@@ -43,6 +43,13 @@ export default function AboutPage() {
               pode encontrar mais posts meus no{' '}
               <OuterLink href="https://dev.to/gustavofsantos">dev.to</OuterLink>{' '}
               e <OuterLink href="https://medium.com/@gvfs">Medium</OuterLink>.
+            </BlogParagraph>
+
+            <BlogParagraph>
+              Quer dar uma olhada em alguns dos projetos open source que eu já
+              fiz e coloquei no ar? Checa a página{' '}
+              <InnerLink href="/apps">apps</InnerLink>, espero que você encontre
+              algo interessante!
             </BlogParagraph>
 
             <BlogParagraph>
