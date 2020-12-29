@@ -16,9 +16,7 @@ export default function AppsPage() {
       </Head>
       <article className="flex flex-col items-center">
         <section className="pt-20 pb-10">
-          <h1 className="text-xl text-center border-b-4 border-yellow-300">
-            Os Apps
-          </h1>
+          <h1 className="poppins text-5xl font-bold text-center">Os Apps</h1>
         </section>
 
         <div className="flex flex-col items-center pb-36 w-full">

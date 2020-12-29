@@ -16,6 +16,10 @@ html, body, #__next {
   font-family: 'Libre Baskerville', serif;
 }
 
+.poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
 code, pre {
   font-family: 'Operator Mono Medium', 'Dank Mono', monospace;
 }
