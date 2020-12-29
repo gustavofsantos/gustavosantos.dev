@@ -19,7 +19,9 @@ export default function BlogPage() {
       </Head>
       <article className="flex flex-col items-center">
         <section className="pt-20 pb-10">
-          <h1 className="poppins text-5xl font-bold text-center">O Blog</h1>
+          <h1 className="poppins text-3xl md:text-4xl lg:text-5xl font-bold text-center">
+            O Blog
+          </h1>
         </section>
 
         <div className="flex flex-col items-center pb-36 w-full">
