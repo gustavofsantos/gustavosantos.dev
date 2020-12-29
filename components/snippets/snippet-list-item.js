@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export function SnippetListItem({ snippet }) {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full pt-4 pb-4">
       <Link href={snippet.href}>
         <h2 className="poppins font-semibold text-xl mb-2 w-min cursor-pointer">
           {snippet.meta.title}

@@ -9,8 +9,8 @@ export default function SnippetsPage({ snippets }) {
           Snippets
         </h1>
         <h3 className="text-gray-700 text-lg">
-          An collection of code snippets, commands, config and tooling that
-          could be very useful
+          A collection of code snippets, commands, config and tooling that could
+          be very useful
         </h3>
       </section>
 
