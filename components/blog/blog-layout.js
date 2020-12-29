@@ -68,12 +68,6 @@ export default function BlogLayout(props) {
         <meta name="twitter:card" content="summary_large_image" key="twCard" />
         <meta name="twitter:creator" content="@gufs0z" key="twCreator" />
         <meta name="theme-color" content="rgb(255,255,255)" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
-          rel="stylesheet"
-          key="serifFont"
-        />
       </Head>
       <MDXProvider components={components}>
         <BlogPage {...props} />

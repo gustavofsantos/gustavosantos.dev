@@ -1,24 +1,19 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import { Footer } from '../components/footer'
 import { BlogSubtitle } from '../components/blog/blog-subtitle'
 import { BlogParagraph } from '../components/blog/blog-paragraph'
 import { OuterLink } from '../components/outer-link'
+import { InnerLink } from '../components/inner-link'
 
 export default function AboutPage() {
   return (
     <>
       <Head>
         <title>Gustavo Santos | Sobre</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
-          rel="stylesheet"
-        />
       </Head>
       <article className="flex flex-col items-center">
         <section className="pt-20 pb-10">
-          <h1 className="text-xl text-center border-b-4 border-yellow-300">
+          <h1 className="poppins text-3xl md:text-4xl lg:text-5xl font-bold text-center">
             Oi! 🤙
           </h1>
         </section>
@@ -48,6 +43,13 @@ export default function AboutPage() {
               pode encontrar mais posts meus no{' '}
               <OuterLink href="https://dev.to/gustavofsantos">dev.to</OuterLink>{' '}
               e <OuterLink href="https://medium.com/@gvfs">Medium</OuterLink>.
+            </BlogParagraph>
+
+            <BlogParagraph>
+              Quer dar uma olhada em alguns dos projetos open source que eu já
+              fiz e coloquei no ar? Checa a página{' '}
+              <InnerLink href="/apps">apps</InnerLink>, espero que você encontre
+              algo interessante!
             </BlogParagraph>
 
             <BlogParagraph>

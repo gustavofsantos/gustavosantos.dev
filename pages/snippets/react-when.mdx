@@ -1,0 +1,126 @@
+import BlogLayout from '../../components/blog/blog-layout'
+
+export const meta = {
+  title: 'When',
+  excerpt: 'Evaluates the property value, if it\'s truthy or is a function that returns an truty value, then render the children.',
+  tags: ['react', 'javascript', 'snippet', 'jest', 'testing-library']
+}
+
+# When
+
+Evaluates the property `value`, if it's truthy or is a function that returns an truty value, then render the children.
+
+This kind of component is util when you need to compose the UI based in some condition.
+
+The children can be an function or any React component. Accepting an children as function can be util when you want to lazily mount that children. Think in an case when the children fetch data. You don't want to fetch data if that children will never be rendered.
+
+This component is highly inspired in the Clojure's core function `when`.
+
+## Code
+
+```jsx label=when.jsx
+export function When({ children, value }) {
+  if (typeof value === 'function' && !!value()) {
+    return typeof children === 'function' ? children() : children
+  }
+
+  if (typeof value !== 'function' && !!value) {
+    return typeof children === 'function' ? children() : children
+  }
+
+  return <></>
+}
+```
+
+## Example
+
+This website uses this component to conditionally display things, see this snippet as example:
+
+```jsx
+import { When } from '../when'
+import { SnippetListItem } from './snippet-list-item'
+
+export function SnippetList({ snippets }) {
+  return (
+    <When value={snippets && snippets.length > 0}>
+      {() => (
+        <ul>
+          {snippets.map((snippet) => (
+            <li key={snippet.slug}>
+              <SnippetListItem snippet={snippet} />
+            </li>
+          ))}
+        </ul>
+      )}
+    </When>
+  )
+}
+```
+
+## Test file
+
+```jsx label=__tests__/when.test.jsx
+import { render, screen } from '@testing-library/react'
+import { When } from '../when'
+
+describe(When.name, () => {
+  const Children = () => <span>Ok</span>
+
+  test.each([
+    [true],
+    ['non empty string'],
+    [{}],
+    [{ a: 'b' }],
+    [[]],
+    [[1, 2, 3]],
+    [1],
+    [Symbol('hey')]
+  ])(
+    'should render the children when value is a truthy value (%s)',
+    (value) => {
+      render(
+        <When value={value}>
+          <Children />
+        </When>
+      )
+      expect(screen.getByText(/ok/i)).toBeInTheDocument()
+    }
+  )
+
+  test.each([
+    [() => true],
+    [() => 'non empty string'],
+    [() => ({})],
+    [() => ({ a: 'b' })],
+    [() => []],
+    [() => [1, 2, 3]],
+    [() => 1],
+    [() => Symbol('hey')]
+  ])(
+    'should render the children when value is a function that returns a truthy value (%s)',
+    (value) => {
+      render(<When value={value}>{() => <Children />}</When>)
+      expect(screen.getByText(/ok/i)).toBeInTheDocument()
+    }
+  )
+
+  test.each([[false], [0], ['']])(
+    'should not render the children when the value is a non truthy value (%s)',
+    (value) => {
+      render(<When value={value}>{() => <Children />}</When>)
+      expect(screen.queryByText(/ok/i)).toBeNull()
+    }
+  )
+
+  test.each([[() => false], [() => 0], [() => '']])(
+    'should not render the children when the value is a function that returns a non truthy value (%s)',
+    (value) => {
+      render(<When value={value}>{() => <Children />}</When>)
+      expect(screen.queryByText(/ok/i)).toBeNull()
+    }
+  )
+})
+```
+---
+
+export default ({ children }) => <BlogLayout meta={meta}>{children}</BlogLayout>
