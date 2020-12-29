@@ -10,17 +10,12 @@ export default function BlogPage() {
   return (
     <>
       <Head>
-        <title>Gustavo Santos | O Blog</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
-          rel="stylesheet"
-        />
+        <title>Gustavo Santos | Blog</title>
       </Head>
       <article className="flex flex-col items-center">
         <section className="pt-20 pb-10">
           <h1 className="poppins text-3xl md:text-4xl lg:text-5xl font-bold text-center">
-            O Blog
+            Blog
           </h1>
         </section>
 
