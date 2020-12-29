@@ -1,5 +1,6 @@
 import BlogLayout from '../../components/blog/blog-layout'
 import { OuterLink } from '../../components/outer-link.js'
+import { SnippetCard } from '../../components/snippets/snippet-card.js'
 
 export const meta = {
   title: 'pipeline',
@@ -33,6 +34,17 @@ w(10, 11) //=> h(g(f(10,11)))
 ```
 
 You can find this kind of function in various JavaScript libraries, such as <OuterLink href="https://github.com/lodash/lodash/wiki/FP-Guide">Lodash FP</OuterLink> or <OuterLink href="https://ramdajs.com/docs/#pipe">Ramda</OuterLink>
+
+## See also
+
+<SnippetCard snippet={{
+  meta: {
+    title: 'pipethrough',
+    excerpt: 'Pipe data through a set of functions like Clojure -> or Elixir |> operators.',
+    tags: ['javascript', 'snippet']
+  },
+  href: '/snippets/javascript-pipethrough'
+}} />
 
 ---
 

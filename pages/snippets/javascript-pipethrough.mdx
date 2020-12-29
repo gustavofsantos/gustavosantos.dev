@@ -1,0 +1,151 @@
+import BlogLayout from '../../components/blog/blog-layout'
+import { OuterLink } from '../../components/outer-link.js'
+import { SnippetCard } from '../../components/snippets/snippet-card.js'
+
+export const meta = {
+  title: 'pipethrough',
+  excerpt: 'Pipe data through a set of functions like Clojure -> or Elixir |> operators.',
+  tags: ['javascript', 'snippet']
+}
+
+# pipethrough
+
+I really, really like the Elixir pipeline operator, it's simple and fantastic! If you don't know yet, look at this example that I have copied from the <OuterLink href="https://hexdocs.pm/elixir/Kernel.html#%7C%3E/2">Elixir docs</OuterLink>:
+
+```elixir
+"Hello" |> String.graphemes() |> Enum.reverse()
+# ["o", "l", "l", "e", "H"]
+```
+
+The condensed idea is that you have some data and want to transform that data using a set of functions. In Clojure, you can do the same thing using the thread-first macro, but in Clojure this kind of "operation" is an transformation that accours in compilation-time (<OuterLink href="https://clojure.org/guides/threading_macros">example from Clojure documentation</OuterLink>):
+
+```clj
+(defn transform* [person]
+   (-> person
+      (assoc :hair-color :gray)
+      (update :age inc)))
+```
+
+In both cases, the data is transformed and injected as the first argument of each function. We can make something similar in JavaScript. In fact, there is an proposal to implement the pipeline operator in ECMAScript and you can follow the discussion in <OuterLink href="https://github.com/tc39/proposal-pipeline-operator">this GitHub issue</OuterLink>. You can, also, try <OuterLink href="https://babeljs.io/docs/en/babel-plugin-proposal-pipeline-operator">this babel plugin</OuterLink> that allow you to use the pipeline operator.
+
+## Code
+
+```js
+const pipethrough = (data, ...fns) => {
+  let result = data
+  for (const fn of fns) {
+    if (result instanceof Promise) {
+      result = result.then(fn)
+    } else {
+      result = fn(result)
+    }
+  }
+
+  return result
+}
+```
+
+
+
+This version allows you to compose any functions into the pipeline, but the client of this code need to provide all building blocks to work with the data. The second version bellow reads and are implement diferently and has some batteries included:
+
+```js
+const Pipethrough = (data) => ({
+  pipe: (fn, ...args) => {
+    if (data instanceof Promise) {
+      return Pipethrough(data.then((d) => fn(d, ...args)))
+    }
+
+    return Pipethrough(fn(data, ...args))
+  },
+  value: () => data
+})
+```
+
+When I said that this version could include *batteries*, you can use the method `tap` as an example:
+
+```js
+const Pipethrough = (data) => ({
+  pipe: (fn, ...args) => {
+    if (data instanceof Promise) {
+      return Pipethrough(data.then((d) => fn(d, ...args)))
+    }
+
+    return Pipethrough(fn(data, ...args))
+  },
+  tap: (fn) => {
+    fn(data)
+    return Pipethrough(data)
+  },
+  value: () => data
+})
+```
+
+## Example
+
+Example of the first version.
+
+```js
+const result = pipethrough(
+  { name: 'Gustavo Santos' },
+  ({ name }) => ({
+    firstName: name.split(' ')[0],
+    lastName: name.split(' ')[1]
+  }),
+  (user) => user.firstName,
+  (firstName) => firstName.toUpperCase()
+)
+
+result //=> "GUSTAVO"
+```
+
+And the example with the second version:
+
+```js
+const result = Pipethrough({ name: 'Gustavo Santos' })
+  .pipe(({ name }) => ({
+    firstName: name.split(' ')[0],
+    lastName: name.split(' ')[1]
+  }))
+  .pipe((user) => user.firstName)
+  .pipe((firstName) => firstName.toUpperCase())
+  .value()
+```
+
+The second version with async operations:
+
+```js
+const findById = (id) => Promise.resolve({ id, name: 'Gustavo Santos' })
+
+const result = Pipethrough('123')
+  .tap(console.log) // log "123"
+  .pipe(findById)
+  .tap(console.log) // log Promise {}
+  .pipe(({ name }) => ({
+    firstName: name.split(' ')[0],
+    lastName: name.split(' ')[1]
+  }))
+  .pipe((user) => user.firstName)
+  .pipe((firstName) => firstName.toUpperCase())
+  .value()
+
+result //=> Promise("GUSTAVO")
+```
+
+It's more verbose but I think that reads better than the first version and you can simply improve 
+
+
+## See also
+
+<SnippetCard snippet={{
+  meta: {
+    title: 'pipeline',
+    excerpt: 'Compose functions by applying the result of the previous function to the next.',
+    tags: ['javascript', 'snippet'],
+  },
+  href: '/snippets/javascript-pipeline'
+}} />
+
+---
+
+export default ({ children }) => <BlogLayout meta={meta}>{children}</BlogLayout>
