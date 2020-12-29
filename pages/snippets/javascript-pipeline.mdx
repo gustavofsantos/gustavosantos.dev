@@ -1,4 +1,5 @@
 import BlogLayout from '../../components/blog/blog-layout'
+import { OuterLink } from '../../components/outer-link.js'
 
 export const meta = {
   title: 'pipeline',
@@ -30,6 +31,8 @@ const h = (x) => `h(${x})`
 const w = pipeline(f, g, h)
 w(10, 11) //=> h(g(f(10,11)))
 ```
+
+You can find this kind of function in various JavaScript libraries, such as <OuterLink href="https://github.com/lodash/lodash/wiki/FP-Guide">Lodash FP</OuterLink> or <OuterLink href="https://ramdajs.com/docs/#pipe">Ramda</OuterLink>
 
 ---
 
