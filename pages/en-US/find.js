@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Head from 'next/head'
-import { When } from '../components/when'
-import { useSearch } from '../lib/hooks/use-search'
-import { createSearchIndex } from '../lib/create-search-index'
+import { When } from '../../components/when'
+import { useSearch } from '../../lib/hooks/use-search'
+import { createSearchIndex } from '../../lib/create-search-index'
 
 export default function FindPage({ searchIndex }) {
   const { search, results, searchText } = useSearch({ searchIndex })
@@ -10,11 +10,11 @@ export default function FindPage({ searchIndex }) {
   return (
     <>
       <Head>
-        <title>Gustavo Santos | Busca</title>
+        <title>Gustavo Santos | Find</title>
 
         <meta
           name="description"
-          content="Procure por qualquer postagem no blog ou conhecimento em geral como trechos de código, comandos e conceitos."
+          content="Find any blog post and knowledge as code snippets, commands and concepts"
           key="siteDescription"
         />
 
@@ -23,7 +23,7 @@ export default function FindPage({ searchIndex }) {
         <meta
           name="og:description"
           property="og:description"
-          content="Procure por qualquer postagem no blog ou conhecimento em geral como trechos de código, comandos e conceitos."
+          content="Find any blog post and knowledge as code snippets, commands and concepts"
         />
         <meta property="og:site_name" content="Gustavo Santos" />
         <meta property="og:url" content="https://www.gustavosantos.dev" />
@@ -31,11 +31,11 @@ export default function FindPage({ searchIndex }) {
       <article className="flex flex-col items-center">
         <section className="pt-20 pb-10 w-full pl-4 pr-4 md:max-w-lg lg:max-w-xl">
           <h1 className="poppins text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8">
-            Busca por qualquer coisa
+            Search anything
           </h1>
           <div className="flex justify-center items-center">
             <input
-              placeholder="Escreva aqui"
+              placeholder="Type here"
               value={search}
               onChange={(ev) => search(ev.target.value)}
               className="pt-2 pb-2 pr-4 pl-4 border border-gray-300 rounded-md transition shadow-sm focus:shadow-md"
@@ -47,14 +47,12 @@ export default function FindPage({ searchIndex }) {
           <section className="flex flex-col w-full pl-4 pr-4 md:max-w-lg md:p-0 lg:max-w-xl divide-y divide-gray-100 dark:divide-gray-800">
             <When value={results.length === 0 && searchText === ''}>
               <p className="text-gray-700 text-center">
-                Procure por tags, títulos, trechos de url e resumos
+                Search by tags, titles, url and excerpts
               </p>
             </When>
 
             <When value={results.length === 0 && searchText !== ''}>
-              <p className="text-gray-700 text-center">
-                Nenhum resultado encontrado
-              </p>
+              <p className="text-gray-700 text-center">No result found</p>
             </When>
 
             <When value={results.length > 0}>
