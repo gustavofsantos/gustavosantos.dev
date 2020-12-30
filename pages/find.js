@@ -36,7 +36,7 @@ export default function FindPage({ searchIndex }) {
           <div className="flex justify-center items-center">
             <input
               placeholder="Escreva aqui"
-              value={search}
+              value={searchText}
               onChange={(ev) => search(ev.target.value)}
               className="pt-2 pb-2 pr-4 pl-4 border border-gray-300 rounded-md transition shadow-sm focus:shadow-md"
             />

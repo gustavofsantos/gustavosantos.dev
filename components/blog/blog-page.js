@@ -12,7 +12,7 @@ export const BlogPage = ({ children, meta }) => (
         {!!meta && !!meta.createdAt && (
           <section className="flex w-full justify-end items-center pt-6">
             <span className="serif italic text-sm text-gray-700">
-              Publicado em {new Date(meta.createdAt).toLocaleDateString()}
+              Published in {new Date(meta.createdAt).toLocaleDateString()}
             </span>
           </section>
         )}
