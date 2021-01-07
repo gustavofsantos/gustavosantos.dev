@@ -12,14 +12,14 @@ export const HeaderNav = () => (
         blog
       </span>
     </Link>
-    <Link href="/snippets">
+    <Link href="/knowledge">
       <span className="cursor-pointer hover:underline text-gray-900 dark:text-gray-50">
-        snippets
+        knowledge
       </span>
     </Link>
     <Link href="/about">
       <span className="cursor-pointer hover:underline text-gray-900 dark:text-gray-50">
-        sobre
+        about
       </span>
     </Link>
   </nav>

@@ -10,6 +10,7 @@
     "format": "prettier --write pages && prettier --write components"
   },
   "dependencies": {
+    "@hookform/resolvers": "^1.3.0",
     "@mdx-js/loader": "^1.6.22",
     "@next/mdx": "^10.0.3",
     "@testing-library/jest-dom": "^5.11.6",
@@ -23,8 +24,10 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-gist": "^1.2.2",
+    "react-hook-form": "^6.13.1",
     "react-syntax-highlighter": "^15.4.3",
-    "tailwindcss": "^2.0.2"
+    "tailwindcss": "^2.0.2",
+    "yup": "^0.32.8"
   },
   "devDependencies": {
     "prettier": "^2.2.1"
