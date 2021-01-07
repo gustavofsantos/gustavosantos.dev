@@ -1,7 +1,0 @@
-import Link from 'next/link'
-
-export const InnerLink = ({ href, children }) => (
-  <Link href={href}>
-    <span className="underline cursor-pointer">{children}</span>
-  </Link>
-)
