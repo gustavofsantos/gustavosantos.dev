@@ -8,6 +8,6 @@ type Props = {
 
 export const InnerLink: FC<Props> = ({ href, children }) => (
   <Link href={href}>
-    <span className="underline cursor-pointer">{children}</span>
+    <span className="text-blue-700 underline cursor-pointer">{children}</span>
   </Link>
 )
