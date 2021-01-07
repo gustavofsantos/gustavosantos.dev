@@ -3,7 +3,6 @@ import { FC } from 'react'
 
 type Props = {
   href: string
-  children: any
 }
 
 export const InnerLink: FC<Props> = ({ href, children }) => (
