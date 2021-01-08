@@ -13,7 +13,7 @@ export default function KnowledgePage({ snippets }) {
           <h1 className="poppins text-3xl md:text-4xl lg:text-5xl font-bold text-center pb-6">
             Knowledge
           </h1>
-          <h3 className="text-gray-700 text-lg">
+          <h3 className="text-gray-700 text-lg text-center">
             A collection of code snippets, commands, config and tooling that
             could be very useful
           </h3>
