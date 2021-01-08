@@ -1,12 +1,13 @@
 import BlogLayout from '../../components/blog/blog-layout'
-import { OuterLink } from '../../components/outer-link.js'
-import { SnippetCard } from '../../components/snippets/snippet-card.js'
+import { OuterLink } from '../../components/outer-link'
+import { SnippetCard } from '../../components/snippets/snippet-card'
+import { SnippetMetadata } from '../../lib/snippet-metadata'
 
-export const meta = {
+export const meta = SnippetMetadata({
   title: 'pipeline',
   excerpt: 'Compose functions by applying the result of the previous function to the next.',
   tags: ['javascript', 'snippet']
-}
+})
 
 # Pipeline
 

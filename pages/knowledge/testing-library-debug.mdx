@@ -1,10 +1,11 @@
 import BlogLayout from '../../components/blog/blog-layout'
+import { SnippetMetadata } from '../../lib/snippet-metadata'
 
-export const meta = {
+export const meta = SnippetMetadata({
   title: 'screen.debug',
   excerpt: 'Pretty print DOM nodes while running tests with testing-library',
   tags: ['react', 'javascript', 'snippet', 'jest', 'testing-library']
-}
+})
 
 # screen.debug
 

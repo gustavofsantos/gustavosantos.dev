@@ -1,10 +1,11 @@
 import BlogLayout from '../../components/blog/blog-layout'
+import { SnippetMetadata } from '../../lib/snippet-metadata'
 
-export const meta = {
+export const meta = SnippetMetadata({
   title: 'When',
   excerpt: 'Evaluates the property value, if it\'s truthy or is a function that returns an truty value, then render the children.',
   tags: ['react', 'javascript', 'snippet', 'jest', 'testing-library']
-}
+})
 
 # When
 
