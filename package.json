@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
     "format": "prettier --write pages && prettier --write components"
   },
   "dependencies": {
@@ -30,7 +32,9 @@
     "yup": "^0.32.8"
   },
   "devDependencies": {
+    "@testing-library/cypress": "^7.0.3",
     "@types/react": "^17.0.0",
+    "cypress": "^6.3.0",
     "prettier": "^2.2.1",
     "typescript": "^4.1.3"
   }
