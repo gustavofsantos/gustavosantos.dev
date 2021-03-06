@@ -1,11 +1,20 @@
 import Link from 'next/link'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { When } from '../components/when'
 import { useSearch } from '../lib/hooks/use-search'
 import { createSearchIndex } from '../lib/create-search-index'
+import { useEffect } from 'react'
 
 export default function FindPage({ searchIndex }) {
   const { search, results, searchText } = useSearch({ searchIndex })
+  const router = useRouter()
+
+  useEffect(() => {
+    if (router.query.q) {
+      search(router.query.q)
+    }
+  }, [router.query])
 
   return (
     <>
@@ -59,7 +68,7 @@ export default function FindPage({ searchIndex }) {
               {() => (
                 <ul className="divide-y divide-y-4">
                   {results.map((result) => (
-                    <li className="pt-4 pb-4">
+                    <li className="pt-4 pb-4" key={result.key}>
                       <Link href={result.href}>
                         <h2 className="poppins font-bold text-xl text-gray-900 pb-2 cursor-pointer">
                           {result.title}

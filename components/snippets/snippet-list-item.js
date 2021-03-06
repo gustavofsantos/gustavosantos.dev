@@ -12,12 +12,11 @@ export function SnippetListItem({ snippet }) {
 
       <div className="flex flex-wrap space-x-2">
         {snippet.meta.tags.map((tagName) => (
-          <span
-            key={snippet.meta.title + tagName}
-            className="bg-green-200 mt-1 mb-1 pt-1 pb-1 pl-2 pr-2 text-sm"
-          >
-            {tagName}
-          </span>
+          <Link key={snippet.meta.title + tagName} href={`/find?q=${tagName}`}>
+            <span className="bg-green-200 mt-1 mb-1 pt-1 pb-1 pl-2 pr-2 text-sm cursor-pointer">
+              {tagName}
+            </span>
+          </Link>
         ))}
       </div>
     </div>
