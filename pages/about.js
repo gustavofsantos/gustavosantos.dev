@@ -13,7 +13,7 @@ export default function AboutPage() {
       </Head>
       <article className="flex flex-col items-center">
         <section className="pt-20 pb-10">
-          <h1 className="poppins text-3xl md:text-4xl lg:text-5xl font-bold text-center">
+          <h1 className="style-display text-3xl md:text-4xl lg:text-5xl font-bold text-center">
             Hey! 🤙
           </h1>
         </section>

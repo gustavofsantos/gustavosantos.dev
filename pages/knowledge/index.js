@@ -10,7 +10,7 @@ export default function KnowledgePage({ snippets }) {
       </Head>
       <article className="flex flex-col items-center">
         <section className="pt-20 pb-10 w-full pl-4 pr-4 md:max-w-lg lg:max-w-xl">
-          <h1 className="poppins text-3xl md:text-4xl lg:text-5xl font-bold text-center pb-6">
+          <h1 className="style-display text-3xl md:text-4xl lg:text-5xl font-bold text-center pb-6">
             Knowledge
           </h1>
           <h3 className="text-gray-700 text-lg text-center">

@@ -4,7 +4,7 @@ export function SnippetListItem({ snippet }) {
   return (
     <div className="flex flex-col w-full pt-4 pb-4">
       <Link href={snippet.href}>
-        <h2 className="poppins font-semibold w-full text-xl mb-2 cursor-pointer">
+        <h2 className="style-display font-semibold w-full text-xl mb-2 cursor-pointer">
           {snippet.meta.title}
         </h2>
       </Link>

@@ -39,7 +39,7 @@ export default function FindPage({ searchIndex }) {
       </Head>
       <article className="flex flex-col items-center">
         <section className="pt-20 pb-10 w-full pl-4 pr-4 md:max-w-lg lg:max-w-xl">
-          <h1 className="poppins text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8">
+          <h1 className="style-display text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8">
             Search anything
           </h1>
           <div className="flex justify-center items-center">
@@ -70,7 +70,7 @@ export default function FindPage({ searchIndex }) {
                   {results.map((result) => (
                     <li className="pt-4 pb-4" key={result.key}>
                       <Link href={result.href}>
-                        <h2 className="poppins font-bold text-xl text-gray-900 pb-2 cursor-pointer">
+                        <h2 className="style-display font-bold text-xl text-gray-900 pb-2 cursor-pointer">
                           {result.title}
                         </h2>
                       </Link>
