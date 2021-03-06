@@ -9,7 +9,7 @@ module.exports = {
     './components/**/*.jsx',
     './components/**/*.tsx'
   ],
-  // darkMode: 'media',
+  darkMode: 'media',
   theme: {
     extend: {},
     colors: {
