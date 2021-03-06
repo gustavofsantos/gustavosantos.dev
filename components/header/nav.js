@@ -1,26 +1,18 @@
 import Link from 'next/link'
 
-export const HeaderNav = () => (
-  <nav className="flex space-x-4">
+export const Nav = () => (
+  <>
     <Link href="/find">
-      <span className="cursor-pointer hover:underline text-gray-900 dark:text-gray-50">
-        find
-      </span>
+      <span className="cursor-pointer hover:underline">find</span>
     </Link>
     <Link href="/blog">
-      <span className="cursor-pointer hover:underline text-gray-900 dark:text-gray-50">
-        blog
-      </span>
+      <span className="cursor-pointer hover:underline">blog</span>
     </Link>
     <Link href="/knowledge">
-      <span className="cursor-pointer hover:underline text-gray-900 dark:text-gray-50">
-        knowledge
-      </span>
+      <span className="cursor-pointer hover:underline">knowledge</span>
     </Link>
     <Link href="/about">
-      <span className="cursor-pointer hover:underline text-gray-900 dark:text-gray-50">
-        about
-      </span>
+      <span className="cursor-pointer hover:underline">about</span>
     </Link>
-  </nav>
+  </>
 )
