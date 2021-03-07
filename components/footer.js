@@ -2,7 +2,7 @@ import { FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi'
 import { RiNpmjsFill } from 'react-icons/ri'
 
 export const Footer = () => (
-  <footer className="flex flex-col items-center w-full pt-8 pb-4">
+  <footer className="flex flex-col items-center w-full pt-8 pb-4 bg-white dark:bg-coolGray-900">
     <section className="flex justify-between items-start w-full pl-4 pr-4 md:max-w-lg lg:max-w-2xl md:p-0">
       <div className="flex flex-col">
         <p>Gustavo Santos © {new Date().getFullYear()}</p>

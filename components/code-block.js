@@ -1,5 +1,5 @@
 import Highlight, { defaultProps } from 'prism-react-renderer'
-import theme from 'prism-react-renderer/themes/nightOwlLight'
+import theme from 'prism-react-renderer/themes/palenight'
 
 function Pre({ children, className, ...props }) {
   return (
@@ -53,7 +53,9 @@ export default function CodeBlock({ children, className, label, lines }) {
       </Highlight>
       {!!label && (
         <div className="flex justify-center items-center pb-4 pt-2">
-          <span className="text-sm italic serif text-gray-600">{label}</span>
+          <span className="text-sm italic serif text-coolGray-600">
+            {label}
+          </span>
         </div>
       )}
     </div>

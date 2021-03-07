@@ -7,7 +7,7 @@ type Props = {
 export const OuterLink: FC<Props> = ({ href, children }) => (
   <a
     href={href}
-    className="text-blue-700 underline cursor-pointer"
+    className="text-lightBlue-600 dark:text-lightBlue-300 underline cursor-pointer"
     target="_blank"
     rel="noopener noreferer"
   >

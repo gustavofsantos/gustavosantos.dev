@@ -19,9 +19,9 @@ export const AppCard = ({
       />
     </div>
     <div className="flex flex-col h-full justify-between items-start lg:w-7/12">
-      <p className="text-gray-700 pb-3">
+      <p className="text-coolGray-700 pb-3">
         <a href={url} target="_blank" rel="noopener noreferer">
-          <span className="text-gray-900 font-bold underline">{title}</span>
+          <span className="text-coolGray-900 font-bold underline">{title}</span>
         </a>
         : {description}
       </p>

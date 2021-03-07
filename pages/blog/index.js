@@ -9,9 +9,9 @@ export default function BlogPage({ posts }) {
       <Head>
         <title>Gustavo Santos | Blog</title>
       </Head>
-      <article className="flex flex-col items-center">
+      <article className="flex flex-col items-center bg-white dark:bg-coolGray-900">
         <section className="pt-20 pb-10">
-          <h1 className="style-display text-3xl md:text-4xl lg:text-5xl font-bold text-center">
+          <h1 className="style-display text-3xl md:text-4xl lg:text-5xl font-bold text-center text-gray-800 dark:text-gray-100">
             Blog
           </h1>
         </section>

@@ -11,7 +11,7 @@ export default function AboutPage() {
       <Head>
         <title>Gustavo Santos | About</title>
       </Head>
-      <article className="flex flex-col items-center">
+      <article className="flex flex-col items-center bg-white dark:bg-coolGray-900">
         <section className="pt-20 pb-10">
           <h1 className="style-display text-3xl md:text-4xl lg:text-5xl font-bold text-center">
             Hey! 🤙

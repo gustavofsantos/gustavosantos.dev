@@ -38,10 +38,10 @@ export function SignUpForm({ onSubmit }) {
       className="flex flex-col justify-start items-start w-full rounded-md border border-gray-200 mt-2 mb-2 p-6"
       onSubmit={handleSubmit(onValid, onInvalid)}
     >
-      <h1 className="font-bold text-2xl mb-6 text-gray-900">Welcome</h1>
+      <h1 className="font-bold text-2xl mb-6 text-coolGray-900">Welcome</h1>
 
       <label htmlFor="form-name" className="flex flex-col w-full mb-2">
-        <span className="font-bold text-gray-600">
+        <span className="font-bold text-coolGray-600">
           How you like to be called?
         </span>
         <input
@@ -50,13 +50,13 @@ export function SignUpForm({ onSubmit }) {
           placeholder="Ex: George, Mr W, Mary Jane"
           defaultValue=""
           ref={register}
-          className="w-full text-gray-800 pt-2 pb-2 pr-4 pl-4 border-b-2 border-gray-300 focus:border-gray-500"
+          className="w-full text-coolGray-800 pt-2 pb-2 pr-4 pl-4 border-b-2 border-gray-300 focus:border-gray-500"
         />
         <span className="text-red-600">{errors.name?.message}</span>
       </label>
 
       <label htmlFor="form-email" className="flex flex-col w-full mb-2">
-        <span className="font-bold text-gray-600">Your e-mail</span>
+        <span className="font-bold text-coolGray-600">Your e-mail</span>
         <input
           id="form-email"
           name="email"
@@ -64,13 +64,13 @@ export function SignUpForm({ onSubmit }) {
           placeholder="Ex: spiderman@marvel.co"
           defaultValue=""
           ref={register}
-          className="w-full text-gray-800 pt-2 pb-2 pr-4 pl-4 border-b-2 border-gray-300 focus:border-gray-500"
+          className="w-full text-coolGray-800 pt-2 pb-2 pr-4 pl-4 border-b-2 border-gray-300 focus:border-gray-500"
         />
         <span className="text-red-600">{errors.email?.message}</span>
       </label>
 
       <label htmlFor="form-password" className="flex flex-col w-full mb-2">
-        <span className="font-bold text-gray-600">Your password</span>
+        <span className="font-bold text-coolGray-600">Your password</span>
         <input
           id="form-password"
           name="password"
@@ -78,7 +78,7 @@ export function SignUpForm({ onSubmit }) {
           placeholder="Ex: this is a HUGE 123 password"
           defaultValue=""
           ref={register}
-          className="w-full text-gray-800 pt-2 pb-2 pr-4 pl-4 border-b-2 border-gray-300 focus:border-gray-500"
+          className="w-full text-coolGray-800 pt-2 pb-2 pr-4 pl-4 border-b-2 border-gray-300 focus:border-gray-500"
         />
         <span className="text-red-600">{errors.password?.message}</span>
       </label>
@@ -87,7 +87,7 @@ export function SignUpForm({ onSubmit }) {
         htmlFor="form-password-confirmation"
         className="flex flex-col w-full mb-2"
       >
-        <span className="font-bold text-gray-600">
+        <span className="font-bold text-coolGray-600">
           Type again your password
         </span>
         <input
@@ -97,7 +97,7 @@ export function SignUpForm({ onSubmit }) {
           placeholder="The same that you already typed before"
           defaultValue=""
           ref={register}
-          className="w-full text-gray-800 pt-2 pb-2 pr-4 pl-4 border-b-2 border-gray-300 focus:border-gray-500"
+          className="w-full text-coolGray-800 pt-2 pb-2 pr-4 pl-4 border-b-2 border-gray-300 focus:border-gray-500"
         />
         <span className="text-red-600">
           {errors.passwordConfirmation?.message}

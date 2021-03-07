@@ -37,7 +37,7 @@ export default function FindPage({ searchIndex }) {
         <meta property="og:site_name" content="Gustavo Santos" />
         <meta property="og:url" content="https://www.gustavosantos.dev" />
       </Head>
-      <article className="flex flex-col items-center">
+      <article className="flex flex-col items-center text-coolGray-900 dark:text-coolGray-400 bg-white dark:bg-coolGray-900">
         <section className="pt-20 pb-10 w-full pl-4 pr-4 md:max-w-lg lg:max-w-xl">
           <h1 className="style-display text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8">
             Search anything
@@ -55,27 +55,31 @@ export default function FindPage({ searchIndex }) {
         <div className="flex flex-col items-center pb-36 w-full">
           <section className="flex flex-col w-full pl-4 pr-4 md:max-w-lg md:p-0 lg:max-w-xl divide-y divide-gray-100 dark:divide-gray-800">
             <When value={results.length === 0 && searchText === ''}>
-              <p className="text-gray-700 text-center">
+              <p className="text-coolGray-700 dark:text-coolGray-400 text-center">
                 Search by tags, titles, url and excerpts
               </p>
             </When>
 
             <When value={results.length === 0 && searchText !== ''}>
-              <p className="text-gray-700 text-center">No result found</p>
+              <p className="text-coolGray-700 dark:text-coolGray-400 text-center">
+                No result found
+              </p>
             </When>
 
             <When value={results.length > 0}>
               {() => (
-                <ul className="divide-y divide-y-4">
+                <ul className="divide-y divide-y-4 divide-coolGray-300 dark:divide-coolGray-800">
                   {results.map((result) => (
                     <li className="pt-4 pb-4" key={result.key}>
                       <Link href={result.href}>
-                        <h2 className="style-display font-bold text-xl text-gray-900 pb-2 cursor-pointer">
+                        <h2 className="style-display font-bold text-xl text-coolGray-900 dark:text-coolGray-200 pb-2 cursor-pointer">
                           {result.title}
                         </h2>
                       </Link>
 
-                      <p className="text-gray-700">{result.excerpt}</p>
+                      <p className="text-coolGray-700 dark:text-coolGray-400">
+                        {result.excerpt}
+                      </p>
                     </li>
                   ))}
                 </ul>

@@ -60,7 +60,7 @@ export default function App({ Component, pageProps }) {
         />
       </Head>
       <Header />
-      <main className="h-full w-full pt-10 text-lg bg-white dark:bg-gray-900">
+      <main className="h-full w-full pt-10 text-lg text-coolGray-900 dark:text-coolGray-400 bg-white dark:bg-coolGray-900">
         <Component {...pageProps} />
       </main>
     </>

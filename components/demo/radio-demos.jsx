@@ -7,7 +7,7 @@ const Wrapper = ({ children }) => (
 export const DemoGuitar = () => (
   <Wrapper>
     <RadioGroup onSelect={console.log}>
-      <h3 className="text-gray-700 text-lg mb-4">
+      <h3 className="text-coolGray-700 text-lg mb-4">
         Choose your ultimate instrument
       </h3>
 
@@ -20,7 +20,7 @@ export const DemoGuitar = () => (
 export const DemoGeneric = () => (
   <Wrapper>
     <RadioGroup onSelect={console.log}>
-      <h3 className="text-gray-700 text-lg mb-4">Choose your option</h3>
+      <h3 className="text-coolGray-700 text-lg mb-4">Choose your option</h3>
 
       <RadioGroup.Item id="one">
         <span className="text-red-600">Option one</span>
@@ -28,7 +28,7 @@ export const DemoGeneric = () => (
       <RadioGroup.Item id="two">
         <span className="text-green-700">Option two</span>
       </RadioGroup.Item>
-      <p className="text-gray-600 pt-2 pb-2">Some message</p>
+      <p className="text-coolGray-600 pt-2 pb-2">Some message</p>
       <RadioGroup.Item id="ultimate">
         <span className="text-purple-800 underline">Ultimate option</span>
       </RadioGroup.Item>

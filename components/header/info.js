@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 export const HeaderInfo = () => (
-  <div className="hidden md:flex">
+  <div className="hidden md:flex text-coolGray-900 dark:text-coolGray-200 bg-white dark:bg-coolGray-900">
     <Link href="/">
       <div className="flex space-x-4 cursor-pointer">
         <div className="flex justify-center align-center">

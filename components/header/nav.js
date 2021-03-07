@@ -11,8 +11,5 @@ export const Nav = () => (
     <Link href="/knowledge">
       <span className="cursor-pointer hover:underline">knowledge</span>
     </Link>
-    <Link href="/about">
-      <span className="cursor-pointer hover:underline">about</span>
-    </Link>
   </>
 )
