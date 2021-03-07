@@ -20,15 +20,15 @@ export default function HomePage() {
         </p>
 
         <p className="text-lg mb-6">
-          My job at <OuterLink href="https://after.sale">aftersale</OuterLink>
+          My job at <OuterLink href="https://after.sale">aftersale</OuterLink>{' '}
           involves write code, plan user stories and help other developers to
           grow in their careers.
         </p>
 
         <p className="text-lg mb-6">
           If you want, you cou can reach me at{' '}
-          <OuterLink href="https://twitter.com/gufs0z">twitter</OuterLink>
-          or you can send me an{' '}
+          <OuterLink href="https://twitter.com/gufs0z">twitter</OuterLink> or
+          you can send me an{' '}
           <OuterLink href="mailto:gustavogustav54@gmail.com">email</OuterLink>.
         </p>
 
