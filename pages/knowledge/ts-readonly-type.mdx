@@ -1,15 +1,11 @@
 import BlogLayout from '../../components/blog/blog-layout'
+import { SnippetMetadata } from '../../lib/snippet-metadata'
 
-export const meta = {
+export const meta = SnippetMetadata({
   title: 'TypeScript e a palavra chave readonly',
-  excerpt: `Você pode anotar, inclusive, type-alias como somente leitura e assim garantir, em tempos de compilação, que sua estrutura de dados não vai ser alterada.`,
-  author: 'Gustavo Santos',
-  href: '/blog/ts-readonly-type',
-  tags: ['typescript'],
-  released: true,
-  createdAt: "2020-12-22T14:20:53.976Z",
-  updatedAt: "2020-12-22T14:20:53.976Z"
-}
+  excerpt: 'Você pode anotar, inclusive, type-alias como somente leitura e assim garantir, em tempos de compilação, que sua estrutura de dados não vai ser alterada.',
+  tags: ['pt-br', 'typescript']
+})
 
 # TypeScript e a palavra chave readonly
 
@@ -48,7 +44,5 @@ type Order = Readonly<{
   price: number;
 }>
 ```
-
----
 
 export default ({ children }) => <BlogLayout meta={meta}>{children}</BlogLayout>

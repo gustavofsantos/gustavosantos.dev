@@ -5,9 +5,6 @@ export const Nav = () => (
     <Link href="/find">
       <span className="cursor-pointer hover:underline">find</span>
     </Link>
-    <Link href="/blog">
-      <span className="cursor-pointer hover:underline">blog</span>
-    </Link>
     <Link href="/knowledge">
       <span className="cursor-pointer hover:underline">knowledge</span>
     </Link>
