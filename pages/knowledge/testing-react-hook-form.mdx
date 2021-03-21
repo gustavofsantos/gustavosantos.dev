@@ -1,20 +1,17 @@
 import BlogLayout from '../../components/blog/blog-layout';
-import {SignUpForm} from "../../components/demo/signup-form";
+import { SnippetMetadata } from '../../lib/snippet-metadata'
+import { SignUpForm } from "../../components/demo/signup-form";
 
-export const meta = {
+export const meta = SnippetMetadata({
   title: 'Testing forms backed with React Hook Form',
-  excerpt: `React Hook Form is an amazing library but sometimes we get caught in some pitfalls while testing forms with asynchronous operations such as validation. In this article you will learn how to test forms with asynchronous validation.`,
-  author: 'Gustavo Santos',
-  tags: ['react', 'jest', 'testing-library', 'tutorial', 'english', 'javascript'],
-  href: '/blog/testing-react-hook-form',
-  released: true,
-  createdAt: "2020-12-30T14:20:53.976Z",
-  updatedAt: "2020-12-30T14:20:53.976Z"
-};
+  excerpt: 'React Hook Form is an amazing library but sometimes we get caught in some pitfalls while testing forms with asynchronous operations such as validation. In this article you will learn how to test forms with asynchronous validation.',
+  tags: ['en', 'react', 'jest', 'testing-library', 'tutorial', 'english', 'javascript']
+})
+
 
 # Testing forms backed with React Hook Form
 
-If you never hear about this library, stop reading this article right now and go to the [React Hook Form page](https://react-hook-form.com/).about
+If you never hear about this library, stop reading this article right now and go to the [React Hook Form page](https://react-hook-form.com/).
 
 I cannot express all my happiness with this library, is simpler than Formik, is fast and accept multiple validation engines. But often times I see programmers cracking their heads while testing forms backed by React Hook Form, in this tutorial you will see how to test forms with validation and I hope that your tests become much simpler.
 
@@ -597,6 +594,5 @@ If you follow this guide until here, congratulations! If you don't understand th
 
 Validation is an asynchronous process and everytime that we test React components that has asynchronous behaviour, we need to wait to those operations to end before making any assertion about the test result.
 
----
 
 export default ({ children }) => <BlogLayout meta={meta}>{children}</BlogLayout>
