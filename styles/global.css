@@ -27,3 +27,19 @@ code, pre {
 .backdrop-filter {
   backdrop-filter: saturate(100%) blur(10px);
 }
+
+.page {
+  @apply flex flex-col items-center pt-20 pb-56 w-full bg-white dark:bg-coolGray-900;
+}
+
+.page-contents {
+  @apply flex flex-col w-full pl-4 pr-4 md:max-w-xl lg:max-w-3xl md:p-0 bg-white dark:bg-coolGray-900;
+}
+
+.page-title {
+  @apply font-bold;
+}
+
+.prose > h1 {
+  @apply w-full text-center !important;
+}

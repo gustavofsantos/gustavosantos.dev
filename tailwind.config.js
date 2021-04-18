@@ -11,7 +11,23 @@ module.exports = {
   ],
   darkMode: 'media',
   theme: {
-    extend: {},
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            pre: {
+              'background-color': 'unset',
+              'padding-top': '0',
+              'padding-bottom': '0',
+              'padding-right': '0',
+              'padding-left': '0',
+              'margin-top': '0',
+              'margin-bottom': '0'
+            }
+          }
+        }
+      }
+    },
     colors: {
       gray: colors.warmGray,
       ...colors
@@ -20,5 +36,5 @@ module.exports = {
   variants: {
     extend: {}
   },
-  plugins: []
+  plugins: [require('@tailwindcss/typography')]
 }

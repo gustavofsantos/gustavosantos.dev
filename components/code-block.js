@@ -53,7 +53,7 @@ export default function CodeBlock({ children, className, label, lines }) {
       </Highlight>
       {!!label && (
         <div className="flex justify-center items-center pb-4 pt-2">
-          <span className="text-sm italic serif text-coolGray-600">
+          <span className="text-sm italic serif text-gray-600 dark:text-gray-400">
             {label}
           </span>
         </div>

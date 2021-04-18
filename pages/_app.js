@@ -59,7 +59,6 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      <Header />
       <main className="h-full w-full pt-10 text-lg text-coolGray-900 dark:text-coolGray-400 bg-white dark:bg-coolGray-900">
         <Component {...pageProps} />
       </main>

@@ -1,19 +1,13 @@
 import Head from 'next/head'
 import { MDXProvider } from '@mdx-js/react'
 import { BlogPage } from './blog-page'
-import { BlogTitle } from './blog-title'
-import { BlogSubtitle } from './blog-subtitle'
-import { BlogParagraph } from './blog-paragraph'
 import CodeBlock from '../code-block'
 
-export default function BlogLayout(props) {
-  const components = {
-    h1: BlogTitle,
-    h2: BlogSubtitle,
-    p: BlogParagraph,
-    code: CodeBlock
-  }
+const components = {
+  code: CodeBlock
+}
 
+export default function BlogLayout(props) {
   return (
     <>
       <Head>

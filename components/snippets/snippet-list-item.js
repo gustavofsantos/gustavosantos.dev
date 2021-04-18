@@ -11,16 +11,6 @@ export function SnippetListItem({ snippet }) {
       <p className="text-coolGray-700 dark:text-coolGray-400 mb-2">
         {snippet.meta.excerpt}
       </p>
-
-      <div className="flex flex-wrap space-x-2">
-        {snippet.meta.tags.map((tagName) => (
-          <Link key={snippet.meta.title + tagName} href={`/find?q=${tagName}`}>
-            <span className="bg-green-200 text-green-900 mt-1 mb-1 pt-1 pb-1 pl-2 pr-2 cursor-pointer">
-              {tagName}
-            </span>
-          </Link>
-        ))}
-      </div>
     </div>
   )
 }
