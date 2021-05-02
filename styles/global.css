@@ -41,5 +41,5 @@ code, pre {
 }
 
 .prose > h1 {
-  @apply w-full text-center !important;
+  @apply w-full text-center text-gray-900 dark:text-gray-100 !important;
 }

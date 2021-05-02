@@ -21,15 +21,15 @@ export const BlogPage = ({
           />
         </Link>
         <Link href={customProfileHref}>
-          <span className="uppercase cursor-pointer text-gray-500">
+          <span className="uppercase cursor-pointer text-gray-500 dark:text-gray-300">
             Gustavo Santos
           </span>
         </Link>
       </section>
-      <section className="prose md:prose-lg lg:prose-xl text-gray-900 dark:text-gray-200 page-contents">
+      <section className="prose prose-blue md:prose-lg lg:prose-xl text-gray-900 dark:text-gray-200 page-contents">
         {!!meta && !!meta.createdAt && (
           <section className="flex w-full justify-center items-center">
-            <p className="font-bold text-gray-500">
+            <p className="font-bold text-gray-500 dark:text-gray-400">
               {new Date(meta.createdAt).toLocaleDateString()}
             </p>
           </section>

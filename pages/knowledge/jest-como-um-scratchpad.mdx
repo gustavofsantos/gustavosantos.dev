@@ -1,0 +1,67 @@
+import Image from 'next/image'
+import BlogLayout from '../../components/blog/blog-layout'
+import { OuterLink } from '../../components/outer-link'
+import { SnippetCard } from '../../components/snippets/snippet-card'
+import { SnippetMetadata } from '../../lib/snippet-metadata'
+
+export const meta = SnippetMetadata({
+  title: 'Jest Como um Scratchpad',
+  excerpt: 'Como usar Jest e Typescript como um scratchpad para exploração com feedback rápido e contínuo',
+  tags: ['pt-br', 'jest', 'typescript']
+})
+
+
+# Jest Como um Scratchpad
+
+Faz um pouco mais de um ano que eu comprei uma licença do [Quokka](https://quokkajs.com) e
+francamente, não me arrependo.
+
+Foi um valor bem investido na época e foi muito útil todas as vezes
+que precisei ir além do dia a dia de atividades no front-end e explorar formas para resolver
+os meus problemas mais cabeludos.
+
+A licença do Quokka expirou faz algumas semanas, porém eu não renovei já que acredito que atualmente,
+para o meu uso, uma combinação entre jest e typescript seja bem mais útil.
+
+Se você nunca ouviu falar sobre o Quokka, acho que vale a pena [acessar o site](https://quokkajs.com) e checar 
+as principais funcionalidades.
+
+Eu conheci o plugin através [desse vídeo do MPJ](https://www.youtube.com/watch?v=W4brAobC2Hc), acho que vale a pena checar
+tanto para ver o plugin funcionando quanto para curtir o conteúdo.
+
+O Quokka possui várias funcionalidades mas eu particularmente só usava o modo scratchpad, onde eu tinha acesso
+a um ambiente de feedback rápido durante a escrita do código.
+
+A experiência é muito boa, o feedback é rápido e contínuo.
+
+---
+
+Você pode começar usando o [degit](https://www.npmjs.com/package/degit) para baixar o último commit [desse repositório](https://github.com/gustavofsantos/jest-scratchpad) que deixei preparado:
+
+```
+$ npx degit gustavofsantos/jest-scratchpad testing-jest
+```
+
+Entre na pasta *testing-jest* usando o comando *cd* e instale os pacotes necessários.
+
+Eu prefiro usar o yarn, por isso o repositório já contém um arquivo yarn.lock. Mas use o npm se precisar:
+
+```
+$ cd testing-jest && yarn install
+```
+
+É rápido assim, agora basta rodar o comando *yarn test* e começar a explorar o código!
+
+Outro ponto interessante é a configuração do editor quando você está explorando algo. Eu gosto de ter o feedback
+rápido, por isso acho mais interessante posicionar o terminal na direita e deixar o código na esqueda, veja o
+exemplo logo abaixo.
+
+<Image src="/images/blog/jest-scratchpad/jest-scratch-example.png" layout="responsive" width={1918} height={1005} />
+
+Note que, como você está usando o Jest, você pode usar várias funcionalidades para selecionar qual teste executar,
+você pode usar vários _transformers_ para explorar qualquer linguagem compilável para JavaScript, além de importar
+código fonte e usar durante a exploração.
+
+Esse último ponto você também consegue o mesmo resultado com o Quokka, porém precisa pagar a licença de uso profissional.
+
+export default ({ children }) => <BlogLayout meta={meta}>{children}</BlogLayout>
