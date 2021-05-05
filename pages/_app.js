@@ -16,7 +16,6 @@ export default function App({ Component, pageProps }) {
           content="Esse site contém links para meus projetos, redes sociais e algumas postagens sobre programação e tecnologia"
           key="siteDescription"
         />
-
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -35,6 +34,10 @@ export default function App({ Component, pageProps }) {
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        ></meta>
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
@@ -55,6 +58,7 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
+
       <main className="h-full w-full text-lg text-coolGray-900 dark:text-coolGray-400 bg-white dark:bg-coolGray-900">
         <Component {...pageProps} />
       </main>
