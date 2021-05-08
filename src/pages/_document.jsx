@@ -8,7 +8,7 @@ export default class AppDocument extends Document {
 
   render() {
     return (
-      <Html lang="pt_BR">
+      <Html lang="pt-BR">
         <Head>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
@@ -35,16 +35,17 @@ export default class AppDocument extends Document {
           />
         </Head>
         <body>
-          <noscript
-            dangerouslySetInnerHTML={{
-              __html: `<iframe
+          <noscript>
+            <iframe
               src="https://www.googletagmanager.com/ns.html?id=GTM-MJJHV4T"
               height="0"
               width="0"
-              style="display:none;visibility:hidden"
-            ></iframe>`
-            }}
-          />
+              style={{
+                display: 'none',
+                visibility: 'hidden'
+              }}
+            />
+          </noscript>
           <Main />
           <NextScript />
         </body>
