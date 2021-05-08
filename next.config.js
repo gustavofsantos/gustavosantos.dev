@@ -6,6 +6,15 @@ module.exports = {
   experimental: {
     turboMode: true
   },
+  redirects() {
+    return [
+      {
+        source: '/knowledge/:slug',
+        destination: '/a/:slug',
+        permanent: true
+      }
+    ]
+  },
   webpack: (config, options) => {
     config.module.rules.push({
       exclude: [__dirname + '/data/']
