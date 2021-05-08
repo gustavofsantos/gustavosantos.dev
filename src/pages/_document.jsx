@@ -8,8 +8,14 @@ export default class AppDocument extends Document {
 
   render() {
     return (
-      <Html lang="en">
+      <Html lang="pt_BR">
         <Head>
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+            async
+          />
           <script
             dangerouslySetInnerHTML={{
               __html: `(function (w, d, s, l, i) {

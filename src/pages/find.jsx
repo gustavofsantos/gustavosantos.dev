@@ -3,7 +3,6 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { When } from '../components/when'
 import { useSearch } from '../lib/hooks/use-search'
-import { createSearchIndex } from '../lib/create-search-index'
 import { useEffect } from 'react'
 
 export default function FindPage({ searchIndex }) {
@@ -92,8 +91,8 @@ export default function FindPage({ searchIndex }) {
   )
 }
 
-export async function getStaticProps() {
-  const searchIndex = await createSearchIndex()
+export function getStaticProps() {
+  const searchIndex = {}
 
   return {
     props: { searchIndex }

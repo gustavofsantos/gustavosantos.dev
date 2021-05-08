@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #__next {
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', -apple-system, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+code, pre {
+  font-family: 'Operator Mono Medium', 'Dank Mono', monospace;
+}
+
+a {
+  @apply text-blue-700 underline;
+}
+
+.serif {
+  font-family: 'Libre Baskerville', serif;
+}
+
+.style-display {
+  font-family:  'Source Serif Pro', serif;
+}
+
+
+.backdrop-filter {
+  backdrop-filter: saturate(100%) blur(10px);
+}
+
+.page {
+  @apply flex flex-col items-center pt-20 pb-56 w-full
+}
+
+.page-contents {
+  @apply flex flex-col w-full pl-4 pr-4 md:max-w-xl lg:max-w-3xl md:p-0;
+}
+
+.page-title {
+  @apply font-bold;
+}
+
+.prose > h1 {
+  @apply w-full text-center text-gray-900 !important;
+}
+
+.prose pre {
+  @apply bg-gray-50 border border-gray-200;
+}
+
+.prose code {
+  @apply text-gray-800 px-1 py-0.5 border border-gray-100 rounded-md bg-gray-100;
+}
+
+.prose pre code {
+  @apply text-gray-800;
+}
+
+.prose img {
+  /* Don't apply styles to next/image */
+  @apply m-0;
+}
+
+.prose > :first-child {
+  /* Override removing top margin, causing layout shift */
+  margin-top: 1.25em !important;
+  margin-bottom: 1.25em !important;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  @apply text-gray-700;
+}
+
+.token.punctuation {
+  @apply text-gray-700;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  @apply text-gray-700;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  @apply text-green-500;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  @apply text-gray-500;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  @apply text-blue-700;
+}
+
+.token.function,
+.token.class-name {
+  @apply text-pink-600;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  @apply text-yellow-500;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+  @apply text-gray-800 px-2 py-1;
+}
+
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+pre {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.remark-code-title {
+  @apply text-gray-800 px-2 py-1 border border-b-0 border-gray-200 rounded-t bg-gray-200 text-sm font-mono font-bold;
+}
+
+.remark-code-title + pre {
+  @apply mt-0 rounded-t-none;
+}
+
+.mdx-marker {
+  @apply block mx-4 px-4 bg-gray-100 border-l-4 border-blue-500;
+}

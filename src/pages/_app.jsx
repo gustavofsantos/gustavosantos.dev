@@ -1,14 +1,12 @@
 import Head from 'next/head'
-import { Header } from '../components/header'
 import '../styles/global.css'
 
 export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Gustavo Santos</title>
+        <title>Gustavo Santos, Dev e escritor nas horas vagas</title>
         <meta charSet="utf-8" />
-        <html lang="pt_BR" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="author" content="Gustavo Santos" key="authorName" />
         <meta
@@ -51,12 +49,6 @@ export default function App({ Component, pageProps }) {
         />
         <meta property="og:site_name" content="Gustavo Santos" />
         <meta property="og:url" content="https://www.gustavosantos.dev" />
-
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Source+Serif+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap"
-          rel="stylesheet"
-        />
       </Head>
 
       <main className="h-full w-full text-lg text-coolGray-900 dark:text-coolGray-400 bg-white dark:bg-coolGray-900">

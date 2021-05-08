@@ -1,15 +1,8 @@
-import BlogLayout from '../../components/blog/blog-layout'
-import { OuterLink } from '../../components/outer-link'
-import { SnippetCard } from '../../components/snippets/snippet-card'
-import { SnippetMetadata } from '../../lib/snippet-metadata'
-
-export const meta = SnippetMetadata({
-  title: 'Minha jornada contra o medo do esquecimento',
-  excerpt: 'Como consegui superar a ansiedade de perder informações e esquecer coisas.',
-  tags: ['pt-br', 'conhecimento', 'gerenciamento']
-})
-
-# Minha jornada contra o medo do esquecimento
+---
+title: 'Minha jornada contra o medo do esquecimento'
+summary: 'Como consegui superar a ansiedade de perder informações e esquecer coisas.'
+tags: ['pt-br', 'conhecimento', 'gerenciamento']
+---
 
 Desde que me conheço como gente, eu tenho dificuldades em armazenar informação, assim como a grande maioria das pessoas que moram comigo nesse planeta.
 
@@ -65,13 +58,13 @@ Você não consegue _"dar um Ctrl + F e encontrar alguma coisa no papel"_.
 
 Isso mexe com a minha ansiedade. Eu preciso estar na zona de conforto em usar uma aplicação que seja rápida para anotar coisas e fácil de encontrar essas coisas no futuro.
 
-Alguns meses atrás eu descobri um conjunto incrível de ferramentas que foram derivadas a partir do <OuterLink href="https://roamresearch.com/">Roam Research</OuterLink>.
+Alguns meses atrás eu descobri um conjunto incrível de ferramentas que foram derivadas a partir do [Roam Research](https://roamresearch.com).
 
 Em poucas palavras, o Roam é um serviço para organizar conhecimento. Os coaches chamam de _melhor app para construir um segundo cérebro_. Embora eu ache a maioria das coisas envolvendo um "Segundo Cérebro" sejam _bullshit_, o Roam Research é incrível e eu acredito que seria muito útil para mim.
 
 Por que eu não tenho certeza se ele é de fato muito útil para mim? Porque o serviço é caro. Muito caro.
 
-Mas a partir do Roam eu descobri diversos outros serviços que são igualmente muito poderosos e gratuítos, como o <OuterLink href="https://obsidian.md/">Obsidian</OuterLink>.
+Mas a partir do Roam eu descobri diversos outros serviços que são igualmente muito poderosos e gratuítos, como o [Obsidian](https://obsidian.md/).
 
 Eu tenho alguns meses da minha vida registrados no Obsidian. Melhor dizendo, tenho alguns meses gerenciados pelo Obsidian.
 
@@ -83,7 +76,7 @@ A maior parte das vezes que eu lembro de alguma coisa ou penso em alguma coisa e
 
 O fato de não existir um app web ou mobile são coisas que também mexem com a minha ansiedade. Não quero ser pego desprevinido -- como já fui algumas vezes enquanto usava o Obsidian.
 
-A partir de então, descobri o <OuterLink href="https://logseq.com/">Logseq</OuterLink>.
+A partir de então, descobri o [Logseq](https://logseq.com/).
 
 O Logseq tem a cara do Roam Research, fez uma cópia muito boa da principal funcionalidade do Roam, que são os links bi-direcionais; funciona na web e possui um app desktop. Não é tão lento e não possui tantos bugs.
 
@@ -111,13 +104,4 @@ O objetivo dessas palavras nesse texto não é servir como psicologia barata, é
 
 ## Leia também
 
-<SnippetCard snippet={{
-  meta: {
-    title: 'Template básico para organizar seu dia no Logseq',
-    excerpt: 'Logseq é um software que eu uso há algum tempo, que tem suporte a templates. Veja como criar um template básico para organizar seu dia.',
-    tags: ['pt-br', 'conhecimento', 'gerenciamento', 'logseq'],
-  },
-  href: '/knowledge/template-daily-logseq'
-}} />
-
-export default ({ children }) => <BlogLayout meta={meta}>{children}</BlogLayout>
+- [Template básico para organizar seu dia no Logseq](/a/template-daily-logseq)
