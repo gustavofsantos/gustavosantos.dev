@@ -1,15 +1,9 @@
-import BlogLayout from '../../components/blog/blog-layout'
-
-export const meta = {
-  title: 'Configurando Jest, Mongo e Node para testar com confiança',
-  excerpt: `Antes de colocar qualquer tipo de software em produção você precisa
- estar confiante com seus testes. Você está confiante? Você faz mock de banco de dados ou não testa a interação com o banco de dados? Se sim, provavelmente esse texto vai te ajudar muito!`,
-  tags: ['node', 'mongodb', 'jest', 'tutorial'],
-  createdAt: "2020-12-21T14:20:53.976Z",
-  updatedAt: "2020-12-21T14:20:53.976Z"
-}
-
-# Configurando Jest, Mongo e Node para testar com confiança
+---
+title: 'Configurando Jest, Mongo e Node para testar com confiança'
+summary: 'Antes de colocar qualquer tipo de software em produção você precisa estar confiante com seus testes. Você está confiante? Você faz mock de banco de dados ou não testa a interação com o banco de dados? Se sim, provavelmente esse texto vai te ajudar muito!'
+tags: ['node', 'mongodb', 'jest', 'tutorial']
+publishedAt: "2020-12-21"
+---
 
 Vamos aprender como configurar o Jest, Mongo e Fastify em um projeto pequeno o suficiente para que seja possível discutirmos sobre assuntos mais direcionados, como automações e testes com garantias de que você está reproduzindo o ambiente de produção durante os seus testes!
 
@@ -91,7 +85,7 @@ $ touch app/routers/users-router.js
 
 Vou escrever o mínimo necessário pra dar uma estrutura básica ao roteador: 
 
-```js lines=true label=app/routers/users-router.js
+```js:app/routers/users-router.js
 async function usersRouter(fastify) {
   fastify.get("/users", (req, reply) => {
     reply.send({ hello: "world" });
@@ -103,7 +97,7 @@ module.exports = usersRouter;
 
 Não conseguimos fazer muito com esse roteador, precisamos configurar um servidor mínimo para conseguirmos fazer alguma requisição. Vou criar um arquivo em `app/server.js`. Seu conteúdo é:
 
-```js lines=true label=app/server.js
+```js:app/server.js
 const fastify = require("fastify")({ logger: true });
 
 fastify.register(require("./routers/users-router"), {
@@ -151,7 +145,7 @@ $ touch db/mongo.js
 
 Dentro desse arquivo vou definir e exportar uma função chamada `connect`. O trabalho dessa função é conectar com o Mongo e devolver uma instância da conexão com o banco de dados.
 
-```js lines=true label=db/mongo.js
+```js:db/mongo.js
 const { MongoClient } = require("mongodb");
 
 const client = new MongoClient("mongodb://admin:admin@localhost:27017", {
@@ -175,7 +169,7 @@ $ touch docker-compose.yml
 
 E o arquivo YAML que descreve o serviço do mongo:
 
-```yml lines=true label=docker-compose.yml
+```yml:docker-compose.yml
 version: "3.7"
 
 services:
@@ -209,7 +203,7 @@ node-mongo-testing_local_mongo_1   docker-entrypoint.sh mongod   Up      0.0.0.0
 
 Agora estamos prontos para conectar com o banco de dados! Vou começar adicionando a leitura da coleção de usuários e retornando na rota `/api/v1/users`:
 
-```js lines=true label=app/routers/users-router.js
+```js:app/routers/users-router.js
 const { connect } = require("../../db/mongo");
 
 async function usersRouter(fastify) {
@@ -235,7 +229,7 @@ $ curl localhost:3000/api/v1/users
 
 Vamos começar adicionando dados aleatórios no banco antes de fazer a leitura:
 
-```js lines=true label=app/routers/users-router.js
+```js:app/routers/users-router.js
 const { connect } = require("../../db/mongo");
 
 async function usersRouter(fastify) {
@@ -284,7 +278,7 @@ Esse projeto é um projeto em Node, é muito interessante se nós conseguirmos d
 
 No `package.json` vamos adicionar dois scripts, um para iniciar a aplicação automaticamente (algo que estamos fazendo ao invocar o node manualmente) e outro para semear o banco de dados:
 
-```json lines=true label=package.json
+```json:package.json
 {
   "name": "node-mongo-testing",
   "version": "1.0.0",
@@ -314,7 +308,7 @@ $ touch scripts/db/seed.js
 
 Dentro desse arquivo vamos usar o utilitário de conexão com o Mongo que já haviamos criado:
 
-```js lines=true label=scripts/db/seed.js
+```js:scripts/db/seed.js
 const { connect } = require("../../db/mongo");
 
 async function run() {
@@ -355,7 +349,7 @@ $ touch db/seeder.js
 
 Vou escrever o mínimo possível para ilustrar o que vai ser feito nesse módulo:
 
-```js lines=true label=db/seeder.js
+```js:db/seeder.js
 async function seed(db) {
   await db.collection("users").insertMany([
     { name: "João", email: "joao@email.com" },
@@ -368,7 +362,7 @@ module.exports = { seed };
 
 Ainda faltam duas coisas: chamar essa função no nosso script de automação e remover o trecho que adiciona dados no banco dentro do roteador. Embora não seja trabalho do roteador de ter que lidar com o banco de dados, vamos manter aquele trecho de código que lê os usuários do banco dentro do callback, por enquanto.
 
-```js lines=true label=scripts/db/seeder.js
+```js:scripts/db/seeder.js
 const { connect } = require("../../db/mongo");
 const { seed } = require("../../db/seeder");
 
@@ -396,7 +390,7 @@ run()
   });
 ```
 
-```js lines=true label=app/routers/users-router.js
+```js:app/routers/users-router.js
 const { connect } = require("../../db/mongo");
 
 async function usersRouter(fastify) {
@@ -432,7 +426,7 @@ $ curl localhost:3000/api/v1/users
 
 Legal. Mas e se agora precisamos criar um novo usuário chamado `Laura` no nosso banco sempre que inicializar o projeto? Basta alterar o arquivo `db/seeder.js`:
 
-```js lines=true label=db/seeder.js
+```js:db/seeder.js
 async function seed(db) {
   await db.collection("users").insertMany([
     { name: "João", email: "joao@email.com" },
@@ -511,7 +505,7 @@ $ touch jest.setup.js
 
 Em `jest.config.js` vou definir para o jest carregar o arquivo `jest.setup.js` sempre que configurar o ambiente de testes:
 
-```js lines=true label=jest.config.js
+```js:jest.config.js
 module.exports = {
   setupFilesAfterEnv: ["./jest.setup.js"],
 };
@@ -519,7 +513,7 @@ module.exports = {
 
 Vou deixar o arquivo `jest.setup.js` vazio por enquanto. Vou criar também um script no `package.json` para rodar o jest automaticamente no modo _watch_:
 
-```json lines=true label=package.json
+```json:package.json
 {
   "name": "node-mongo-testing",
   "version": "1.0.0",
@@ -555,7 +549,7 @@ $ touch app/services/user-service.test.js
 
 Vou escrever o mínimo necessário para o jest idenficar e executar os testes nesse arquivo:
 
-```js lines=true label=app/services/user-service.test.js
+```js:app/services/user-service.test.js
 const { UserService } = require("./user-service");
 
 describe(UserService.name, () => {
@@ -607,7 +601,7 @@ Ran all test suites.
 
 Ótimo! Mas espere um segundo: temos um teste que na verdade faz nada, vamos implementar o que esperamos que a classe `UserService` entregue via API:
 
-```js lines=true label=app/services/user-service.test.js
+```js:app/services/user-service.test.js
 const { UserService } = require("./user-service");
 
 describe(UserService.name, () => {
@@ -626,7 +620,7 @@ Agora sabemos que `UserService` espera ser uma classe que quando instanciada vai
 
 Se você juntar os pauzinhos, verá que nosso seeder insere três usuários no banco de dados, então partindo do princípio de que o banco estará semeado antes de rodar os testes, é razoável esperar que três usuários serão retornados através do método `listAll`. Vamos implementar esses métodos:
 
-```js lines=true label=app/services/user-service.js
+```js:app/services/user-service.js
 const { connect } = require("../../db/mongo");
 
 class UserService {
@@ -658,7 +652,7 @@ This usually means that there are asynchronous operations that weren't stopped i
 
 Isso aconteceu porque iniciamos uma conexão com o banco mas não fechamos. Vou expor uma função `disconnect` do módulo `mongo.js` (db/mongo.js) e usar essa função para desconectar do mongo após todos os testes serem executados:
 
-```js lines=true label=db/mongo.js
+```js:db/mongo.js
 const { MongoClient } = require("mongodb");
 
 const client = new MongoClient("mongodb://admin:admin@localhost:27017", {
@@ -680,7 +674,7 @@ module.exports = { connect, disconnect };
 
 E agora no arquivo `jest.setup.js`:
 
-```js lines=true label=jest.setup.js
+```js:jest.setup.js
 const { disconnect } = require("./db/mongo");
 
 afterAll(async () => {
@@ -711,7 +705,7 @@ Ran all test suites.
 
 Não sei se você notou, mas criamos um forte acoplamento com o seeder. Toda vez que for necessário adicionar um novo usuário no seeder, teremos que alterar os nossos testes. Não está satisfeito com esse argumento? Vamos adicionar o usuário Mário no seeder:
 
-```js lines=true label=db/seeder.js
+```js:db/seeder.js
 async function seed(db) {
   await db.collection("users").insertMany([
     { name: "João", email: "joao@email.com" },
@@ -784,7 +778,7 @@ $ mkdir -p tests/fixtures
 
 Dentro desse diretório vou criar um arquivo JavaScript com alguns usuários:
 
-```js lines=true label=tests/fixtures/users.js
+```js:tests/fixtures/users.js
 const ana = { name: "Ana", email: "ana@email.com" };
 const roberto = { name: "Roberto", email: "roberto@email.com" };
 
@@ -795,7 +789,7 @@ module.exports = [ana, roberto];
 
 Em `jest.setup.js` vou declarar no hook `beforeEach` instruções para zerar o banco de dados e inserir os usuários na coleção de, ...usuários.
 
-```js lines=true label=jest.setup.js
+```js:jest.setup.js
 const { disconnect, connect } = require("./db/mongo");
 const users = require("./tests/fixtures/users");
 
@@ -831,7 +825,7 @@ Se rodarmos os testes novamente, você verá que irão falhar, porém note a fal
 
 A falha indica que era esperado um array com tres usuários, mas foi retornado um array com dois usuários, os exatos dois que inserimos no banco via fixtures! Mas além disso, o driver do mongo acusou diversos erros. Isso aconteceu porque estamos criando uma nova conexão sempre e isso é um problema. Podemos, em todos os testes, criar novas conexões ou reutilizar a conexão existente. Vou modificar o nosso utilitário para reutilizar a conexão com o banco de dados:
 
-```js lines=true label=db/mongo.js
+```js:db/mongo.js
 const { MongoClient } = require("mongodb");
 
 const client = new MongoClient("mongodb://admin:admin@localhost:27017", {
@@ -861,7 +855,7 @@ Assim, sempre que uma nova conexão for necessária, a função connect vai chec
 
 Agora vamos nos voltar aos testes. Podemos alterar os nossos fixtures e criar um novo usuário ou alterar o teste e esperar que dois usuários sejam retornados. Vou modificar o fixture e adicionar um novo usuário:
 
-```js lines=true label=tests/fixtures/users.js
+```js:tests/fixtures/users.js
 const ana = { name: "Ana", email: "ana@email.com" };
 const roberto = { name: "Roberto", email: "roberto@email.com" };
 const claudio = { name: "Claudio", email: "claudio@email.com" };
@@ -890,7 +884,7 @@ Ran all test suites.
 
 Notou que o nosso roteador ainda está acessando o banco? Vamos resolver esse problema:
 
-```js lines=true label=app/routers/users-router.js
+```js:app/routers/users-router.js
 const { UserService } = require("../services/user-service");
 
 async function usersRouter(fastify) {
@@ -944,21 +938,21 @@ Agora vou criar dois novos arquivos `.env.local` e `.env.test`. Não esqueça de
 
 Para evitar eventuais dores de cabeça, ignore esses dois arquivos e crie um novo, chamado `.env.example`. Nesse arquivo você vai definir as variáveis que precisam ser definidas por outras pessoas que queiram dar manutenção nesse projeto
 
-```env label=.env.example
+```
 MONGO_URI=
 MONGO_DATABASE=
 ```
 
 Já no arquivo `.env.local`, vou definir as variáveis referentes ao meu banco de desenvolvimento:
 
-```env label=.env.local
+```
 MONGO_URI="mongodb://admin:admin@localhost:27017"
 MONGO_DATABASE=demo-testing
 ```
 
 E no `.env.test`, vou definir as mesmas variáveis, porém com os valores relacionados ao meu ambiente de teste:
 
-```env label=.env.test
+```
 MONGO_URI="mongodb://admin:admin@localhost:27017"
 MONGO_DATABASE=demo-testing_test
 ```
@@ -967,7 +961,7 @@ Note que estou usando a mesma instância do banco de dados, porém bancos de dad
 
 Agora precisamos instruir o `dotenv` a carregar as variáveis de ambiente a partir dos arquivos corretos, vou começar pelo ambiente de teste. O melhor local para invocar o `dotenv` é no arquivo de _setup_, o `jest.setup.js`. Esse arquivo será carregado sempre pelo jest, já que nós configuramos esse comportamento.
 
-```js lines=true label=jest.setup.js
+```js:jest.setup.js
 const dotenv = require("dotenv");
 dotenv.config({ path: ".env.test" });
 
@@ -991,7 +985,7 @@ afterAll(async () => {
 
 Note que eu invoquei o `dotenv` nas primeiras linhas desse módulo. É importante invocar o dotenv antes de qualquer uso das variáveis de ambiente. Falando em variáveis de ambiente, precisamos alterar o módulo `db/mongo.js` para consumir o valor das variáveis de ambiente ao invés de declarar a url de conexão e o nome do banco de dados de forma estática.
 
-```js lines=true label=db/mongo.js
+```js:db/mongo.js
 const { MongoClient } = require("mongodb");
 
 const client = new MongoClient(process.env.MONGO_URI, {
@@ -1041,7 +1035,7 @@ Se por algum motivo você chamar o dotenv novamente após ele já ter sido invoc
 
 Uma forma rápida e segura de resolver esse problema é chamar o dotenv no script que inicializa o nosso servidor:
 
-```json lines=true label=package.json
+```json:package.json
 {
   "name": "node-mongo-testing",
   "version": "1.0.0",
@@ -1134,7 +1128,7 @@ Ambos os bancos de dados existem! Se você quiser listar os dados em cada banco 
 
 Vou alterar o arquivo `jest.setup.js` para limpar o banco de dados após todos os testes serem executados.
 
-```js lines=true label=jest.setup.js
+```js:jest.setup.js
 const dotenv = require("dotenv");
 dotenv.config({ path: ".env.test" });
 
@@ -1185,7 +1179,7 @@ $ touch .github/workflows/test.yml
 
 Nesse workflow vou definir que a aplicação precisa de uma instância do banco de dados e vou juntar as partes para rodar os nossos testes sempre que uma pull request for criada.
 
-```yml lines=true label=.github/workflows/test.yml
+```yml:.github/workflows/test.yml
 name: Tests
 
 on:
@@ -1229,6 +1223,3 @@ Chega ao fim a nossa jornada de testes. Criamos algumas automações bem interes
 
 Espero que, além de você ter gostado, que você tenha aprendido uma ou outra coisa, se esse for o caso, me dê um alô nas redes sociais, vou ficar muito contente em saber que consegui ajudar alguém!
 
----
-
-export default ({ children }) => <BlogLayout meta={meta}>{children}</BlogLayout>

@@ -6,10 +6,9 @@ const withMDX = require('@next/mdx')({
   }
 })
 
-module.exports = withMDX({
-  pageExtensions: ['js', 'jsx', 'mdx'],
+module.exports = {
   productionBrowserSourceMaps: true,
   future: {
     webpack5: true
   }
-})
+}

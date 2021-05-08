@@ -5,25 +5,18 @@ export default function HomePage() {
   return (
     <article className="flex flex-col justify-center items-center pt-36 pb-36 text-coolGray-900 dark:text-coolGray-300 bg-white dark:bg-coolGray-900">
       <section className="flex flex-col w-full p-6 lg:p-0 max-w-lg lg:max-w-2xl">
-        <h1 className="style-display mb-12 font-bold text-coolGray-900 dark:text-coolGray-50 text-3xl md:text-4xl lg:text-6xl">
-          E aí 👋
+        <h1 className="mb-12 font-bold text-coolGray-900 dark:text-coolGray-50 text-3xl md:text-4xl lg:text-6xl">
+          Hey, Gustavo aqui👋
         </h1>
 
         <section>
-          <h3 className="style-display mb-8 font-semibold text-2xl text-coolGray-700 dark:text-coolGray-200">
-            Meu nome é Gustavo Santos. Sou aquele cara que de TI que gosta de
-            transformar ideias em código.
-          </h3>
-
           <p className="text-lg mb-6">
-            Esse aqui é o meu pedacinho na internet 🌎.
+            Esse aqui é o meu pedacinho na internet 🌎. O meu jardim digital 🌱.
           </p>
-
-          <p className="text-lg mb-6">É o meu jardim digital 🌱.</p>
 
           <p className="text-lg mb-6">
             Eventualmente escrevo algumas coisas no meu{' '}
-            <InnerLink href="/knowledge">blog</InnerLink>.
+            <InnerLink href="/a">blog</InnerLink>.
           </p>
 
           <p className="text-lg mb-6">
@@ -34,24 +27,40 @@ export default function HomePage() {
 
           <p className="text-lg mb-6">
             Atualmente trabalho na{' '}
-            <OuterLink href="https://after.sale">aftersale</OuterLink> onde
-            escrevo código, atuo no planejamento de atividades e vez e outra
-            ajudo outras pessoas a crescerem nas suas carreiras.
+            <a
+              href="https://after.sale"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              aftersale
+            </a>{' '}
+            onde escrevo código, atuo no planejamento de atividades e vez e
+            outra ajudo outras pessoas a crescerem nas suas carreiras.
           </p>
 
           <p className="text-lg mb-6">
             Se você quiser, pode me mandar uma DM no{' '}
-            <OuterLink href="https://twitter.com/gufs0z">twitter</OuterLink>. Se
-            você prefere a formalidade, então envie um{' '}
-            <OuterLink href="mailto:gustavogustav54@gmail.com">
+            <a
+              href="https://twitter.com/gufs0z"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              twitter
+            </a>
+            . Se você prefere a formalidade, então envie um{' '}
+            <a
+              href="mailto:gustavogustav54@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               e-mail
-            </OuterLink>
+            </a>
             .
           </p>
         </section>
 
         <section>
-          <h2 className="style-display text-3xl font-bold text-coolGray-900 dark:text-coolGray-50 mb-4 mt-4">
+          <h2 className="text-3xl font-bold text-coolGray-900 dark:text-coolGray-50 mb-4 mt-4">
             Projetos open-source
           </h2>
 

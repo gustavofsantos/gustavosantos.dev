@@ -9,7 +9,8 @@ module.exports = {
     './components/**/*.jsx',
     './components/**/*.tsx'
   ],
-  darkMode: 'media',
+  darkMode: 'query',
+  mode: 'jit',
   theme: {
     extend: {
       typography: {
