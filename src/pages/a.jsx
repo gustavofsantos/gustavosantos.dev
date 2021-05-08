@@ -10,8 +10,6 @@ import {
 import { Coffees } from '../lib/components/article/coffees'
 
 export default function ArticlesPage({ articles }) {
-  console.log({ articles })
-
   return (
     <main className="flex flex-col justify-start items-center w-full pb-64 pt-24">
       <Head>
@@ -39,7 +37,7 @@ export default function ArticlesPage({ articles }) {
   )
 }
 
-export function getServerSideProps() {
+export function getStaticProps() {
   const slugs = readArticlesDir()
   const articles = slugs
     .map(readArticleBySlug)

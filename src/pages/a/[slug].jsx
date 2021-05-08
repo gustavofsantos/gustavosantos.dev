@@ -23,7 +23,19 @@ const dayOptions = [
   'formidável',
   'magnificente',
   'divino',
-  'prodigioso'
+  'prodigioso',
+  'supimpa',
+  'glorioso',
+  'divinal',
+  'épico',
+  'etéreo',
+  'brilhante',
+  'pomposo',
+  'formoso',
+  'delicioso',
+  'invejável',
+  'dadivoso',
+  'munífico'
 ]
 
 const chooseOne = (array) => {
