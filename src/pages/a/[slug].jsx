@@ -19,7 +19,7 @@ const dayOptions = [
   'sublime',
   'celestial',
   'venerável',
-  'ratiante',
+  'radiante',
   'formidável',
   'magnificente',
   'divino',
@@ -96,7 +96,7 @@ export default function ArticlePage({
           data-testid="share-edit-page-section"
         >
           <a
-            href={`https://github.com/gustavofsantos/gustavosantos.dev/data/blog/${slug}.mdx`}
+            href={`https://github.com/gustavofsantos/gustavosantos.dev/blob/master/data/blog/${slug}.mdx`}
             target="_blank"
             rel="noopener noreferrer"
           >
