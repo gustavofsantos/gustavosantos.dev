@@ -144,9 +144,6 @@ export default function HomePage() {
           </div>
         </section>
       </section>
-      <section>
-        <h2>Android apps</h2>
-      </section>
     </article>
   )
 }
