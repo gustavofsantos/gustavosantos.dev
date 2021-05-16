@@ -1,5 +1,45 @@
 import { OuterLink } from '../components/outer-link'
 import { InnerLink } from '../components/inner-link'
+import Image from 'next/image'
+
+const appsUrl = [
+  {
+    name: 'Timer',
+    description:
+      'Contador simples com a possibilidade de pausar e parar a contagem.',
+    tech: '💻 React, Next.js, Xstate',
+    url: 'timer.gustavosantos.dev',
+    githubUrl: 'https://github.com/gustavofsantos/timer-xstate-demo'
+  },
+  {
+    name: 'Clipboard',
+    description: 'Uma área de transferência simples.',
+    tech: '💻 React, Next.js, Firebase, TailwindCSS',
+    url: 'clipboard.gustavosantos.dev',
+    githubUrl: 'https://github.com/gustavofsantos/web-clipboard-next'
+  },
+  {
+    name: 'Hell Yes or No',
+    description: 'Decida rapidamente se você deve ou não fazer alguma coisa.',
+    tech: '💻 React, Aleph.js, Xstate',
+    url: 'hyon.gustavosantos.dev',
+    githubUrl: 'https://github.com/gustavofsantos/aleph-hell-yes-or-no'
+  },
+  {
+    name: 'Pomodoro timer',
+    description: 'App para trabalhar com foco e qualidade',
+    tech: '💻 React, Next.js, TypeScript, TailwindCSS',
+    url: 'pomodoro.gustavosantos.dev',
+    githubUrl: 'https://github.com/gustavofsantos/pomodoro-web'
+  },
+  {
+    name: 'Shhh',
+    description: 'Compartilhe segredos sem medo',
+    tech: '💻 React, Next.js, TailwindCSS',
+    url: 'shhh.gustavosantos.dev',
+    githubUrl: 'https://github.com/gustavofsantos/shhh'
+  }
+]
 
 export default function HomePage() {
   return (
@@ -59,64 +99,53 @@ export default function HomePage() {
           </p>
         </section>
 
-        <section>
+        <section data-testid="apps-section">
           <h2 className="text-3xl font-bold text-coolGray-900 dark:text-coolGray-50 mb-4 mt-4">
             Projetos open-source
           </h2>
 
-          <section className="space-y-4">
-            <div className="flex flex-col">
-              <h3 className="text-lg font-bold text-coolGray-800 dark:text-coolGray-300">
-                <a
-                  href="https://clipboard.gustavosantos.dev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Web Clipboard
-                </a>
-              </h3>
-              <p>Um clipboard simples na web.</p>
-            </div>
+          <div className="flex flex-col space-y-4">
+            {appsUrl.map((description) => (
+              <div className="flex flex-col space-y-4 md:grid md:grid-cols-2 md:gap-2">
+                <div className="w-full">
+                  <div className="rounded-lg shadow-lg mb-2">
+                    <Image
+                      src={`/images/${description.url}_.png`}
+                      layout="responsive"
+                      width={1328}
+                      height={954}
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-xl">{description.name}</h3>
+                    <p>{description.description}</p>
+                    <p>{description.tech}</p>
 
-            <div className="flex flex-col">
-              <h3 className="text-lg font-bold text-coolGray-800 dark:text-coolGray-300">
-                <a
-                  href="https://shhh.gustavosantos.dev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Shhh
-                </a>
-              </h3>
-              <p>
-                Compartilhamento seguro de segredos.{' '}
-                <OuterLink href="https://https://github.com/gustavofsantos/shhh">
-                  Código fonte.
-                </OuterLink>
-              </p>
-            </div>
-
-            <div className="flex flex-col">
-              <h3 className="text-lg font-bold text-coolGray-800 dark:text-coolGray-300">
-                <a
-                  href="https://timer.gustavosantos.dev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Quick timer
-                </a>
-              </h3>
-              <p>
-                Timer simples escrito com uma máquina de estado e testes
-                generativos.{' '}
-                <OuterLink href="https://github.com/gustavofsantos/timer-xstate-demo">
-                  Código fonte
-                </OuterLink>
-                .
-              </p>
-            </div>
-          </section>
+                    <div className="flex space-x-2">
+                      <a
+                        href={`https://${description.url}`}
+                        target="_blank"
+                        rel="noopener norefereer"
+                      >
+                        Acessar
+                      </a>
+                      <a
+                        href={description.githubUrl}
+                        target="_blank"
+                        rel="noopener norefereer"
+                      >
+                        GitHub
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
+      </section>
+      <section>
+        <h2>Android apps</h2>
       </section>
     </article>
   )

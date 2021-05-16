@@ -5,6 +5,7 @@ import { ArticleHead } from '../../lib/components/article/head'
 import * as Article from '../../lib/article'
 import { Coffees } from '../../lib/components/article/coffees'
 import { Footer } from '../../components/footer'
+import { ArticleCover } from '../../lib/components/article/cover'
 
 const emojiOptions = ['✌', '🤙', '🤘', '👌', '🤞', '🤟']
 
@@ -56,40 +57,53 @@ export default function ArticlePage({
   summary,
   publishedAt,
   tags = [],
-  image,
-  imageAlt = ''
+  coverUrl,
+  coverCredits,
+  coverWidth,
+  coverHeight
 }) {
   return (
     <main
-      className="flex flex-col w-full justify-start items-center pb-64 pt-24"
+      className="flex flex-col w-full justify-start items-center pb-64 pt-24 bg-white"
       data-testid="article-page"
     >
       <ArticleHead title={title} summary={summary} />
 
-      <article className="prose prose-blue w-full lg:max-w-xl xl:max-w-xl px-2 md:px-0">
+      <article className="prose prose-blue w-full px-2 md:px-0 lg:max-w-xl xl:max-w-2xl">
         <h1 className="mb-8">{title}</h1>
 
         <section
-          className="flex flex-col items-start justify-between space-y-1 md:items-center md:flex-row"
+          className="flex flex-col items-start justify-between space-y-1 mb-4 md:items-center md:flex-row"
           data-testid="data-section"
         >
-          <div className="flex space-x-2">
-            <span>Gustavo Santos</span>
-            {!!publishedAt && (
-              <>
-                <span>|</span>
-                <span>{new Date(publishedAt).toLocaleDateString()}</span>
-              </>
-            )}
+          <div className="flex justify-center items-center space-x-2">
+            <img
+              src="/images/profile.jpg"
+              className="rounded-full"
+              style={{ width: '3rem', height: '3rem' }}
+            />
+            <div className="flex space-x-2">
+              <span>Gustavo Santos</span>
+              {!!publishedAt && (
+                <>
+                  <span>|</span>
+                  <span>{new Date(publishedAt).toLocaleDateString()}</span>
+                </>
+              )}
+            </div>
           </div>
           <Coffees minutes={Math.ceil(readingTime)} />
         </section>
 
-        {!!image && (
-          <section data-testid="image-section" className="mb-4">
-            <img src={image} alt={imageAlt} />
-          </section>
+        {!!coverUrl && (
+          <ArticleCover
+            url={coverUrl}
+            credit={coverCredits}
+            height={coverHeight}
+            width={coverWidth}
+          />
         )}
+
         <MDXRemote {...mdxSource} components={{ ...components }} />
         <section
           className="space-x-4 mt-8"
@@ -104,6 +118,7 @@ export default function ArticlePage({
           </a>
         </section>
       </article>
+
       <section
         className="flex flex-col justify-center items-center w-full space-y-4 mt-12"
         data-testid="thanks-section"
@@ -136,6 +151,8 @@ export async function getStaticProps({ params }) {
   const fileContent = Article.readArticleBySlug(params.slug).toString()
   const { data, content } = Article.parseArticle(fileContent)
   const mdxSource = await Article.serializeArticle(content)
+
+  console.log({ data })
 
   return {
     props: {

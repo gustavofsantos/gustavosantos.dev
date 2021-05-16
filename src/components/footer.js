@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi'
+import { FaDev } from 'react-icons/fa'
 import { RiNpmjsFill } from 'react-icons/ri'
 
 export const Footer = () => (
@@ -15,6 +16,14 @@ export const Footer = () => (
       </Link>
     </div>
     <div className="flex justify-center items-center space-x-4 min-w-min">
+      <a
+        href="https://dev.to/gustavofsantos"
+        target="_blank"
+        rel="noopener noreferer"
+        title="GitHub"
+      >
+        <FaDev />
+      </a>
       <a
         href="https://github.com/gustavofsantos"
         target="_blank"
