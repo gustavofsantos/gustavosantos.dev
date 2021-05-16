@@ -1,5 +1,4 @@
-import { OuterLink } from '../components/outer-link'
-import { InnerLink } from '../components/inner-link'
+import Link from 'next/link'
 import Image from 'next/image'
 
 const appsUrl = [
@@ -46,17 +45,20 @@ export default function HomePage() {
     <article className="flex flex-col justify-center items-center pt-36 pb-36 text-coolGray-900 dark:text-coolGray-300 bg-white dark:bg-coolGray-900">
       <section className="flex flex-col w-full p-6 lg:p-0 max-w-lg lg:max-w-2xl">
         <h1 className="mb-12 font-bold text-coolGray-900 dark:text-coolGray-50 text-3xl md:text-4xl lg:text-6xl">
-          Hey, Gustavo aqui👋
+          Oi, Gustavo aqui👋
         </h1>
 
         <section>
           <p className="text-lg mb-6">
-            Esse aqui é o meu pedacinho na internet 🌎. O meu jardim digital 🌱.
+            Esse aqui é o meu pedaço na internet 🌎.
           </p>
 
           <p className="text-lg mb-6">
             Eventualmente escrevo algumas coisas no meu{' '}
-            <InnerLink href="/a">blog</InnerLink>.
+            <Link href="/a">
+              <a>blog</a>
+            </Link>
+            .
           </p>
 
           <p className="text-lg mb-6">
@@ -74,8 +76,8 @@ export default function HomePage() {
             >
               aftersale
             </a>{' '}
-            onde escrevo código, atuo no planejamento de atividades e vez e
-            outra ajudo outras pessoas a crescerem nas suas carreiras.
+            onde escrevo código, atuo no planejamento e execução de atividades e
+            vez e outra ajudo outras pessoas a crescerem nas suas carreiras.
           </p>
 
           <p className="text-lg mb-6">
