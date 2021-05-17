@@ -67,7 +67,7 @@ export default function ArticlePage({
       className="flex flex-col w-full justify-start items-center pb-64 pt-24 bg-white"
       data-testid="article-page"
     >
-      <ArticleHead title={title} summary={summary} />
+      <ArticleHead title={title} summary={summary} coverUrl={coverUrl} />
 
       <article className="prose prose-blue w-full px-2 md:px-0 lg:max-w-xl xl:max-w-2xl">
         <h1 className="mb-8">{title}</h1>
@@ -151,8 +151,6 @@ export async function getStaticProps({ params }) {
   const fileContent = Article.readArticleBySlug(params.slug).toString()
   const { data, content } = Article.parseArticle(fileContent)
   const mdxSource = await Article.serializeArticle(content)
-
-  console.log({ data })
 
   return {
     props: {

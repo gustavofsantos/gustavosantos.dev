@@ -1,10 +1,10 @@
 import Head from 'next/head'
 
-export function ArticleHead({ title = '', summary = '', readingMinutes = 0 }) {
+export function ArticleHead({ title = '', summary = '', coverUrl = null }) {
   return (
     <Head>
       <title>{title}</title>
-      <meta name="author" content="Gustavo F dos Santos" />
+      <meta name="author" content="Gustavo Santos" />
       <meta charSet="utf-8" />
       <meta name="description" content={summary} />
       <meta httpEquiv="x-ua-compatible" content="ie=edge" />
@@ -20,12 +20,12 @@ export function ArticleHead({ title = '', summary = '', readingMinutes = 0 }) {
       <meta property="og:description" content={summary} key="ogdescription" />
       <meta
         property="og:image"
-        content="https://gustavosantos.dev/images/profile.jpg"
+        content={coverUrl ?? 'https://gustavosantos.dev/images/profile.jpg'}
         key="ogimage"
       />
       <meta
         property="og:image:alt"
-        content="Banner do site. É uma foto da minha face."
+        content="Banner da página."
         key="ogimagealt"
       />
       <meta property="og:type" content="website" key="ogtype" />
@@ -35,7 +35,7 @@ export function ArticleHead({ title = '', summary = '', readingMinutes = 0 }) {
       <meta name="twitter:description" content={summary} key="twDescription" />
       <meta
         name="twitter:image"
-        content="https://gustavosantos.dev/images/profile.jpg"
+        content={coverUrl ?? 'https://gustavosantos.dev/images/profile.jpg'}
         key="twImage"
       />
       <meta name="twitter:card" content="summary_large_image" key="twCard" />
