@@ -5,7 +5,10 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Gustavo Santos, Dev e escritor nas horas vagas</title>
+        <title>
+          Gustavo Santos, curioso, desenvolvedor e metido a escritor nas horas
+          vagas
+        </title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="author" content="Gustavo Santos" key="authorName" />

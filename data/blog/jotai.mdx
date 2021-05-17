@@ -1,0 +1,367 @@
+---
+title: 'Jotai'
+summary: 'Introdução ao Jotai e demonstração sobre como testar aplicações que usam a biblioteca.'
+tags: ['pt-br', 'jest', 'javascript', 'jotai', 'react', 'state']
+publishedAt: '2021-05-17'
+coverUrl: '/images/blog/jotai/cover.jpg'
+coverWidth: 1920
+coverHeight: 2013
+coverCredits: 'Photo by Ricardo Gomez Angel on Unsplash'
+---
+
+Jotai ([https://github.com/pmndrs/jotai](https://github.com/pmndrs/jotai)) é um gerenciador de estados atômico. Isso significa que você pode definir o estado da sua aplicação em termos de pequenas partes individuais.
+
+Um átomo é definido usando a função `atom`:
+
+```jsx
+import { atom } from 'jotai'
+
+const count = atom(0)
+```
+
+Você também pode definir átomos "maiores". Que contém algum valor do tipo `object`.
+
+```jsx
+import { atom } from 'jotai'
+
+const state = atom({
+  count: 0
+})
+```
+
+No React, para usar um átomo use a função `useAtom`. Este é um hook que possui acesso ao contexto global que contém todos os átomos disponíveis na aplicação.
+
+## Exemplo
+
+Vamos começar criando uma aplicação Next.js:
+
+```jsx
+$ yarn create next-app jotai-demo
+```
+
+Agora vamos adicionar o Jotai como dependência:
+
+```jsx
+$ yarn add jotai
+```
+
+No arquivo `_app.js` vou amarrar toda a aplicação no provedor de estado do Jotai
+
+```jsx:pages/_app.js
+import { Provider } from "jotai";
+import "../styles/globals.css";
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <Provider>
+      <Component {...pageProps} />
+    </Provider>
+  );
+}
+
+export default MyApp;
+```
+
+Para evitar usar a API do Jotai explicitamente dentro da aplicação, vou criar uma pasta chamada `lib` e dentro dela vou criar um arquivo `counter.js`. Esse arquivo vai expor um React Hook que interage com o Jotai.
+
+O fato de criar uma abstração intermediária ao Jotai nos permite mudar o gerenciador de estados no futuro sem precisar refatorar todos os componentes de interface.
+
+No arquivo `counter.js` vou definir e exportar um hook chamado `useCounter` que expõe uma API bem simples: um contador (número) e duas funções para modificar o estado do contador:
+
+```jsx:lib/counter.js
+import { atom, useAtom } from "jotai";
+
+export const counterAtom = atom(0);
+
+export const useCounter = () => {
+  const [counter, setCounter] = useAtom(counterAtom);
+
+  const increase = () => setCounter(counter + 1);
+
+  const decrease = () => setCounter(counter - 1);
+
+  return { counter, increase, decrease };
+};
+```
+
+No arquivo `pages/index.js` vou remover o código padrão e incluir o novo hook:
+
+```jsx:pages/index.js
+import { useCounter } from "../lib/counter";
+import styles from "../styles/Home.module.css";
+
+export default function Home() {
+  const { counter, increase, decrease } = useCounter();
+
+  return (
+    <main className={styles.container}>
+      <section>
+        <span data-testid="counter-value">{counter}</span>
+        <button onClick={increase} title="increase counter">
+          +1
+        </button>
+        <button onClick={decrease} title="decrease counter">
+          -1
+        </button>
+      </section>
+    </main>
+  );
+}
+```
+
+Iniciando o servidor do desenvolvimento e navegando até a `[http://localhost:3000](http://localhost:3000)` você verá a aplicação funcionando.
+
+## Testes
+
+Vou começar instalando o `jest`, que é o meu *test runner* preferido. Também vamos adicionar os utilitários do Testing Library:
+
+```bash
+$ yarn add --dev jest @testing-library/react @testing-library/jest-dom @testing-library/user-event
+```
+
+O próximo passo é criar o arquivo `.babelrc` com as definições do Babel. Este arquivo é importante para que o Jest consiga entender o código React.
+
+```json:.babelrc
+{
+  "presets": [
+    "next/babel"
+  ],
+  "plugins": []
+}
+```
+
+Em seguida, vou atualizar o arquivo `package.json` com as configurações do Jest. Como são poucas as configurações que precisam ser feitas, acho mais simples usar o `package.json` do que criar um arquivo de configurações do Jest.
+
+```json:package.json
+{
+  ...
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "setupFilesAfterEnv": ["@testing-library/jest-dom/extend-expect"]
+  }
+}
+```
+
+Incluí duas diretivas, o `moduleNameMapper` vai nos permitir direcionar o Jest para que ele carregue *stubs* ao invés de tentar compilar arquivos css ou binários.
+
+A outra diretiva, `setupFilesAfterEnv` instrui o Jest a carregar os extensores do `jest-dom`. Assim conseguimos fazer asserções mais facilmente sobre o DOM. Você pode ver mais sobre configuração do Jest com Webpack na documentação [https://jestjs.io/docs/webpack](https://jestjs.io/docs/webpack).
+
+Agora basta criar os dois arquivos de *stub*:
+
+```js:__mocks__/styleMock.js
+module.exports = {};
+```
+
+```js:__mocks__/fileMock.js
+module.exports = 'test-file-stub';
+```
+
+Também vou aproveitar e definir um novo script no `package.json` para executar os testes.
+
+```json:package.json
+{
+  ...
+	"scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "jest"
+  },
+  ...
+}
+```
+
+Nesse momento, estou pronto para começar a escrever os testes. Vou começar criando um arquivo chamado `index.spec.js` e nele vou especificar os testes que desejo escrever:
+
+```js:pages/index.spec.js
+it.todo("should render with default value")
+it.todo("should increase the counter value")
+it.todo("should decrease the counter value")
+it.todo("should render with default value different than zero")
+```
+
+Descrever os testes é útil, assim conseguimos ter uma ideia em alto nível do que está sendo testado, quais os casos devo testar e como organizar o código de tal forma que fique simples de ler este arquivo.
+
+Vou começar abrindo um terminal e rodando o comando `yarn test --watch`, dessa o Jest executa os testes toda vez que eu salvar um arquivo que está presente na árvore de dependências.
+
+Agora estou pronto para escrever o primeiro teste. O objetivo é montar a página de tal forma onde a página deve estar amarrada ao contexto global do Jotai. Para isso, crio uma função `setup`. A ideia é que essa função monte a página no DOM em conjunto do provedor global do Jotai.
+
+```jsx:pages/index.spec.js
+import { render } from "@testing-library/react";
+import { Provider } from "jotai";
+import IndexPage from "./index";
+
+const setup = () => {
+  render(
+    <Provider>
+      <IndexPage />
+    </Provider>
+  );
+};
+
+it("should render with default value", () => {
+  setup();
+});
+```
+
+Vou usar a função `screen.getByTestId` para encontrar o nó no DOM que contém o valor inicial do contador:
+
+```jsx:pages/index.spec.js
+it("should render with default value", () => {
+  setup();
+
+  expect(screen.getByTestId("counter-value")).toContainHTML("0");
+});
+```
+
+Para facilitar a minha vida, vou extrair as ações de buscar elementos na tela e clicar em botões em funções que irão me ajudar durante a escrita dos demais testes. Movendo as coisas de lugar, o arquivo com os testes ficou da seguinte forma:
+
+```jsx:pages/index.spec.js
+import { render, screen } from "@testing-library/react";
+import { Provider } from "jotai";
+import IndexPage from "./index";
+
+const setup = () => {
+  render(
+    <Provider>
+      <IndexPage />
+    </Provider>
+  );
+};
+
+const counter = () => screen.getByTestId("counter-value");
+
+const clickIncrease = () => {
+  userEvent.click(screen.getByTitle(/increase counter/i));
+};
+
+const clickDecrease = () => {
+  userEvent.click(screen.getByTitle(/decrease counter/i));
+};
+
+it("should render with default value", () => {
+  setup();
+
+  expect(counter()).toContainHTML("0");
+});
+
+it.todo("should increase the counter value")
+it.todo("should decrease the counter value")
+it.todo("should render with default value different than zero")
+```
+
+Agora basta escrever os demais testes.
+
+```jsx:pages/index.spec.js
+it("should increase the counter value", async () => {
+  setup();
+  clickIncrease();
+
+  await waitFor(() => expect(counter()).toContainHTML("1"));
+});
+
+it("should decrease the counter value", async () => {
+  setup();
+  clickDecrease();
+
+  await waitFor(() => expect(counter()).toContainHTML("-1"));
+});
+
+it("should render with default value different than zero", async () => {
+  setup({ counterValue: 2 });
+  await waitFor(() => expect(counter()).toContainHTML("2"));
+});
+```
+
+Note que os novos testes são assíncronos. Isso acontece porque a natureza do Jotai é reativa. Ele reage de forma assíncrona de acordo com atualizações no estado. Isso causa perda de sincronia entre o *test runner* e o componente.
+
+No último teste, foi preciso passar um valor inicial para o provedor do Jotai. Essa tarefa é bem simples, já que o provedor de estado global aceita uma lista com átomos e seus respectivos valores iniciais. Dessa forma, a função `setup` ficou escrita da seguinte forma:
+
+```jsx:pages/index.spec.js
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { Provider } from "jotai";
+import { counterAtom } from "../lib/counter";
+import IndexPage from "./index";
+
+const setup = ({ counterValue = 0 } = {}) => {
+  render(
+    <Provider initialValues={[[counterAtom, counterValue]]}>
+      <IndexPage />
+    </Provider>
+  );
+};
+
+const counter = () => screen.getByTestId("counter-value");
+
+const clickIncrease = () => {
+  userEvent.click(screen.getByTitle(/increase counter/i));
+};
+
+const clickDecrease = () => {
+  userEvent.click(screen.getByTitle(/decrease counter/i));
+};
+
+it("should render with default value", () => {
+  setup();
+
+  expect(counter()).toContainHTML("0");
+});
+
+it("should increase the counter value", async () => {
+  setup();
+  clickIncrease();
+
+  await waitFor(() => expect(counter()).toContainHTML("1"));
+});
+
+it("should decrease the counter value", async () => {
+  setup();
+  clickDecrease();
+
+  await waitFor(() => expect(counter()).toContainHTML("-1"));
+});
+
+it("should render with default value different than zero", async () => {
+  setup({ counterValue: 2 });
+  await waitFor(() => expect(counter()).toContainHTML("2"));
+});
+```
+
+Ao executar `yarn test --coverage`, obtenho sucesso na execução dos testes.
+
+```
+yarn test --coverage
+yarn run v1.22.10
+$ jest --coverage
+ PASS  pages/index.spec.js
+  √ should render with default value (27 ms)
+  √ should increase the counter value (53 ms)
+  √ should decrease the counter value (24 ms)
+  √ should render with default value different than zero (6 ms)
+
+-------------|---------|----------|---------|---------|-------------------
+File         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------|---------|----------|---------|---------|-------------------
+All files    |     100 |      100 |     100 |     100 | 
+ lib         |     100 |      100 |     100 |     100 | 
+  counter.js |     100 |      100 |     100 |     100 | 
+ pages       |     100 |      100 |     100 |     100 | 
+  index.js   |     100 |      100 |     100 |     100 | 
+-------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        2.569 s
+```
+
+## Conclusão
+
+Particularmente, vejo no Jotai a possibilidade de construir aplicações grandes e complexas usando APIs simples, 
+porém muito poderosas. Além disso, o Jotai consegue se integrar com React Query, Immer, Redux e 
+várias outras ferramentas.
+
+Você pode acessar o código fonte do projeto criado no [GitHub](https://github.com/gustavofsantos/jotai-demo).
