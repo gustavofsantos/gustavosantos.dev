@@ -50,6 +50,11 @@ export default function HomePage() {
 
         <section>
           <p className="text-lg mb-6">
+            Eu sou um baita curioso, desenvolvedor, fazedor de pão e metido a
+            escritor nas horas vagas.
+          </p>
+
+          <p className="text-lg mb-6">
             Esse aqui é o meu pedaço na internet 🌎.
           </p>
 
