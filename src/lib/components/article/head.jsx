@@ -20,7 +20,11 @@ export function ArticleHead({ title = '', summary = '', coverUrl = null }) {
       <meta property="og:description" content={summary} key="ogdescription" />
       <meta
         property="og:image"
-        content={coverUrl ?? 'https://gustavosantos.dev/images/profile.jpg'}
+        content={
+          coverUrl
+            ? `https://gustavosantos.dev${coverUrl}`
+            : 'https://gustavosantos.dev/images/profile.jpg'
+        }
         key="ogimage"
       />
       <meta
@@ -35,7 +39,11 @@ export function ArticleHead({ title = '', summary = '', coverUrl = null }) {
       <meta name="twitter:description" content={summary} key="twDescription" />
       <meta
         name="twitter:image"
-        content={coverUrl ?? 'https://gustavosantos.dev/images/profile.jpg'}
+        content={
+          coverUrl
+            ? `https://gustavosantos.dev${coverUrl}`
+            : 'https://gustavosantos.dev/images/profile.jpg'
+        }
         key="twImage"
       />
       <meta name="twitter:card" content="summary_large_image" key="twCard" />
