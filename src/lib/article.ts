@@ -21,3 +21,5 @@ export const serializeArticle = (content = '') =>
       rehypePlugins: [mdxPrism]
     }
   })
+
+export const orderArticlesByDate = (articles = []) => articles.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt) > 0 ? 1 : -1)

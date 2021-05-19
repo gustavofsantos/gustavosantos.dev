@@ -5,7 +5,8 @@ import { Footer } from '../components/footer'
 import {
   parseArticle,
   readArticleBySlug,
-  readArticlesDir
+  readArticlesDir,
+  orderArticlesByDate
 } from '../lib/article'
 import { Coffees } from '../lib/components/article/coffees'
 
@@ -50,7 +51,7 @@ export function getStaticProps() {
 
   return {
     props: {
-      articles
+      articles: orderArticlesByDate(articles)
     }
   }
 }
