@@ -22,4 +22,10 @@ export const serializeArticle = (content = '') =>
     }
   })
 
-export const orderArticlesByDate = (articles = []) => articles.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt) > 0 ? 1 : -1)
+export const orderArticlesByDate = (articles = []) =>
+  articles.sort((a, b) => 
+    // @ts-ignore
+    new Date(b.publishedAt) - new Date(a.publishedAt) > 0 ?
+    1 :
+    -1
+   )
