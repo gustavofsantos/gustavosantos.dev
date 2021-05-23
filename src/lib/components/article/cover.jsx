@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export function ArticleCover({ url, credit, width, height }) {
+export function ArticleCover({ url, credit }) {
   return (
     <section className="w-full space-y-1 my-8">
       <div className="relative" style={{ height: '400px' }}>

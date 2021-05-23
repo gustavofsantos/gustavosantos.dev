@@ -1,0 +1,97 @@
+---
+title: 'O que é GraphQL'
+summary: 'Introdução à linguagem GraphQL'
+tags: ['pt-br', 'graphql', 'javascript', 'node']
+publishedAt: '2021-05-20'
+coverUrl: '/images/blog/graphql-intro/cover.jpg'
+coverWidth: 1920
+coverHeight: 1279
+coverCredits: 'Photo by Sigmund on Unsplash'
+---
+
+GraphQL é uma linguagem de especificação de dados. Com GraphQL você pode buscar dados, atualizar dados e escutar por mudanças caso a implementação do servidor GraphQL permita este tipo de operação.
+
+Por exemplo, digamos que você possui acesso a um servidor GraphQL que implemente o seguinte *schema*:
+
+```graphql:schema.graphql
+type Todo {
+  value: String!
+  done: Boolean!
+}
+
+type Query {
+  todos: [Todo]
+}
+```
+
+Sem conhecer qual servidor é usado ou qual é o método de busca dos dados, você pode pedir por todos os registros do tipo `Todo`:
+
+```graphql
+{
+  todos {
+    value
+    done
+  }
+}
+```
+
+A query acima é *"o que você manda para o servidor"*. Definido entre chaves, você especifica qual query você está buscando e quais são os dados que você deseja receber. No exemplo acima, estou solicitando que a query `todos` retorne todos os registros salvos, onde cada registro deve conter os campos `value` e `done`.
+
+Isso é o que servidor retorna:
+
+```
+{
+  "data": {
+    "todos": [
+      {
+        "value": "Labore sed vitae.",
+        "done": true
+      },
+      {
+        "value": "Rerum repudiandae voluptate.",
+        "done": false
+      }
+    ]
+  }
+    }
+```
+
+Porém eu posso muito bem pedir somente pelo campo `value`
+
+```graphql
+{
+  todos {
+    value
+  }
+}
+```
+
+O servidor deve retornar
+
+```graphql
+{
+  "data": {
+    "todos": [
+      {
+        "value": "Dicta eum explicabo."       
+      },
+      {
+        "value": "Fugiat sunt architecto."    
+      }
+    ]
+  }
+}
+```
+
+A parte boa é que front-end e back-end possuem um contrato e o contrato é regido pelo GraphQL.
+O back-end precisa retornar os dados que especificados pelos schemas. 
+O front-end precisa lidar com os dados especificados nos schemas.
+
+Particularmente acredito que GraphQL, gRPC e outras formas de especificações de dados são perfeitas 
+para garantir consistência entre back e front.
+
+
+## Referências
+
+- [GraphQL website](https://graphql.org/)
+- [GraphQL Query Language](https://egghead.io/courses/graphql-query-language) - Eve Porcello
