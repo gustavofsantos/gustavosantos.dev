@@ -1,0 +1,531 @@
+---
+title: 'React: Componentes Compostos (Compound Components)'
+summary: 'O padrão Compound Components é extremamente flexível e versátil. Nesse tutorial apresento um exemplo bem simples, porém completo usando abas.'
+tags: ['pt-br', 'react', 'pattern', 'typescript']
+publishedAt: '2021-05-26'
+coverUrl: '/images/blog/react-compound-components/cover.jpg'
+coverWidth: 1920
+coverHeight: 1280
+coverCredits: 'Photo by Monirul Islam Shakil on Unsplash'
+---
+
+O padrão de componentes compostos -- *compound components* é útil
+quando você possui alguns componentes que precisam funcionar em conjunto.
+
+Isso significa que componentes que devem funcionar juntos, não devem funcionar
+caso sejam usados sem os seus complementares.
+
+Porém quando usados em conjunto, os componentes compostos conseguem entregar
+um comportamento único, mesmo distribuídos entre nós em posições distantes na árvore do DOM.
+
+Como quase todos os casos, é mais simples explicar o padrão através de um exemplo.
+
+## Exemplo
+
+> Você pode acessar o resultado final [neste repositório no Github](https://github.com/gustavofsantos/react-compound-components).
+
+Imagine um caso onde é necessário gerenciar um conjunto de abas. Existe o cabeçalho
+onde o usuário pode clicar e selecionar uma aba e o corpo, onde é montado na tela a aba selecionada.
+
+Vou começar definindo um arquivo de testes com algumas propriedades que o código deve implementar.
+A primeira propriedade é que, por padrão, nenhuma aba deve ser montada na página.
+
+```tsx:example.spec.tsx
+describe("Compound Components", () => {
+  it.todo("Should not render any tab");
+});
+```
+
+A segunda propriedade é que, dado um identificador de aba inicial, a interface montada na 
+tela deve ser a relacionada com o identificador padrão:
+
+```tsx:example.spec.tsx
+describe("Compound Components", () => {
+  it.todo("Should not render any tab");
+  it.todo("Should render the default selected tab");
+});
+```
+
+A terceira propriedade é que, quando o usuário clicar em um cabeçalho, deve ser montado na página
+a aba relacionada ao cabeçalho.
+
+```tsx:example.spec.tsx
+describe("Compound Components", () => {
+  it.todo("Should not render any tab");
+  it.todo("Should render the default selected tab");
+  it.todo("Should render panel when click in the header");
+});
+```
+
+Agora estou pronto para começar a implementar o código que eu gostaria de ter disponível para o meu teste.
+Vou definir uma função `Ui`, que representa um cliente dos componentes que eu desejo implementar.
+
+```tsx:example.spec.tsx
+const Ui = ({ defaultTab = "" }) => (
+  <Tabs defaultTab={defaultTab}>
+    <div>
+      <TabHeader tabId="users">Users</TabHeader>
+      <TabHeader tabId="settings">Settings</TabHeader>
+    </div>
+
+    <div>
+      <TabBody tabId="users">
+        <span data-testid="users-panel">Users panel</span>
+      </TabBody>
+      <TabBody tabId="settings">
+        <span data-testid="settings-panel">Settings panel</span>
+      </TabBody>
+    </div>
+  </Tabs>
+);
+
+describe("Compound Components", () => {
+  it.todo("Should not render any tab");
+  it.todo("Should render the default selected tab");
+  it.todo("Should render panel when click in the header");
+});
+```
+
+Os componentes `<Tabs />`, `<TabHeader />` e `<TabBody />` serão implementados e deverão ser exportados 
+do arquivo `example.tsx`. Portanto defino estes imports na primeira linha do meu arquivo de testes.
+
+```tsx:example.spec.tsx
+import { Tabs, TabBody, TabHeader } from "./example";
+
+const Ui = ({ defaultTab = "" }) => ( /* ... */ );
+
+describe("Compound Components", () => {
+  it.todo("Should not render any tab");
+  it.todo("Should render the default selected tab");
+  it.todo("Should render panel when click in the header");
+});
+```
+
+Com a interface de teste em mãos e a descrição dos comportamentos base, posso implementar o primeiro teste:
+
+```tsx:example.spec.tsx
+import { render, screen } from "@testing-library/react";
+import { Tabs, TabBody, TabHeader } from "./example";
+
+const Ui = ({ defaultTab = "" }) => ( /* ... */ );
+
+describe("Compound Components", () => {
+  it("Should not render any tab", () => {
+    render(<Ui />);
+
+    expect(screen.queryByTestId("users-panel")).toBeNull();
+    expect(screen.queryByTestId("settings-panel")).toBeNull();
+  });
+
+  it.todo("Should render the default selected tab");
+  it.todo("Should render panel when click in the header");
+});
+```
+
+Rodo os testes e obviamente eles quebram porque o arquivo `example.tsx` não existe; tampouco os componentes
+usados em `Ui`. Crio o arquivo `example.tsx` ao lado do arquivo `example.spec.tsx` e escrevo as primeiras linhas:
+
+```tsx:example.tsx
+export const Tabs = () => {};
+
+export const TabHeader = () => {};
+
+export const TabBody = () => {};
+```
+
+Obviamente o código acima não resolve o problema. Porém agora os erros são outros.
+
+O primeiro ponto é que vou usar a API de contextos do React e vou criar um contexto que vai englobar
+os componentes `<TabHeader />` e `<TabBody />`.
+
+O componente `<Tabs />` vai servir como um *provider* local. Por questões estéticas pessoais, prefiro não usar
+o sufixo *provider*. Então ao invés de chamar `Tabs` de `TabsProvider`, prefiro manter a simplicidade do nome
+e definir como `Tabs`.
+
+```tsx:example.tsx
+import { createContext } from "react";
+
+type ContextType = {
+  selected: string;
+  setSelected(selected: string): void;
+};
+
+const TabsContext = createContext<ContextType>({
+  selected: undefined,
+  setSelected() {},
+});
+
+export const Tabs = () => {};
+
+export const TabHeader = () => {};
+
+export const TabBody = () => {};
+```
+
+Outra preferência pessoal é usar objetos ao invés de tuplas. Acima eu defini o tipo do contexto, além de 
+criar o contexto com o devido valor inicial. Em seguida vou implementar o componente `Tabs` para que ele
+seja o provedor do contexto local.
+
+```tsx:example.tsx
+// ...
+
+const TabsContext = createContext<ContextType>({
+  selected: undefined,
+  setSelected() {},
+});
+
+export const Tabs = ({ children, defaultTab = "" }) => {
+  const [selected, setSelected] = useState(defaultTab);
+
+  return (
+    <TabsContext.Provider value={{ selected, setSelected }}>
+      {children}
+    </TabsContext.Provider>
+  );
+};
+
+// ...
+```
+
+Vejo com maus olhos o uso indiscriminado do hook `useContext` dentro do código fonte. O hook `useContext` deve
+estar diretamente relacionado com um contexto. É muito mais claro para o leitor do código que, pelo menos,
+haja um apelido para este hook, ou seja, outra função com um nome mais amigável.
+
+Nessa direção, vou criar um hook chamado `useTabs` que única e exclusivamente, usa o contexto `TabsContext`.
+
+```tsx:example.tsx
+// ...
+
+const TabsContext = createContext<ContextType>({
+  selected: undefined,
+  setSelected() {},
+});
+
+const useTabs = () => useContext(TabsContext);
+
+export const Tabs = ({ children, defaultTab = "" }) => {
+  const [selected, setSelected] = useState(defaultTab);
+
+  return (
+    <TabsContext.Provider value={{ selected, setSelected }}>
+      {children}
+    </TabsContext.Provider>
+  );
+};
+
+// ...
+```
+
+Com o hook `useTabs`, posso implementar `<TabHeader />` e `<TabBody />`:
+
+```tsx:example.tsx
+// ...
+
+const TabsContext = createContext<ContextType>({
+  selected: undefined,
+  setSelected() {},
+});
+
+const useTabs = () => useContext(TabsContext);
+
+// ...
+
+export const TabHeader = ({ children, tabId }) => {
+  const { setSelected } = useTabs();
+
+  return <div onClick={() => setSelected(tabId)}>{children}</div>;
+};
+
+export const TabBody = ({ children, tabId }) => {
+  const { selected } = useTabs();
+
+  return selected === tabId ? children : null;
+};
+```
+
+Por simplicidade, vou amarrar todos os filhos de `<TabHeader />` em uma `div` e vou anexar a 
+essa `div` o evento de `onClick`. Ou seja, sempre que for clicado no cabeçalho, vai ser alterado
+o valor da aba selecionada no contexto local.
+
+O único trabalho do componente `<TabBody />` é decidir se retorna o componente filho ou `null` baseado
+na aba selecionada.
+
+Com estas implementações, o primeiro teste passa.
+
+Aproveitei o embalo no código anterior e implementei alguns comportamentos a mais que sei que serão
+necessários. Portanto escrevo o segundo e o terceiro teste, rodo e os testes passam.
+
+```tsx:example.spec.tsx
+import { render, screen } from "@testing-library/react";
+import user from "@testing-library/user-event";
+import { Tabs, TabBody, TabHeader } from "./example";
+
+const Ui = ({ defaultTab = "" }) => ( /* ... */ );
+
+describe("Compound Components", () => {
+  it("Should not render any tab", () => {
+    render(<Ui />);
+
+    expect(screen.queryByTestId("users-panel")).toBeNull();
+    expect(screen.queryByTestId("settings-panel")).toBeNull();
+  });
+
+  it("Should render the default selected tab", () => {
+    render(<Ui defaultTab="users" />);
+
+    expect(screen.getByTestId("users-panel")).toBeInTheDocument();
+  });
+
+  it("Should render panel when click in the header", () => {
+    render(<Ui defaultTab="users" />);
+
+    user.click(screen.getByText(/settings/i));
+
+    expect(screen.getByTestId("settings-panel")).toBeInTheDocument();
+    expect(screen.queryByTestId("users-panel")).toBeNull();
+  });
+});
+```
+
+No teste `"Should render panel when click in the header"`, eu acho visualmente feio a linha
+
+```ts
+user.click(screen.getByText(/settings/i));
+```
+
+Pra mim essa linha não encaixa muito bem dentro do contexto do teste, então extraio
+a linha para uma função auxiliar.
+
+```tsx:example.spec.tsx
+import { render, screen } from "@testing-library/react";
+import user from "@testing-library/user-event";
+import { Tabs, TabBody, TabHeader } from "./example";
+
+const Ui = ({ defaultTab = "" }) => ( /* ... */ );
+
+const clickSettings = () =>
+  user.click(screen.getByText(/settings/i));
+
+describe("Compound Components", () => {
+  it("Should not render any tab", () => {
+    render(<Ui />);
+
+    expect(screen.queryByTestId("users-panel")).toBeNull();
+    expect(screen.queryByTestId("settings-panel")).toBeNull();
+  });
+
+  it("Should render the default selected tab", () => {
+    render(<Ui defaultTab="users" />);
+
+    expect(screen.getByTestId("users-panel")).toBeInTheDocument();
+  });
+
+  it("Should render panel when click in the header", () => {
+    render(<Ui defaultTab="users" />);
+
+    clickSettings();
+
+    expect(screen.getByTestId("settings-panel")).toBeInTheDocument();
+    expect(screen.queryByTestId("users-panel")).toBeNull();
+  });
+});
+```
+
+Bem melhor, não?
+
+Um comportamento que é necessário que ocorra é que tanto `<TabHeader />` quanto `<TabBody />`
+não devem ser usados sem um contexto local, ou seja, sem serem filhos, em algum nível, do componente `<Tabs />`.
+
+Para melhor indicação, vou estourar um erro em cada componente, para que a pessoa que está usando
+estes componentes, ajuste o código.
+
+```tsx:example.tsx
+// ...
+
+export const TabHeader = ({ children, tabId }) => {
+  const { setSelected } = useTabs();
+
+  if (selected === undefined)
+    throw new Error(
+      "You should wrap the TabHeader component with Tabs provider"
+    );
+
+  return <div onClick={() => setSelected(tabId)}>{children}</div>;
+};
+
+export const TabBody = ({ children, tabId }) => {
+  const { selected } = useTabs();
+
+  if (selected === undefined)
+    throw new Error(
+      "You should wrap the TabBody component with Tabs provider"
+    );
+
+  return selected === tabId ? children : null;
+};
+```
+
+Também adiciono dois testes para verificar se o componente realmente estoura estas excessões.
+
+```tsx:example.spec.tsx
+import { render, screen } from "@testing-library/react";
+import user from "@testing-library/user-event";
+import { Tabs, TabBody, TabHeader } from "./example";
+
+const Ui = ({ defaultTab = "" }) => ( /* ... */ );
+
+describe("Compound Components", () => {
+  // ...
+
+  it("Should throw error when use TabBody without mount the provider", () => {
+    const setup = () =>
+      render(<TabBody tabId="body">The body</TabBody>);
+
+    expect(setup).toThrow(
+      "You should wrap the TabBody component with Tabs provider"
+    );
+  });
+
+  it("Should throw error when use TabHeader without mount the provider", () => {
+    const setup = () =>
+      render(<TabHeader tabId="body">The body</TabHeader>);
+
+    expect(setup).toThrow(
+      "You should wrap the TabHeader component with Tabs provider"
+    );
+  });
+});
+```
+
+Os testes passam mas o log do `jest-dom` é mostrado no terminal, que é o comportamento correto, mas
+visualmente me incomoda. Portanto, nesta suíte vou desabilitar o log de erros no terminal. Fazendo esta última alteração,
+este é o arquivo final com os testes.
+
+```tsx:example.spec.tsx
+import { render, screen } from "@testing-library/react";
+import user from "@testing-library/user-event";
+import { Tabs, TabBody, TabHeader } from "./example";
+
+beforeEach(() => {
+  jest.spyOn(console, "error");
+  console.error.mockImplementation(() => {});
+});
+
+afterEach(() => {
+  console.error.mockRestore();
+});
+
+const Ui = ({ defaultTab = "" }) => (
+  <Tabs defaultTab={defaultTab}>
+    <div>
+      <TabHeader tabId="users">Users</TabHeader>
+      <TabHeader tabId="settings">Settings</TabHeader>
+    </div>
+
+    <div>
+      <TabBody tabId="users">
+        <span data-testid="users-panel">Users panel</span>
+      </TabBody>
+      <TabBody tabId="settings">
+        <span data-testid="settings-panel">Settings panel</span>
+      </TabBody>
+    </div>
+  </Tabs>
+);
+
+const clickSettings = () => {
+  user.click(screen.getByText(/settings/i));
+};
+
+describe("Compound Components", () => {
+  it("Should not render any tab", () => {
+    render(<Ui />);
+
+    expect(screen.queryByTestId("users-panel")).toBeNull();
+    expect(screen.queryByTestId("settings-panel")).toBeNull();
+  });
+
+  it("Should render the default selected tab", () => {
+    render(<Ui defaultTab="users" />);
+
+    expect(screen.getByTestId("users-panel")).toBeInTheDocument();
+  });
+
+  it("Should render panel when click in the header", () => {
+    render(<Ui defaultTab="users" />);
+
+    clickSettings();
+
+    expect(screen.getByTestId("settings-panel")).toBeInTheDocument();
+    expect(screen.queryByTestId("users-panel")).toBeNull();
+  });
+
+  it("Should throw error when use TabBody without mount the provider", () => {
+    const setup = () =>
+      render(<TabBody tabId="body">The body</TabBody>);
+
+    expect(setup).toThrow(
+      "You should wrap the TabBody component with Tabs provider"
+    );
+  });
+
+  it("Should throw error when use TabHeader without mount the provider", () => {
+    const setup = () =>
+      render(<TabHeader tabId="body">The body</TabHeader>);
+
+    expect(setup).toThrow(
+      "You should wrap the TabHeader component with Tabs provider"
+    );
+  });
+});
+```
+
+E este é o conteúdo do arquivo `example.tsx`:
+
+```tsx:example.tsx
+import { createContext, useContext, useState } from "react";
+
+type ContextType = {
+  selected: string;
+  setSelected(selected: string): void;
+};
+
+const TabsContext = createContext<ContextType>({
+  selected: undefined,
+  setSelected() {},
+});
+
+const useTabs = () => useContext(TabsContext);
+
+export const Tabs = ({ children, defaultTab = "" }) => {
+  const [selected, setSelected] = useState(defaultTab);
+
+  return (
+    <TabsContext.Provider value={{ selected, setSelected }}>
+      {children}
+    </TabsContext.Provider>
+  );
+};
+
+export const TabHeader = ({ children, tabId }) => {
+  const { selected, setSelected } = useTabs();
+
+  if (selected === undefined)
+    throw new Error(
+      "You should wrap the TabHeader component with Tabs provider"
+    );
+
+  return <div onClick={() => setSelected(tabId)}>{children}</div>;
+};
+
+export const TabBody = ({ children, tabId }) => {
+  const { selected } = useTabs();
+
+  if (selected === undefined)
+    throw new Error(
+      "You should wrap the TabBody component with Tabs provider"
+    );
+
+  return selected === tabId ? children : null;
+};
+```
