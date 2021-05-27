@@ -1,0 +1,64 @@
+---
+title: 'My Thoughts on Readme Driven Development'
+summary: 'Reasoning about the software before write the software has is very important. Here is my thoughts about RDD.'
+tags: ['en']
+publishedAt: '2021-05-26'
+coverUrl: '/images/blog/react-compound-components/cover.jpg'
+coverWidth: 1920
+coverHeight: 1280
+coverCredits: 'Photo by Monirul Islam Shakil on Unsplash'
+---
+
+RDD is useful not only to specify basic requirements about the software. It's very useful to
+people that easily forget stuff.
+
+I'm such kind of person that, when you tell me something, if I'm very, very, very interesting in that thing,
+most of the times I remember. Otherwise I forgot.
+
+**But this is horrible in software development perspective**
+
+So, what I do when I need to remember technical specifications, even if it was in higher level of abstraction?
+I write it down.
+
+Markdown is a very friendly format to write text, Readme is most of the times, written in markdown files.
+
+I think that a good-simple-pattern is write the Readme first, then write some high level tests. Those
+tests must be at high level, most of the times, implemented with a high level tool. In the front-end world,
+the Cypress is a very good tool to write specifications about the behaviour, as code.
+
+Then write the God damn code. But at the time, you will have so much informations about what you need
+to write, that you will do it (sometimes) quickly. With a higher level os quality.
+
+Let's think a minute about it. If you have a codebase 100% covered with unit/integration/e2e tests and does X instead of Y,
+but your client requested the Y. Your system delivers **zero** value.
+
+A simple Readme could save you hours, days, weeks of work.
+
+## Some tips to organize knowledge as files
+
+- A simple to-do list with features that I need to implement. Those features are described at 
+a higher level of abstraction. Something that a could reason about later.
+
+- Each meaningful directory must have a file called `README.md`. Put on that file what kind of 
+files should live in the directory. If you are creating a `/services` directory, write a `README.md` that
+explain the patterns of that directory. How the code should be organized. Your team or you future self 
+will be very happy
+
+- If you use a cool system to manage user stories, you could go and paste the knowledge written in that Readme file
+so other non-coders could consume that knowledge. The next step is to break it down into small, deliverable steps and
+then start to write code.
+
+- Link files using the markdown link notation and prevent to have a big single file with all knowledge inside.
+
+## Conclusion
+
+To me, write what you want to have at the end is very important. You will acquire a lot of informations just
+writting what you need to do. Your brain will think, one, two or more times about the problem.
+
+Write code should be the mechanical step. Before write code, you need to use all your knowledge, all your
+*brain power* that humans become better and better along the time.
+
+
+## Resources 
+
+* Tom Preston-Werner - [Readme Driven Development](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html)
