@@ -6,6 +6,7 @@ import * as Article from '../../lib/article'
 import { Coffees } from '../../lib/components/article/coffees'
 import { Footer } from '../../components/footer'
 import { ArticleCover } from '../../lib/components/article/cover'
+import Link from 'next/link'
 
 const emojiOptions = ['✌', '🤙', '🤘', '👌', '🤞', '🤟']
 
@@ -114,8 +115,17 @@ export default function ArticlePage({
             target="_blank"
             rel="noopener noreferrer"
           >
-            Edite no GitHub
+            📝 Edite no GitHub
           </a>
+        </section>
+
+        <section className="space-x-4 mt-8" data-testid="back-to-all-articles">
+          <span>
+            👈{' '}
+            <Link href="/a">
+              <a>Todos os artigos</a>
+            </Link>
+          </span>
         </section>
       </article>
 
