@@ -8,7 +8,7 @@ export function ArticleCover({ url, credit }) {
           src={url}
           layout="fill"
           objectFit="cover"
-          className="rounded-md shadow-md"
+          className="rounded-md shadow-md filter grayscale"
         />
       </div>
 

@@ -7,6 +7,7 @@ import * as Article from '../../../lib/article'
 import { Coffees } from '../../../lib/components/article/coffees'
 import { Footer } from '../../../components/footer'
 import { ArticleCover } from '../../../lib/components/article/cover'
+import { ArticleAuthor } from '../../../lib/components/article/author'
 
 const emojiOptions = ['✌', '🤙', '🤘', '👌', '🤞', '🤟']
 
@@ -63,7 +64,7 @@ export default function ArticlePage({
 }) {
   return (
     <main
-      className="flex flex-col w-full justify-start items-center pb-64 pt-24 bg-white"
+      className="flex flex-col w-full justify-start items-center pb-64 pt-24"
       data-testid="article-page"
     >
       <ArticleHead title={title} summary={summary} coverUrl={coverUrl} />
@@ -91,7 +92,7 @@ export default function ArticlePage({
               )}
             </div>
           </div>
-          <Coffees minutes={Math.ceil(readingTime)} />
+          <Coffees minutes={Math.ceil(readingTime)} message="Reading time" />
         </section>
 
         {!!coverUrl && (
@@ -104,10 +105,21 @@ export default function ArticlePage({
         )}
 
         <MDXRemote {...mdxSource} components={{ ...components }} />
+
+        <section className="my-8 w-full">
+          <ArticleAuthor />
+        </section>
+
         <section
           className="space-x-4 mt-8"
           data-testid="share-edit-page-section"
         >
+          <span>
+            👈{' '}
+            <Link href="/en/a">
+              <a>All articles</a>
+            </Link>
+          </span>
           <a
             href={`https://github.com/gustavofsantos/gustavosantos.dev/blob/master/data/blog/${slug}.mdx`}
             target="_blank"
@@ -115,15 +127,6 @@ export default function ArticlePage({
           >
             📝 Edit this page
           </a>
-        </section>
-
-        <section className="space-x-4 mt-8" data-testid="back-to-all-articles">
-          <span>
-            👈{' '}
-            <Link href="/en/a">
-              <a>All articles</a>
-            </Link>
-          </span>
         </section>
       </article>
 
