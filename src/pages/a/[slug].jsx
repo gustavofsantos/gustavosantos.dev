@@ -7,6 +7,7 @@ import { Coffees } from '../../lib/components/article/coffees'
 import { Footer } from '../../components/footer'
 import { ArticleCover } from '../../lib/components/article/cover'
 import Link from 'next/link'
+import { ArticleAuthor } from '../../lib/components/article/author'
 
 const emojiOptions = ['✌', '🤙', '🤘', '👌', '🤞', '🤟']
 
@@ -106,26 +107,28 @@ export default function ArticlePage({
         )}
 
         <MDXRemote {...mdxSource} components={{ ...components }} />
+
+        <section className="my-8 w-full">
+          <ArticleAuthor message="Sou um desenvolvedor, engenheiro e aprendiz. Este site e o conteúdo nele é opionado." />
+        </section>
+
         <section
           className="space-x-4 mt-8"
           data-testid="share-edit-page-section"
         >
-          <a
-            href={`https://github.com/gustavofsantos/gustavosantos.dev/blob/master/data/blog/${slug}.mdx`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            📝 Edite no GitHub
-          </a>
-        </section>
-
-        <section className="space-x-4 mt-8" data-testid="back-to-all-articles">
           <span>
             👈{' '}
             <Link href="/a">
               <a>Todos os artigos</a>
             </Link>
           </span>
+          <a
+            href={`https://github.com/gustavofsantos/gustavosantos.dev/blob/master/data/blog/${slug}.mdx`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            📝 Edite esta página
+          </a>
         </section>
       </article>
 
