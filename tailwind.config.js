@@ -28,10 +28,6 @@ module.exports = {
           }
         }
       }
-    },
-    colors: {
-      gray: colors.warmGray,
-      ...colors
     }
   },
   variants: {
