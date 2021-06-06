@@ -107,7 +107,7 @@ export default function HomePage() {
 
         <section data-testid="apps-section">
           <h2 className="text-3xl font-bold text-coolGray-900 dark:text-coolGray-50 mb-4 mt-4">
-            Open source projects
+            Open source apps
           </h2>
 
           <div className="flex flex-col space-y-4">

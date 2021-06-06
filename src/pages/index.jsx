@@ -44,7 +44,7 @@ export default function HomePage() {
   return (
     <article className="flex flex-col justify-center items-center pt-36 pb-36 text-coolGray-900 dark:text-coolGray-300 bg-white dark:bg-coolGray-900">
       <section className="flex flex-col w-full p-6 lg:p-0 max-w-lg lg:max-w-2xl">
-        <h1 className="mb-12 font-bold text-coolGray-900 dark:text-coolGray-50 text-3xl md:text-4xl lg:text-6xl">
+        <h1 className="mb-12 domine-font font-bold text-gray-900 dark:text-gray-50 text-3xl md:text-4xl lg:text-6xl">
           Oi, Gustavo aqui👋
         </h1>
 
@@ -108,12 +108,12 @@ export default function HomePage() {
 
         <section data-testid="apps-section">
           <h2 className="text-3xl font-bold text-coolGray-900 dark:text-coolGray-50 mb-4 mt-4">
-            Projetos open-source
+            Apps open-source
           </h2>
 
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col space-y-4 md:grid md:grid-cols-2 md:gap-4 md:space-y-0">
             {appsUrl.map((description) => (
-              <div className="flex flex-col space-y-4 md:grid md:grid-cols-2 md:gap-2">
+              <div className="flex flex-col space-y-4">
                 <div className="w-full">
                   <div className="rounded-lg shadow-lg mb-2">
                     <Image
@@ -121,6 +121,7 @@ export default function HomePage() {
                       layout="responsive"
                       width={1328}
                       height={954}
+                      className="rounded-lg"
                     />
                   </div>
                   <div>

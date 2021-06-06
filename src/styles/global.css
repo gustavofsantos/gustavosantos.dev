@@ -28,6 +28,10 @@ a {
   font-family:  'Source Serif Pro', serif;
 }
 
+.domine-font {
+  font-family: 'Domine', serif;
+}
+
 
 .backdrop-filter {
   backdrop-filter: saturate(100%) blur(10px);

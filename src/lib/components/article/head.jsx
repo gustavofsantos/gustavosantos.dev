@@ -18,6 +18,7 @@ export function ArticleHead({ title = '', summary = '', coverUrl = null }) {
       ></meta>
       <meta property="og:title" content={title} key="ogtitle" />
       <meta property="og:description" content={summary} key="ogdescription" />
+      <meta name="og:title" property="og:title" content={summary} />
       <meta
         property="og:image"
         content={

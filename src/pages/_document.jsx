@@ -16,6 +16,11 @@ export default class AppDocument extends Document {
             rel="stylesheet"
             async
           />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+            async
+          />
           <script
             dangerouslySetInnerHTML={{
               __html: `(function (w, d, s, l, i) {
