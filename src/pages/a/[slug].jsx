@@ -71,29 +71,16 @@ export default function ArticlePage({
     >
       <ArticleHead title={title} summary={summary} coverUrl={coverUrl} />
 
-      <article className="prose prose-blue w-full px-2 md:px-0 lg:max-w-xl xl:max-w-2xl">
+      <article className="prose prose-blue segoe-font w-full px-2 md:px-0 lg:max-w-xl xl:max-w-2xl">
         <h1 className="mb-8">{title}</h1>
 
         <section
           className="flex flex-col items-start justify-between space-y-1 mb-4 md:items-center md:flex-row"
           data-testid="data-section"
         >
-          <div className="flex justify-center items-center space-x-2">
-            <img
-              src="/images/profile.jpg"
-              className="rounded-full"
-              style={{ width: '3rem', height: '3rem' }}
-            />
-            <div className="flex space-x-2">
-              <span>Gustavo Santos</span>
-              {!!publishedAt && (
-                <>
-                  <span>|</span>
-                  <span>{new Date(publishedAt).toLocaleDateString()}</span>
-                </>
-              )}
-            </div>
-          </div>
+          {!!publishedAt && (
+            <span>{new Date(publishedAt).toLocaleDateString()}</span>
+          )}
           <Coffees minutes={Math.ceil(readingTime)} />
         </section>
 

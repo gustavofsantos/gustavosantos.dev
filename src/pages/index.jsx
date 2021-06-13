@@ -42,9 +42,9 @@ const appsUrl = [
 
 export default function HomePage() {
   return (
-    <article className="flex flex-col justify-center items-center pt-36 pb-36 text-coolGray-900 dark:text-coolGray-300 bg-white dark:bg-coolGray-900">
+    <article className="segoe-font flex flex-col justify-center items-center pt-36 pb-36 text-coolGray-900 dark:text-coolGray-300 bg-white dark:bg-coolGray-900">
       <section className="flex flex-col w-full p-6 lg:p-0 max-w-lg lg:max-w-2xl">
-        <h1 className="mb-12 domine-font font-bold text-gray-900 dark:text-gray-50 text-3xl md:text-4xl lg:text-6xl">
+        <h1 className="mb-12 font-bold text-gray-900 dark:text-gray-50 text-3xl md:text-4xl lg:text-6xl">
           Oi, Gustavo aqui👋
         </h1>
 
