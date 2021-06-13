@@ -1,0 +1,30 @@
+---
+title: 'What is state?'
+summary: ''
+tags: ['en', 'state']
+publishedAt: '2021-06-13'
+---
+
+State is a piece of data. Is a photography of the world at a given time. Is information without the time property.
+
+This means that `const x = 1` defines the `x` variable which holds the 1 as value. In the `x` perspective, `1` is eternal. Is the whole universe. At any point of time after the creation of `x`, `1` will be the value of `x`.
+
+You could think of state as the representing form of the world, any world, at a single time. If your world is `x`, then your world is immutable, unidimensional.
+
+If your world is `{ name: "Gustavo", age: 27 }`, which could be the representation of a user. Mostly in a year, this state should change. But how do you change the world? How do you add movement to photography? How do you add "time" into the equation?
+
+The short answer: you shouldn't add time to the equation.
+
+The state should not be coupled with time. Your state should not depend on time. Your body does not depend on time. Time makes your body get older. Aging is just a reflection of the existence of time. A photo of your body is your state at a time.
+
+You are a tri-dimensional living thing. The data inside your code is a picture of the world in a given time. This piece of data does not know how it becomes what it is now or what it would be in the next second, either.
+
+What makes the state change is any external action.
+
+You could think of it as a function. A function that takes the state of the world, does some calculation, and responds with a new state of the world. This is often the modelling of state in functional programming languages.
+
+Or you can think of the state as the internal self. You do some action, your mood changes. Your brain is the actor and your body is the state of the world. The actor pattern is often used in objected oriented languages where you have a piece of data as an internal state and a set of functions that handle messages in/out from the actor. The "actor" figure is mostly coded as a class.
+
+Think about the `{ name: "Gustavo", age: 27 }` example. How do I get old using this model? You can code this action as `happyBirthday(user) -> user` or as `user.happyBirthday()`? Why?
+
+Share your answer in Twitter. I will be very happy to know!
