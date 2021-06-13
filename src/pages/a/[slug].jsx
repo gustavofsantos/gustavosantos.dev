@@ -71,7 +71,7 @@ export default function ArticlePage({
     >
       <ArticleHead title={title} summary={summary} coverUrl={coverUrl} />
 
-      <article className="prose prose-blue w-full px-2 md:px-0 lg:max-w-xl xl:max-w-2xl">
+      <article className="prose prose-blue segoe-font w-full px-2 md:px-0 lg:max-w-xl xl:max-w-2xl">
         <h1 className="mb-8">{title}</h1>
 
         <section
