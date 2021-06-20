@@ -4,46 +4,12 @@ import readingTime from 'reading-time'
 import Link from 'next/link'
 import { ArticleHead } from '../../../lib/components/article/head'
 import * as Article from '../../../lib/article'
+import { enDayOptions, emojiOptions } from '../../../lib/day-options'
+import { chooseOne } from '../../../lib/utils'
 import { Coffees } from '../../../lib/components/article/coffees'
 import { Footer } from '../../../components/footer'
 import { ArticleCover } from '../../../lib/components/article/cover'
 import { ArticleAuthor } from '../../../lib/components/article/author'
-
-const emojiOptions = ['✌', '🤙', '🤘', '👌', '🤞', '🤟']
-
-const dayOptions = [
-  'amazing',
-  'incredible',
-  'gorgeous',
-  'stupendous',
-  'fascinating',
-  'stunning',
-  'extra-natural',
-  'sublime',
-  'heavenly',
-  'venerable',
-  'radiant',
-  'formidable',
-  'magnificent',
-  'divine',
-  'prodigious',
-  'glorious',
-  'epic',
-  'ethereal',
-  'brillant',
-  'pompous',
-  'handsome',
-  'delicious',
-  'enviable',
-  'loving',
-  'munific'
-]
-
-const chooseOne = (array) => {
-  const length = array.length
-  const index = Math.round(Math.random() * 10) % length
-  return array[index]
-}
 
 const components = {
   Image
@@ -123,7 +89,7 @@ export default function ArticlePage({
       >
         <h3 className="text-5xl">{chooseOne(emojiOptions)}</h3>
         <p className="font-bold">
-          Have a <span className="text-pink-600">{chooseOne(dayOptions)}</span>{' '}
+          Have a <span className="text-pink-600">{chooseOne(enDayOptions)}</span>{' '}
           day
         </p>
       </section>

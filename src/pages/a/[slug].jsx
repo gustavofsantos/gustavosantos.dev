@@ -1,52 +1,17 @@
 import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote'
 import readingTime from 'reading-time'
+import Link from 'next/link'
+
 import { ArticleHead } from '../../lib/components/article/head'
 import * as Article from '../../lib/article'
+import { ptDayOptions, enDayOptions, emojiOptions } from '../../lib/day-options'
+import { chooseOne } from '../../lib/utils'
 import { Coffees } from '../../lib/components/article/coffees'
 import { Footer } from '../../components/footer'
 import { When } from '../../components/when'
 import { ArticleCover } from '../../lib/components/article/cover'
-import Link from 'next/link'
 import { ArticleAuthor } from '../../lib/components/article/author'
-
-const emojiOptions = ['✌', '🤙', '🤘', '👌', '🤞', '🤟']
-
-const dayOptions = [
-  'maravilhoso',
-  'incrível',
-  'deslumbrante',
-  'estupendo',
-  'fascinante',
-  'estonteante',
-  'extranatural',
-  'sublime',
-  'celestial',
-  'venerável',
-  'radiante',
-  'formidável',
-  'magnificente',
-  'divino',
-  'prodigioso',
-  'supimpa',
-  'glorioso',
-  'divinal',
-  'épico',
-  'etéreo',
-  'brilhante',
-  'pomposo',
-  'formoso',
-  'delicioso',
-  'invejável',
-  'dadivoso',
-  'munífico'
-]
-
-const chooseOne = (array) => {
-  const length = array.length
-  const index = Math.round(Math.random() * 10) % length
-  return array[index]
-}
 
 const components = {
   Image
@@ -145,10 +110,19 @@ export default function ArticlePage({
         data-testid="thanks-section"
       >
         <h3 className="text-5xl">{chooseOne(emojiOptions)}</h3>
-        <p className="font-bold">
-          Tenha um dia{' '}
-          <span className="text-yellow-500">{chooseOne(dayOptions)}</span>
-        </p>
+        <When value={language === 'en'}>
+          <p className="font-bold">
+            Have a{' '}
+            <span className="text-yellow-500">{chooseOne(enDayOptions)}</span>
+            day
+          </p>
+        </When>
+        <When value={language === 'pt'}>
+          <p className="font-bold">
+            Tenha um dia{' '}
+            <span className="text-yellow-500">{chooseOne(ptDayOptions)}</span>
+          </p>
+        </When>
       </section>
       <Footer />
     </main>
