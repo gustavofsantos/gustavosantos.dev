@@ -17,7 +17,7 @@ export default function ArticlesPage({ articles }) {
       <Head>
         <title>Gustavo Santos - Blog</title>
       </Head>
-      <article className="prose prose-yellow prose-lg w-full px-2 md:px-0">
+      <article className="prose prose-lg w-full px-2 md:px-0">
         <h1>Blog</h1>
 
         <section data-testid="articles-section" className="space-y-2">
@@ -28,7 +28,7 @@ export default function ArticlesPage({ articles }) {
                   <h3 className="m-0">{article.title}</h3>
                 </a>
               </Link>
-              {article.summary ? <p>{article.summary}</p> : null}
+              {article.summary ? <p className="text-gray-700">{article.summary}</p> : null}
               <When value={article.language === 'pt'}>
                 <Coffees minutes={article.readingTime} />
               </When>

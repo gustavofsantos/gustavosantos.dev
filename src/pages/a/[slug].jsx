@@ -147,7 +147,7 @@ export default function ArticlePage({
         <h3 className="text-5xl">{chooseOne(emojiOptions)}</h3>
         <p className="font-bold">
           Tenha um dia{' '}
-          <span className="text-pink-600">{chooseOne(dayOptions)}</span>
+          <span className="text-yellow-500">{chooseOne(dayOptions)}</span>
         </p>
       </section>
       <Footer />
