@@ -33,7 +33,7 @@ export default function ArticlePage({
 }) {
   return (
     <main
-      className="flex flex-col w-full justify-start items-center pb-64 pt-24 bg-white"
+      className="flex flex-col w-full justify-start items-center pb-64 pt-24 bg-gray-50"
       data-testid="article-page"
     >
       <ArticleHead title={title} summary={summary} coverUrl={coverUrl} />
