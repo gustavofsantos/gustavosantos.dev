@@ -5,6 +5,7 @@ import { ArticleHead } from '../../lib/components/article/head'
 import * as Article from '../../lib/article'
 import { Coffees } from '../../lib/components/article/coffees'
 import { Footer } from '../../components/footer'
+import { When } from '../../components/when'
 import { ArticleCover } from '../../lib/components/article/cover'
 import Link from 'next/link'
 import { ArticleAuthor } from '../../lib/components/article/author'
@@ -60,6 +61,7 @@ export default function ArticlePage({
   publishedAt,
   tags = [],
   coverUrl,
+  language,
   coverCredits,
   coverWidth,
   coverHeight
@@ -71,7 +73,7 @@ export default function ArticlePage({
     >
       <ArticleHead title={title} summary={summary} coverUrl={coverUrl} />
 
-      <article className="prose prose-blue segoe-font w-full px-2 md:px-0 lg:max-w-xl xl:max-w-2xl">
+      <article className="prose prose-blue prose-lg segoe-font w-full px-2 md:px-0 lg:max-w-xl xl:max-w-2xl">
         <h1 className="mb-8">{title}</h1>
 
         <section
@@ -81,7 +83,13 @@ export default function ArticlePage({
           {!!publishedAt && (
             <span>{new Date(publishedAt).toLocaleDateString()}</span>
           )}
-          <Coffees minutes={Math.ceil(readingTime)} />
+
+          <When value={language === 'pt'}>
+            <Coffees minutes={Math.ceil(readingTime)} />
+          </When>
+          <When value={language === 'en'}>
+            <Coffees message="Reading time" minutes={Math.ceil(readingTime)} />
+          </When>
         </section>
 
         {!!coverUrl && (
@@ -96,7 +104,12 @@ export default function ArticlePage({
         <MDXRemote {...mdxSource} components={{ ...components }} />
 
         <section className="my-8 w-full">
-          <ArticleAuthor message="Sou um desenvolvedor, engenheiro e aprendiz. Este site e o conteúdo nele é opionado." />
+          <When value={language === 'en'}>
+            <ArticleAuthor />
+          </When>
+          <When value={language === 'pt'}>
+            <ArticleAuthor message="Sou um desenvolvedor, engenheiro e aprendiz. Este site e o conteúdo nele é opionado." />
+          </When>
         </section>
 
         <section
@@ -106,7 +119,10 @@ export default function ArticlePage({
           <span>
             👈{' '}
             <Link href="/a">
-              <a>Todos os artigos</a>
+              <a>
+                <When value={language === 'pt'}>Todos os artigos</When>
+                <When value={language === 'en'}>All blog posts</When>
+              </a>
             </Link>
           </span>
           <a
@@ -114,7 +130,12 @@ export default function ArticlePage({
             target="_blank"
             rel="noopener noreferrer"
           >
-            📝 Edite esta página
+            <When value={language === 'pt'}>
+              <span>📝 Edite esta página</span>
+            </When>
+            <When value={language === 'en'}>
+              <span>📝 Edit this page</span>
+            </When>
           </a>
         </section>
       </article>

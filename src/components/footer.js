@@ -8,7 +8,7 @@ export const Footer = () => (
     <div className="flex flex-col">
       <Link href="/">
         <p
-          className="cursor-pointer px-8 py-2 transition-all duration-150 hover:bg-pink-300"
+          className="cursor-pointer px-8 py-2 transition-all duration-150 hover:bg-yellow-300"
           role="a"
         >
           Gustavo Santos © {new Date().getFullYear()}

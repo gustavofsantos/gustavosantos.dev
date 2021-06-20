@@ -1,7 +1,9 @@
 ---
 title: 'React: Componentes Compostos (Compound Components)'
 summary: 'O padrão Compound Components é extremamente flexível e versátil. Nesse tutorial apresento um exemplo bem simples, porém completo usando abas.'
-tags: ['pt-br', 'react', 'pattern', 'typescript']
+tags: ['react', 'pattern', 'typescript']
+language: 'pt'
+published: true
 publishedAt: '2021-05-26'
 coverUrl: '/images/blog/react-compound-components/cover.jpg'
 coverWidth: 1920
@@ -24,7 +26,7 @@ Como quase todos os casos, é mais simples explicar o padrão através de um exe
 
 <section className="w-full flex flex-col justify-center items-center">
   <iframe
-    width="560"
+    width="100%"
     height="315"
     src="https://www.youtube.com/embed/wJ0_bUNurU4"
     title="YouTube video player"
@@ -544,3 +546,5 @@ export const TabBody = ({ children, tabId }) => {
   return selected === tabId ? children : null;
 };
 ```
+
+---
