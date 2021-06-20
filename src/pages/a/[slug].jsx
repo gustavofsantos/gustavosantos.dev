@@ -113,7 +113,7 @@ export default function ArticlePage({
         <When value={language === 'en'}>
           <p className="font-bold">
             Have a{' '}
-            <span className="text-yellow-500">{chooseOne(enDayOptions)}</span>
+            <span className="text-yellow-500">{chooseOne(enDayOptions)}</span>{' '}
             day
           </p>
         </When>
