@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import readingTime from 'reading-time'
 import { Footer } from '../components/footer'
+import { When } from '../components/when'
 import {
   parseArticle,
   readArticleBySlug,
@@ -14,20 +15,30 @@ export default function ArticlesPage({ articles }) {
   return (
     <main className="flex flex-col justify-start items-center w-full pb-64 pt-24">
       <Head>
-        <title>Blog do Gustavo</title>
+        <title>Gustavo Santos - Blog</title>
       </Head>
-      <article className="prose prose-blue w-full px-2 md:px-0">
-        <h1>Artigos</h1>
+      <article className="prose prose-lg w-full px-2 md:px-0">
+        <h1>Blog</h1>
 
         <section data-testid="articles-section" className="space-y-2">
           {articles.map((article) => (
-            <Link href={`/a/${article.slug}`} key={article.slug}>
-              <div className="flex flex-col cursor-pointer">
-                <h3 className="m-0">{article.title}</h3>
-                <p>{article.summary}</p>
+            <div className="flex flex-col" key={article.slug}>
+              <Link href={`/a/${article.slug}`}>
+                <a className="cursor-pointer">
+                  <h3 className="m-0">{article.title}</h3>
+                </a>
+              </Link>
+              {article.summary ? <p className="text-gray-700">{article.summary}</p> : null}
+              <When value={article.language === 'pt'}>
                 <Coffees minutes={article.readingTime} />
-              </div>
-            </Link>
+              </When>
+              <When value={article.language === 'en'}>
+                <Coffees
+                  message="Reading time: "
+                  minutes={article.readingTime}
+                />
+              </When>
+            </div>
           ))}
         </section>
       </article>
@@ -41,11 +52,12 @@ export default function ArticlesPage({ articles }) {
 export function getStaticProps() {
   const slugs = readArticlesDir()
   const articles = slugs
-    .map(readArticleBySlug)
-    .map(parseArticle)
-    .map(({ data, content }, index) => ({
+    .map((slug) => ({ article: readArticleBySlug(slug), slug }))
+    .map(({ article, slug }) => ({ article: parseArticle(article), slug }))
+    .filter(({ article }) => article.data.published !== false)
+    .map(({ article: { data, content }, slug }) => ({
       ...data,
-      slug: slugs[index],
+      slug,
       readingTime: Math.ceil(readingTime(content).minutes)
     }))
 
