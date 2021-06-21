@@ -13,11 +13,11 @@ import { Coffees } from '../lib/components/article/coffees'
 
 export default function ArticlesPage({ articles }) {
   return (
-    <main className="flex flex-col justify-start items-center w-full pb-64 pt-24">
+    <main className="flex flex-col justify-start items-center w-full bg-gray-50 pb-64 pt-24">
       <Head>
         <title>Gustavo Santos - Blog</title>
       </Head>
-      <article className="prose prose-lg w-full px-2 md:px-0">
+      <article className="prose prose-lg w-full px-2 bg-gray-50 md:px-0">
         <h1>Blog</h1>
 
         <section data-testid="articles-section" className="space-y-2">
@@ -28,7 +28,9 @@ export default function ArticlesPage({ articles }) {
                   <h3 className="m-0">{article.title}</h3>
                 </a>
               </Link>
-              {article.summary ? <p className="text-gray-700">{article.summary}</p> : null}
+              <When value={article.summary}>
+                <p className="text-gray-700">{article.summary}</p>
+              </When>
               <When value={article.language === 'pt'}>
                 <Coffees minutes={article.readingTime} />
               </When>
