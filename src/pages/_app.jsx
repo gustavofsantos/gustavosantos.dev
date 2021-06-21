@@ -53,7 +53,7 @@ export default function App({ Component, pageProps }) {
           />
       </Head>
 
-      <main className="h-full w-full text-lg text-gray-800 dark:text-coolGray-400 bg-white dark:bg-gray-900">
+      <main className="h-full w-full text-lg text-gray-800 dark:text-coolGray-400 bg-gray-50 dark:bg-gray-900">
         <Component {...pageProps} />
         <Script src="https://www.googletagmanager.com/gtm.js?id=GTM-MJJHV4T" />
       </main>

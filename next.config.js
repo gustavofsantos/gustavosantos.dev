@@ -13,7 +13,12 @@ module.exports = {
         source: '/knowledge/:slug',
         destination: '/a/:slug',
         permanent: true
-      }
+      },
+      {
+        source: '/en/a/:slug',
+        destination: '/a/:slug',
+        permanent: true
+      },
     ]
   },
   webpack: (config, options) => {

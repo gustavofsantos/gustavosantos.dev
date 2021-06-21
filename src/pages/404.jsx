@@ -6,14 +6,14 @@ export default function NotFoundPage() {
       <article className="flex flex-col items-center space-y-6">
         <h1 className="font-extrabold text-5xl">Oops 🤨</h1>
 
-        <h3>Acho que você se perdeu</h3>
+        <h3>You seems lost</h3>
 
         <p>
-          Que tal voltar para a{' '}
+          What about go to{' '}
           <Link href="/">
-            <a>página inicial</a>
+            <a>index page?</a>
           </Link>{' '}
-          ou dar uma olhadinha 👀 no meu{' '}
+          or maybe give a look ay my {' '}
           <Link href="/a">
             <a>blog</a>
           </Link>

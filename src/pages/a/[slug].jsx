@@ -33,7 +33,7 @@ export default function ArticlePage({
 }) {
   return (
     <main
-      className="flex flex-col w-full justify-start items-center pb-64 pt-24 bg-white"
+      className="flex flex-col w-full justify-start items-center pb-64 pt-24 bg-gray-50"
       data-testid="article-page"
     >
       <ArticleHead title={title} summary={summary} coverUrl={coverUrl} />
@@ -113,7 +113,7 @@ export default function ArticlePage({
         <When value={language === 'en'}>
           <p className="font-bold">
             Have a{' '}
-            <span className="text-yellow-500">{chooseOne(enDayOptions)}</span>
+            <span className="text-yellow-500">{chooseOne(enDayOptions)}</span>{' '}
             day
           </p>
         </When>

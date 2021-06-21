@@ -1,27 +1,21 @@
 import Head from 'next/head'
+import Image from 'next/image'
+import { MDXRemote } from 'next-mdx-remote'
+import { MDXHelpers } from '../lib/mdx-helpers'
 
-export default function AboutPage() {
+const components = {
+  Image
+}
+
+export default function AboutPage({ content, mdxSource }) {
   return (
-    <article className="flex flex-col justify-center items-center w-full">
-      <Head>
-        <title>Sobre</title>
-      </Head>
-      <section className="prose prose-lg prose-blue">
-        <h1>Gustavo Santos</h1>
+    <div className="flex flex-col w-full justify-start items-center pb-64 pt-24 bg-gray-50">
+      <article className="segoe-font prose prose-lg prose-blue">
+        <Head>
+          <title>About</title>
+        </Head>
+        <MDXRemote {...mdxSource} components={{ ...components }} />
 
-        <p>
-          O Gustavo é desenvolvedor, líder e trabalha diariamente para entregar
-          valor em forma de produtos para clientes de E-commerces. O trabalho
-          dele na aftersale vai desde escrever código e planejar desenvolvimento
-          de demandas, até mentoria e arquitetura de sistemas.
-        </p>
-
-        <p>
-          Eu trouxe a cultura de passagem de conhecimento técnico entre
-          integrantes do time de produto. Graças a essa cultura, hoje
-          conseguimos elevar rapidamente hard e soft skills de desenvolvedores
-          JR/PL. É basicamente um jogo em que todos ganham.
-        </p>
 
         <h3>Timeline</h3>
 
@@ -186,7 +180,20 @@ export default function AboutPage() {
           uma familia onde os pais e parentes mais próximos não conseguiram
           completar o ensino fundamental, foi uma grande conquista.
         </p>
-      </section>
-    </article>
+      </article>
+    </div>
   )
+}
+
+export async function getStaticProps() {
+  const fileContent = MDXHelpers.readFile('about')
+  const { data, content } = MDXHelpers.parseFile(fileContent)
+  const mdxSource = await MDXHelpers.serializeFile(content)
+
+  return {
+    props: {
+      content: fileContent,
+      mdxSource
+    }
+  }
 }
