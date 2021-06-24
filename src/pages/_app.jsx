@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Script from 'next/script'
 import '../styles/global.css'
 
 export default function App({ Component, pageProps }) {
@@ -39,10 +40,22 @@ export default function App({ Component, pageProps }) {
         <meta name="theme-color" content="#ffffff" />
 
         <meta property="og:type" content="website" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+            async
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+            async
+          />
       </Head>
 
-      <main className="h-full w-full text-lg text-gray-800 dark:text-coolGray-400 bg-white dark:bg-gray-900">
+      <main className="h-full w-full text-lg text-gray-800 dark:text-coolGray-400 bg-gray-50 dark:bg-gray-900">
         <Component {...pageProps} />
+        <Script src="https://www.googletagmanager.com/gtm.js?id=GTM-MJJHV4T" />
       </main>
     </>
   )

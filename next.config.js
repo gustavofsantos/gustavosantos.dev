@@ -1,7 +1,4 @@
 module.exports = {
-  future: {
-    webpack5: true
-  },
   i18n: {
     locales: ['en-US', 'pt'],
     defaultLocale: 'pt'
@@ -16,7 +13,12 @@ module.exports = {
         source: '/knowledge/:slug',
         destination: '/a/:slug',
         permanent: true
-      }
+      },
+      {
+        source: '/en/a/:slug',
+        destination: '/a/:slug',
+        permanent: true
+      },
     ]
   },
   webpack: (config, options) => {
