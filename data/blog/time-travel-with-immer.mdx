@@ -1,0 +1,30 @@
+---
+title: 'Time travel with Immer'
+summary: ''
+tags: ['en', 'immer', 'state']
+publishedAt: '2021-06-14'
+published: false
+---
+
+The easiest way to time travel to the past is using Immer.
+
+With Immer you can create a new object from any other object, without touch that original object. For example:
+
+```ts
+import { product } from 'immer';
+
+const user = { name: 'Example', age: 30 };
+
+const newUser = produce(user, draft => {
+  draft.name = 'New Name'
+});
+```
+
+This you probably already know.
+
+<iframe src="https://codesandbox.io/embed/github/gustavofsantos/react-demo-patches-immer/tree/main/?fontsize=16&hidenavigation=1&theme=light&view=preview"
+  style={{width:'100%', height: '500px', border: 0, borderRadius: '4px', overflow: 'hidden'}}
+  title="react-demo-patches-immer"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>

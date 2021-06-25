@@ -1,0 +1,154 @@
+---
+title: 'Using Xstate with Deno'
+summary: ''
+tags: ['en', 'state']
+language: 'en'
+published: true
+publishedAt: '2021-06-24'
+---
+
+Deno is very nice and it is here for a while. And it is very easy to use JavaScript or
+TypeScript code from anywhere that could be fetchable.
+
+I'll start creating a new directory called `xstate-deno` and jumping right into in:
+
+```
+$ mkdir xstate-deno && cd xstate-deno
+```
+
+Then I'll create the `machine.ts` file and import the `createMachine` function from xstate:
+
+```ts:machine.ts
+import { createMachine } from "https://esm.sh/xstate@4.18.0"
+```
+
+Yeah! We can import any library that do not depend of any Node.js or Browser specific code.
+
+Now I will specify the `lightMachine`:
+
+```ts:machine.ts
+import { createMachine } from "https://esm.sh/xstate@4.18.0"
+
+export const lightMachine = createMachine({
+  id: "toggle",
+  initial: "inactive",
+  states: {
+    inactive: { on: { TOGGLE: "active" } },
+    active: { on: { TOGGLE: "inactive" } },
+  },
+});
+```
+
+Personally I didn't like to have those long importings using the full url to the dependency.
+With Deno import maps it is possible to define a *lookup table*, where Deno will use to find
+dependencies during the compilation time.
+
+I will create a json file called `import_map.json`:
+
+```json:import_map.json
+{
+  "imports": {
+    "xstate": "https://esm.sh/xstate@4.18.0"
+  }
+}
+```
+
+Now it is possible to import `createMachine` right from `xstate` as we could to in Node.js.
+I will update the `machine.ts` file with the mapped import.
+
+```ts:machine.ts
+import { createMachine } from "xstate";
+
+export const lightMachine = createMachine({
+  id: "toggle",
+  initial: "inactive",
+  states: {
+    inactive: { on: { TOGGLE: "active" } },
+    active: { on: { TOGGLE: "inactive" } },
+  },
+});
+```
+
+Cool, right? 🔥
+
+Now I will create the `server.ts` file and write a simple Deno web server.
+
+```ts:server.ts
+const server = Deno.listen({ port: 8000 });
+
+async function main() {
+  for await (const conn of server) {
+    const httpConn = Deno.serveHttp(conn);
+    for await (const requestEvent of httpConn) {
+      if (/\/toggle$/.test(requestEvent.request.url)) {
+        requestEvent.respondWith(
+          new Response("toggle", {
+            status: 200,
+          })
+        );
+        continue;
+      }
+
+      requestEvent.respondWith(
+        new Response("404", {
+          status: 404,
+        })
+      );
+    }
+  }
+}
+
+await main();
+```
+
+So... now I will import the `lightMachine` and start the interpretation service.
+
+```ts:server.ts
+import { interpret } from "xstate";
+import { lightMachine } from "./machine.ts";
+
+const server = Deno.listen({ port: 8000 });
+
+async function main() {
+  const lightService = interpret(lightMachine)
+    .onTransition((state: any) => {
+      console.log(state.value);
+    })
+    .start();
+
+  for await (const conn of server) {
+    const httpConn = Deno.serveHttp(conn);
+    for await (const requestEvent of httpConn) {
+      if (/\/toggle$/.test(requestEvent.request.url)) {
+        lightService.send("TOGGLE");
+        requestEvent.respondWith(
+          new Response("toggle", {
+            status: 200,
+          })
+        );
+        continue;
+      }
+
+      requestEvent.respondWith(
+        new Response("404", {
+          status: 404,
+        })
+      );
+    }
+  }
+}
+
+await main();
+```
+
+Now I can start the server in the command line:
+
+```
+$ xstate-deno> deno run --unstable --importmap=import_map.json --allow-net server.ts
+Check file:///C:/Users/gustavo/Workspace/code/xstate-deno/server.ts
+inactive
+```
+
+The initial state of the machine is `inactive`. and it is logged to the standard out when the interpretation start.
+But if I make a get request at `http://localhost:8000/toggle`, the `TOGGLE` event will be sent to the machine
+and the state will change from `inactive` to `active`.

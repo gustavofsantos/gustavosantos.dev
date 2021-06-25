@@ -7,5 +7,13 @@ module.exports = {
   trailingComma: 'none',
   bracketSpacing: true,
   arrowParens: 'always',
-  endOfLine: 'lf'
+  endOfLine: 'lf',
+  overrides: [
+    {
+      files: '*.mdx',
+      options: {
+        printWidth: 80
+      }
+    }
+  ]
 }
