@@ -1,0 +1,56 @@
+---
+title: 'screen.debug'
+summary: 'How to debug React components quickly during tests?'
+tags: ['en', 'jest']
+language: 'en'
+published: true
+publishedAt: '2021-04-09'
+---
+
+I have the following component and want to test it and debug.
+
+```jsx
+export const Greater = ({ name }) => <h1>Hello {name}!!!</h1>
+```
+
+## Test file
+
+To pretty print the whole DOM we could use the `.debug` method:
+
+```jsx:__tests__/greater.test.js
+import { Greater } from '../greater'
+import { render, screen } from '@testing-library/react'
+
+describe(Greater.name, () => {
+  test('should great the name', () => {
+    const name = 'George'
+    render(<Greater name={name} />)
+    screen.debug()
+  })
+})
+```
+
+Running jest in the command line, it will print:
+
+```
+$ yarn test greater
+yarn run v1.22.10
+$ jest greater
+ PASS  components/demo/__tests__/greater.test.js
+  Greater
+    ✓ should great the name (42 ms)
+
+  console.log
+    <body>
+      <div>
+        <h1>
+          Hello
+          George
+          !!!
+        </h1>
+      </div>
+    </body>
+
+```
+
+The `.debug` method accepts any mounted DOM node then display this node children.
