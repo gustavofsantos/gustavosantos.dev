@@ -1,0 +1,100 @@
+---
+title: 'Clojure Building Blocks'
+summary: 'Learn the most basic ideas of the language'
+tags: ['clojure']
+language: 'en'
+publishedAt: '2021-06-27'
+---
+
+_This article follows the "clojure-101" project created [in this article](https://gustavosantos.dev/a/getting-started-with-clojure)._
+
+In Clojure we have functions, data, and macros. You write and compose functions to operate over data. You can create, register and change functions through macros.
+
+You can define things using the "function" `def`. For example:
+
+```
+(def n 42)
+```
+
+The above code defines the `n` value bounded to the value 42. For instance, to print the value in the console, we can call the function `println`:
+
+```
+(def n 42)
+(println n) #=> 42
+```
+
+You should already know that, but Clojure is a LISP dialect. This means that you write programs defining functions, data structures using a lot of parentheses. It could be strange at the beginning, but this syntactical decision is great and makes a lot of sense when you discover that Clojure is a beast in the metaprogramming world.
+
+Yeah, metaprogramming is an anti-pattern in the Object-Oriented world. But inside the scope of Clojure, metaprogramming is gold.
+
+You can define functions using the _"function"_ `defn` as the following:
+
+```
+(defn make-magic [s]
+  (str "✨" s "✨"))
+
+(println (make-magic "Hello folks")) #=> ✨Hello folks✨
+```
+
+Talking in metaprogramming... `defn` isn't a function, it is a macro. Through macros and metaprogramming is possible to define functions in Clojure.
+
+It uses the `def` "function" to define a body of a function and bound it to a name. You can define functions using the `def` you don't need `defn`.
+
+```
+(def increment (fn [n] (+ n 1)))
+(println (increment 1)) #=> 2
+```
+
+Clojure is a language that you can change itself. You probably should not do that, but libraries can use this mechanism to offer simple and effective APIs.
+
+For example, you can use the symbol `->` to pipe data through a set of functions. Using the above `make-magic` function we can let the Wizard make magic in a _Clojurian_ way:
+
+```
+(defn make-magic [s]
+  (str "✨" s "✨"))
+
+(->
+ (make-magic "The wizard")
+  println) #=> ✨The wizard✨
+```
+
+If you inspect (yeah, you can inspect the language) the `->` symbol you will discover that this arrow is another macro.
+
+```
+=> (doc ->)
+-------------------------
+clojure.core/->
+([x & forms])
+Macro
+  Threads the expr through the forms. Inserts x as the
+  second item in the first form, making a list of it if it is not a
+  list already. If there are more forms, inserts the first form as the
+  second item in second form, etc.
+nil
+```
+
+Be warned that the above command only works in the REPL.
+
+If you are a JavaScript developer, you create a bunch of values inside the scope of a function. You can do that using Clojure `let` keyword:
+
+```
+(defn SCREAM [x]
+  (let [screamedX (st/upper-case x)]
+    (str screamedX "!!!")))
+
+(println (SCREAM "hi folks")) #=> HI FOLKS!!!
+```
+
+_To run the above code, I have defined the `(:require [clojure.string :as st])` line at the namespace of the file._
+
+## In a nutshell
+- The idea is to define functions, data and operate over data. The language will offer you tools, APIs, techniques, and a whole ecosystem to deal with data nice as possible.
+- You can define things using the `def` keyword
+- You can call things putting them as the first symbol before the opening parenthesis: `(+ 1 2)`, `(inc 1)`, `(make-magic "🧙‍♂️")`
+- You can define intermediary values inside a function using the `let` function
+- You should face Clojure as a bunch of computation using "forms" over data, and _data_ could be almost anything.
+
+## Read more
+- [Clojure for the Brave and True](https://www.braveclojure.com)
+
+---
