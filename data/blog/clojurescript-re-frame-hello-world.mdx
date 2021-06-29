@@ -1,0 +1,76 @@
+---
+title: 'ClojureScript and re-frame Hello World'
+summary: 'Learn how to create your first re-frame application'
+tags: ['clojure', 'clojurescript', 're-frame']
+language: 'en'
+published: false
+publishedAt: '2021-06-29T02:54:50.313Z'
+---
+
+Let's get started by creating the project running `lein new re-frame reframe-hello-world +10x`:
+
+```
+> lein new re-frame reframe-hello-world +10x
+Generating re-frame project.
+```
+
+Now I'll enter the project directory and run `yarn` to install all Node.js dependencies. At this time, the `shadow-cljs` will download the ClojureScript dependencies and setup the project for us.
+
+Then I will run `yarn watch` to start the development server. After build the application, I will be able to access it at `http://localhost:8280`.
+
+![]()
+
+Nice, fast feedback already setup 💪.
+
+My Hello World is a application that displays a counter and two buttons. One of them increments the counter and the another decrements the same counter.
+
+This application is a re-frame application. So it already have a reactive state management library already setup. I will use that.
+
+The initial state is declared in the `db.cljs` file:
+
+```:db.cljs
+(ns reframe-hello-world.db)
+
+(def default-db
+  {:name "re-frame"})
+```
+
+This database is loaded when the application. You can view the definition in the `events.cljs` file:
+
+```:events.cljs
+(ns reframe-hello-world.events
+(:require
+  [re-frame.core :as re-frame]
+  [reframe-hello-world.db :as db]
+  [day8.re-frame.tracing :refer-macros [fn-traced
+  ))
+
+(re-frame/reg-event-db
+  ::initialize-db
+  (fn-traced [_ _]
+    db/default-db))
+```
+
+The `::initialize-db` is dispatched when the application mounts. This behavior is defined in the `core.cljs` file:
+
+```:core.cljs
+;; More code above
+
+(defn init []
+  (re-frame/dispatch-sync [::events/initialize-db])
+  (dev-setup)
+  (mount-root))
+```
+
+When the application init, the first thing that happens is the dispatch of the event `::initialize-db`, then the dev setup is configured and the root application is mounted in the dom. re-frame uses Reagent behind the scenes. Reagent uses React.
+
+Ok, what happens if I change the default state of the application to `{:name "Hello World"}` in the `db.cljs` file?
+
+```:db.cljs
+(ns reframe-hello-world.db)
+
+(def default-db
+  {:name "Hello World"})
+```
+
+![]()
