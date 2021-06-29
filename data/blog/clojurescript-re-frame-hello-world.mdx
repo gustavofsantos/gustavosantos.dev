@@ -3,7 +3,6 @@ title: 'ClojureScript and re-frame Hello World'
 summary: 'Learn how to create your first re-frame application'
 tags: ['clojure', 'clojurescript', 're-frame']
 language: 'en'
-published: false
 publishedAt: '2021-06-29T02:54:50.313Z'
 ---
 
@@ -18,7 +17,7 @@ Now I'll enter the project directory and run `yarn` to install all Node.js depen
 
 Then I will run `yarn watch` to start the development server. After build the application, I will be able to access it at `http://localhost:8280`.
 
-![]()
+![](/images/blog/image_1624930133643_0.png)
 
 Nice, fast feedback already setup 💪.
 
@@ -73,4 +72,209 @@ Ok, what happens if I change the default state of the application to `{:name "He
   {:name "Hello World"})
 ```
 
-![]()
+![](/images/blog/image_1624930748798_0.png)
+
+Yay! ✨✨
+
+The application itself is just a function. You can found it at the `views.cljs` file.
+
+```:views.cljs
+(defn main-panel []
+  (let [name (re-frame/subscribe [::subs/name])]
+    [:div
+     [:h1
+      "Hello from " @name]
+     ]))
+```
+
+In the second line the symbol `name` is defined. It is a subscription to the name reactive parameter. The subscription is defined at `subs.cljs` file:
+
+```:subs.cljs
+(re-frame/reg-sub
+ ::name
+ (fn [db]
+   (:name db)))
+```
+
+In the code above, we a subscription with the name `::name` is defined at the "re-frame context". To watch changes in that value we just subscribe to that piece of reactive state using the function `subscribe` from the `re-frame` namespace.
+
+In other words, every time that the `::name` state change, the `main-panel` will re-render with the brand new value. We could test it registering a "database change event" and dispatch it from a button.
+
+Let start describing the new event handler at `events.cljs` file. I'll call it as `::set-name`:
+
+```:events.cljs
+(ns reframe-hello-world.events
+  (:require
+    [re-frame.core :as re-frame]
+    [reframe-hello-world.db :as db]
+    [day8.re-frame.tracing :refer-macros [fn-traced]]))
+
+(re-frame/reg-event-db
+  ::initialize-db
+  (fn-traced [_ _]
+           db/default-db))
+
+(re-frame/reg-event-db
+  ::set-name
+  (fn [db [_ name]]
+    (assoc db :name name)))
+```
+
+The `assoc` function takes a map, and a set of key and values and set the new values to the keys in a new version of the original map.
+
+Now I'll import the application events in the `views.cljs` page and render a button that dispatche `::set-name` action:
+
+```:views.cljs
+(ns reframe-hello-world.views
+  (:require
+   [re-frame.core :as re-frame]
+   [reframe-hello-world.subs :as subs]
+   [reframe-hello-world.events :as events]))
+
+(defn main-panel []
+  (let [name (re-frame/subscribe [::subs/name])]
+    [:div
+     [:h1
+      "Hello from " @name]
+     [:button {:on-click 
+               #(re-frame/dispatch 
+                 [::events/set-name "Heeeeeeyyy"])}
+      "Update name"]]))
+
+```
+
+After click in the "Update name" button, the page text will change to
+
+![](/images/blog/image_1624933691395_0.png)
+
+Cool, right? Looks like super powered version of Redux.
+
+With that in mind, we can proceed and create the "counter" state. I will define a new key in the initial state -- the initial state is a Clojure map:
+
+```:db.cljs
+(ns reframe-hello-world.db)
+
+(def default-db
+  {:name "Hello World"
+   :counter 42 })
+```
+
+
+Now I'll define two new event handlers. One that increases the counter and other that decrease the value. Both events I will define at the `events.cljs` file.
+
+```:events.cljs
+(re-frame/reg-event-db
+ ::inc-counter
+ (fn [db _]
+   (let [value (:counter db)]
+     (assoc db :counter (+ value 1)))))
+
+(re-frame/reg-event-db
+ ::dec-counter
+ (fn [db _]
+   (let [value (:counter db)]
+     (assoc db :counter (- value 1)))))
+```
+
+Here I'm using the `let` form and defining a symbol called `value`. This symbol holds the current value of the `counter` in our db. For me, it is a lot easier to read this code than the version that makes the update in-place.
+
+Now I'll make the `main-panel` function subscribe to the counter value. First I need to define the registration of a subscription at the file `subs.cljs`
+
+```:subs.cljs
+(ns reframe-hello-world.subs
+  (:require
+   [re-frame.core :as re-frame]))
+
+(re-frame/reg-sub
+ ::name
+ (fn [db]
+   (:name db)))
+
+(re-frame/reg-sub
+ ::counter
+ (fn [db]
+   (:counter db)))
+```
+
+Now is easy to just subscribe to that reactive value:
+
+```:views.cljs
+;; ...
+
+(defn main-panel []
+  (let [name (re-frame/subscribe [::subs/name])
+        counter (re-frame/subscribe [::subs/counter])]
+    [:div
+     [:h1
+      "Hello from " @name]
+     [:h2
+      (str "Counter " @counter)]
+     [:button {:on-click 
+               #(re-frame/dispatch 
+                 [::events/set-name "Heeeeeeyyy"])}
+      "Update name"]]))
+```
+
+Nice, let's look at our interface
+
+![](/images/blog/image_1624934352865_0.png)
+
+With everything already done, it is easy to just dispatch the two new events and see the magic happens.
+
+```:views.cljs
+(defn main-panel []
+  (let [name (re-frame/subscribe [::subs/name])
+        counter (re-frame/subscribe [::subs/counter])]
+    [:div
+     [:h1
+      "Hello from " @name]
+     [:h2
+      (str "Counter " @counter)]
+     [:button {:on-click 
+               #(re-frame/dispatch 
+                 [::events/set-name "Heeeeeeyyy"])}
+      "Update name"]
+     [:div
+      [:button {:on-click
+                #(re-frame/dispatch
+                  [::events/inc-counter])} "Increment"]
+      [:button {:on-click
+                #(re-frame/dispatch
+                  [::events/dec-counter])} "Decrement"]]]))
+```
+
+To clean up the `main-panel` function I'll delete all _hello world_ related stuff. This is a more cleaner version
+
+```:views.cljs
+(ns reframe-hello-world.views
+  (:require
+   [re-frame.core :as re-frame]
+   [reframe-hello-world.subs :as subs]
+   [reframe-hello-world.events :as events]))
+
+(defn main-panel []
+  (let [counter (re-frame/subscribe [::subs/counter])]
+    [:div
+     [:h2
+      (str "Counter " @counter)]
+     [:div
+      [:button {:on-click
+                #(re-frame/dispatch
+                  [::events/inc-counter])} "Increment"]
+      [:button {:on-click
+                #(re-frame/dispatch
+                  [::events/dec-counter])} "Decrement"]]]))
+```
+
+And the browser responds with
+
+![](/images/blog/image_1624934686489_0.png)
+
+I think that it is a pretty nice application, don't you?
+
+## In a nutshell
+
+- re-frame is a front-end framework. It is more like a version of Next.js for ClojureScript.
+- re-frame implements a mechanism where we can subscribe, dispatch and manage events that could both update the application state or request any external api. This library is very powerfull, you can read more [in the docs](https://day8.github.io/re-frame/re-frame/).
+
+---
