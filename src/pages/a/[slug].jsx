@@ -33,13 +33,15 @@ export default function ArticlePage({
 }) {
   return (
     <main
-      className="flex flex-col w-full justify-start items-center pb-64 pt-24 bg-gray-50"
+      className="flex flex-col w-full justify-start items-center pb-64 pt-24 bg-cararra-500 dark:bg-nile-blue-800"
       data-testid="article-page"
     >
       <ArticleHead title={title} summary={summary} coverUrl={coverUrl} />
 
-      <article className="prose prose-blue prose-lg segoe-font w-full px-2 md:px-0 lg:max-w-xl xl:max-w-2xl">
-        <h1 className="mb-8">{title}</h1>
+      <article className="prose prose-blue prose-lg segoe-font text-nile-blue-500 dark:text-cararra-500 w-full px-2 md:px-0 lg:max-w-xl xl:max-w-2xl">
+        <h1 className="inter-font font-black mb-8 text-nile-blue-600 dark:text-cararra-400">
+          {title}
+        </h1>
 
         <section
           className="flex flex-col items-start justify-between space-y-1 mb-4 md:items-center md:flex-row"
@@ -111,14 +113,14 @@ export default function ArticlePage({
       >
         <h3 className="text-5xl">{chooseOne(emojiOptions)}</h3>
         <When value={language === 'en'}>
-          <p className="font-bold">
+          <p className="font-bold text-nile-blue-500 dark:text-cararra-600">
             Have a{' '}
             <span className="text-yellow-500">{chooseOne(enDayOptions)}</span>{' '}
             day
           </p>
         </When>
         <When value={language === 'pt'}>
-          <p className="font-bold">
+          <p className="font-bold text-nile-blue-500 dark:text-cararra-600">
             Tenha um dia{' '}
             <span className="text-yellow-500">{chooseOne(ptDayOptions)}</span>
           </p>
