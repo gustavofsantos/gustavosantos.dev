@@ -5,7 +5,7 @@
 html, body, #__next {
   width: 100%;
   height: 100%;
-  font-family: -apple-system, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, 'Fira Sans', 'Segoe UI', 'Roboto', 'Cantarell', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 * {
@@ -13,27 +13,28 @@ html, body, #__next {
 }
 
 code, pre {
-  font-family: 'Operator Mono Medium', 'Dank Mono', monospace;
+  font-family: 'Fira Code', 'Operator Mono Medium', 'Dank Mono', monospace;
 }
 
 a {
-  @apply text-blue-700 underline;
+  @apply text-blue-600 underline;
 }
 
-.serif {
-  font-family: 'Libre Baskerville', serif;
-}
-
-.style-display {
-  font-family:  'Source Serif Pro', serif;
-}
-
-.domine-font {
-  font-family: 'Domine', serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Fira Sans Condensed', sans-serif;
 }
 
 .segoe-font {
   font-family: 'Segoe UI', sans-serif;
+}
+
+.inter-font {
+  font-family: 'Inter', sans-serif;
 }
 
 .backdrop-filter {
@@ -53,20 +54,29 @@ a {
 }
 
 .prose > h1 {
-  @apply w-full text-center text-gray-900 !important;
+  @apply w-full text-center text-nile-blue-500 dark:text-cararra-500 !important;
+  font-family: 'Inter', sans-serif;
+}
+
+.prose > h2, h3, h4, h5, h6 {
+  @apply text-nile-blue-500 dark:text-cararra-500 !important;
+  font-family: 'Inter', sans-serif;
 }
 
 .prose pre {
-  @apply bg-gray-50 border border-gray-200;
+  @apply bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-600;
 }
 
+.prose blockquote {
+  @apply text-gray-700 dark:text-gray-300 !important;
+}
 
 .prose code {
-  @apply text-gray-800 px-1 py-0.5 border border-gray-100 rounded-md bg-gray-100;
+  @apply text-nile-blue-500 dark:text-cararra-500 px-1 py-0.5 border border-gray-100 dark:border-black rounded-md bg-gray-100 dark:bg-black;
 }
 
 .prose pre code {
-  @apply text-gray-800;
+  @apply text-nile-blue-500 dark:text-cararra-500;
 }
 
 .prose img {
@@ -84,11 +94,11 @@ a {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  @apply text-gray-700;
+  @apply text-gray-700 dark:text-gray-400;
 }
 
 .token.punctuation {
-  @apply text-gray-700;
+  @apply text-nile-blue-500 dark:text-cararra-500;
 }
 
 .token.property,
@@ -98,7 +108,7 @@ a {
 .token.constant,
 .token.symbol,
 .token.deleted {
-  @apply text-gray-700;
+  @apply text-gray-900 dark:text-gray-50;
 }
 
 .token.selector,
@@ -107,7 +117,7 @@ a {
 .token.char,
 .token.builtin,
 .token.inserted {
-  @apply text-green-500;
+  @apply bg-green-400 bg-opacity-10 dark:bg-green-200 dark:bg-opacity-20;
 }
 
 .token.operator,
@@ -121,23 +131,23 @@ a {
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-  @apply text-blue-700;
+  @apply text-purple-600 dark:text-purple-400;
 }
 
 .token.function,
 .token.class-name {
-  @apply text-pink-600;
+  @apply text-gray-900 dark:text-gray-50;
 }
 
 .token.regex,
 .token.important,
 .token.variable {
-  @apply text-yellow-500;
+  @apply bg-yellow-200 bg-opacity-10;
 }
 
 code[class*='language-'],
 pre[class*='language-'] {
-  @apply text-gray-800 px-2 py-1;
+  @apply text-gray-900 px-2 py-1;
 }
 
 pre::-webkit-scrollbar {
@@ -150,7 +160,7 @@ pre {
 }
 
 .remark-code-title {
-  @apply text-gray-800 px-2 py-1 border border-b-0 border-gray-200 rounded-t bg-gray-200 text-sm font-mono font-bold;
+  @apply text-nile-blue-500 px-2 py-1 border border-b-0 border-gray-200 rounded-t bg-gray-200 text-sm font-mono font-bold;
 }
 
 .remark-code-title + pre {

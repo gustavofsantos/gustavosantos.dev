@@ -7,12 +7,14 @@ export const Footer = () => (
   <footer className="flex flex-col items-center w-full pt-8 pb-4 space-y-2">
     <div className="flex flex-col">
       <Link href="/">
-        <p
-          className="cursor-pointer px-8 py-2 transition-all duration-150 hover:bg-yellow-300"
-          role="a"
-        >
-          Gustavo Santos © {new Date().getFullYear()}
-        </p>
+        <a>
+          <p
+            className="cursor-pointer px-8 py-2 transition-all duration-150 text-gray-800 dark:text-gray-300"
+            role="a"
+          >
+            Gustavo Santos © {new Date().getFullYear()}
+          </p>
+        </a>
       </Link>
     </div>
     <div className="flex justify-center items-center space-x-4 min-w-min">
