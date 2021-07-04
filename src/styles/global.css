@@ -17,7 +17,7 @@ code, pre {
 }
 
 a {
-  @apply text-blue-600 underline;
+  @apply text-green-500 dark:text-green-300 underline;
 }
 
 h1,
@@ -61,6 +61,18 @@ h6 {
 .prose > h2, h3, h4, h5, h6 {
   @apply text-nile-blue-500 dark:text-cararra-500 !important;
   font-family: 'Inter', sans-serif;
+}
+
+.prose ul > li::before {
+  @apply bg-nile-blue-400 dark:bg-cararra-600 !important;
+}
+
+.prose hr {
+  @apply border-cararra-700 dark:border-nile-blue-300 !important;
+}
+
+.prose-green a {
+  @apply text-green-500 dark:text-green-300 !important;
 }
 
 .prose pre {

@@ -9,7 +9,7 @@ const components = {
 export default function HomePage({ content, mdxSource }) {
   return (
     <div className="flex flex-col w-full justify-start items-center pb-64 pt-24 bg-cararra-500 dark:bg-nile-blue-800">
-      <article className="prose prose-lg prose-blue text-gray-800 dark:text-gray-200">
+      <article className="prose prose-lg prose-green px-4 md:px-0 text-gray-800 dark:text-gray-200">
         <MDXRemote {...mdxSource} components={{ ...components }} />
       </article>
     </div>

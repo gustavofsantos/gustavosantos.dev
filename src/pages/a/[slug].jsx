@@ -38,10 +38,21 @@ export default function ArticlePage({
     >
       <ArticleHead title={title} summary={summary} coverUrl={coverUrl} />
 
-      <article className="prose prose-blue prose-lg segoe-font text-nile-blue-500 dark:text-cararra-500 w-full px-2 md:px-0 lg:max-w-xl xl:max-w-2xl">
+      <article className="prose prose-green prose-lg text-nile-blue-500 dark:text-cararra-500 w-full px-2 md:px-0 lg:max-w-xl xl:max-w-2xl">
         <h1 className="inter-font font-black mb-8 text-nile-blue-600 dark:text-cararra-400">
           {title}
         </h1>
+
+        {!!coverUrl && (
+          <ArticleCover
+            url={coverUrl}
+            credit={coverCredits}
+            height={coverHeight}
+            width={coverWidth}
+          />
+        )}
+
+        <MDXRemote {...mdxSource} components={{ ...components }} />
 
         <section
           className="flex flex-col items-start justify-between space-y-1 mb-4 md:items-center md:flex-row"
@@ -58,17 +69,6 @@ export default function ArticlePage({
             <Coffees message="Reading time" minutes={Math.ceil(readingTime)} />
           </When>
         </section>
-
-        {!!coverUrl && (
-          <ArticleCover
-            url={coverUrl}
-            credit={coverCredits}
-            height={coverHeight}
-            width={coverWidth}
-          />
-        )}
-
-        <MDXRemote {...mdxSource} components={{ ...components }} />
 
         <section className="my-8 w-full">
           <When value={language === 'en'}>
@@ -115,14 +115,18 @@ export default function ArticlePage({
         <When value={language === 'en'}>
           <p className="font-bold text-nile-blue-500 dark:text-cararra-600">
             Have a{' '}
-            <span className="text-yellow-500">{chooseOne(enDayOptions)}</span>{' '}
+            <span className="text-indigo-600 dark:text-indigo-400">
+              {chooseOne(enDayOptions)}
+            </span>{' '}
             day
           </p>
         </When>
         <When value={language === 'pt'}>
           <p className="font-bold text-nile-blue-500 dark:text-cararra-600">
             Tenha um dia{' '}
-            <span className="text-yellow-500">{chooseOne(ptDayOptions)}</span>
+            <span className="text-indigo-600 dark:text-indigo-400">
+              {chooseOne(ptDayOptions)}
+            </span>
           </p>
         </When>
       </section>

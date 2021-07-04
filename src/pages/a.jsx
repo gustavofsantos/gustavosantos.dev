@@ -48,7 +48,7 @@ export default function ArticlesPage({ articles }) {
           ))}
         </section>
       </article>
-      <section className="prose prose-blue w-full">
+      <section className="prose prose-green w-full">
         <Footer />
       </section>
     </main>
